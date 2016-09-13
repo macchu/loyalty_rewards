@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+#Happy Path
+bill:
+  phone_number: "612-581-6321"
+  digit_only_phone_number: '6125816321' #Usually populated in a callback.
+  first_name: Bill
+  last_name: Johnson
+
+julieta:
+  phone_number: '(952) 876-1234'
+  digit_only_phone_number: '9528761234' #Usually populated in a callback.
+  first_name: Julieta
+  last_name: Martinez

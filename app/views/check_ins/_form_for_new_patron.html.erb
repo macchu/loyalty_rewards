@@ -1,0 +1,13 @@
+<%= bootstrap_form_for(@new_patron, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f| %>
+    <% if @check_in %>
+    <%= f.hidden_field :check_in_id, value: @check_in.id %>
+    <% end %>
+    <%= f.phone_field :phone_number %>
+    <%= f.text_field :first_name %>
+    <%= f.text_field :last_name %>  
+    <div class="form-group" >
+      <div class="offset-sm-2 col-sm-10">
+        <%= f.submit "Done", class: 'btn btn-primary' %>  
+      </div>
+    </div>
+<% end %>

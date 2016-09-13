@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  loyalty_card_id: 1
+  date_given: 2016-08-23 16:50:50
+  patron_id: 1
+  store_id: 1
+
+two:
+  loyalty_card_id: 1
+  date_given: 2016-08-23 16:50:50
+  patron_id: 1
+  store_id: 1

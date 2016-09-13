@@ -1,0 +1,7 @@
+// Custom bootstrap variables must be set or imported before bootstrap itself.
+@import "bootstrap";
+
+//Used in geolocation button in 'views/check_ins/_form that exists outside of the form, form group CSS.
+.outside-form {
+  margin-top: 5px;
+}

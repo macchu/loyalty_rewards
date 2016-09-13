@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+#Happy Path
+coop_with_bill:
+  lat: 1.5
+  lng: 1.5
+  patron: bill
+  store: coop
+  phone_number: MyString
+
+two:
+  lat: 1.5
+  lng: 1.5
+  phone_number: MyString

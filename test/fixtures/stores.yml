@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+coop:
+  name: Linden Hills Coop
+  lat: 44.921919
+  lng: -93.328703
+
+france_44:
+  name: France 44
+  lat: 44.922876
+  lng: -93.328756

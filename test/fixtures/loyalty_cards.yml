@@ -1,0 +1,8 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+card_for_bill:
+  patron: bill
+  store: france_44
+  date_issued: 2016-08-23 16:47:42
+  date_completed: 
+  stamp_required: 10
+  stamp_count: 2

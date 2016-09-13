@@ -1,0 +1,6 @@
+<p>Which store do you want?</p>
+<%= bootstrap_form_tag url: '/check_ins/ambiguous_store' do |f| %>
+  <%= f.hidden_field :check_in_id, id: "check_in_id", value: @check_in.id %>
+  <%= f.collection_radio_buttons :store, @check_in.possible_stores, :id, :name %>
+  <%= f.submit %>
+<% end %>

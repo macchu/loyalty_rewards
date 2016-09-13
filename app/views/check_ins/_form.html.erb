@@ -1,0 +1,12 @@
+<%= bootstrap_form_for( @check_in, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f| %>
+    <%= f.phone_field :phone_number %>
+    <%= f.hidden_field :lat, id: "lat_field" %>
+    <%= f.hidden_field :lng, id: "lng_field" %>     
+<% end %>
+
+<div id="geo_location_controls" class="form-group" >
+  <div class="offset-sm-2 col-sm-10">
+    <button id="give_location_button" class="btn btn-primary outside-form">Give location</button>
+    <small id="geo_location_help" class="text-muted">Your device will ask you for your location.</small>
+  </div>
+</div>  
