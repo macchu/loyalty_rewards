@@ -1,0 +1,5 @@
+check_in:
+  check_in: coop_with_bill
+  patronage_verification_technique: check_in
+  lat: 1.5
+  lng: 1.5 
