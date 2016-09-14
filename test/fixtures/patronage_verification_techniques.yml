@@ -1,3 +1,6 @@
 check_in:
   store: coop
   description: 'Check in'
+pos_code:
+  store: france_44
+  description: 'POSCode'
