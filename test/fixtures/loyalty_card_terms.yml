@@ -1,5 +1,7 @@
-loyalty_card_terms_for_coop:
-  store_id: 1
+
+terms_for_coop:
+  store: coop
   reward_description: 'Free mug'
   expiration: 2016-08-23 16:47:42
   stamps_required: 10
+  verification_technique_id: 1
