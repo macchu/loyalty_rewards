@@ -49,6 +49,8 @@ gem 'mini_magick'  # Overlays stamp images on loyalty card.
 
 gem 'awesome_print'
 
+gem 'mailman'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
