@@ -7,8 +7,3 @@ coop_with_bill:
   patron: bill
   store: coop
   phone_number: MyString
-
-two:
-  lat: 1.5
-  lng: 1.5
-  phone_number: MyString
