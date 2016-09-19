@@ -10,6 +10,7 @@ class CheckIn < ApplicationRecord
 
   belongs_to :patron, optional: true
   belongs_to :store, optional: true
+  belongs_to :check_in_strategy, optional: true
 
   def find_patron_and_store
     logger.info " #{self.class.to_s}##{__method__.to_s}"
