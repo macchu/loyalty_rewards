@@ -4,6 +4,8 @@ class CheckIn < ApplicationRecord
   attr_accessor :range
   attr_reader :status
   attr_reader :possible_stores  #Used for the ambiguous_stores scenario.
+
+  accepts_nested_attributes_for :patronage_proof
   
   validates :phone_number, presence: { message: "must be given please" } 
   before_save :find_patron_and_store
