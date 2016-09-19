@@ -31,7 +31,7 @@ class ParseEmailMessage
       end
     end
 
-    @check_in = CheckIn.new(phone: @sender_local_part )
+    @check_in = CheckIn.new(check_in_strategy: :sms_with_code, phone: @sender_local_part )
     #LoyaltySubmission.create(sender: sender, body: body)
   end
 end

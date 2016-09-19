@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  description: MyString
+sms_with_code:
+  name: sms_with_code
+  description: Patron texts an email address from their phone with a code.
 
-two:
-  name: MyString
-  description: MyString
+geo_location:
+  name: geo_location
+  description: Patrons check in from a Webpage that asks them for their latitude & longitude.

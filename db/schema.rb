@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160919154518) do
+ActiveRecord::Schema.define(version: 20160919161854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,10 +27,11 @@ ActiveRecord::Schema.define(version: 20160919154518) do
     t.float    "lat"
     t.float    "lng"
     t.string   "phone_number"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.integer  "patron_id"
     t.integer  "store_id"
+    t.integer  "check_in_strategy_id"
   end
 
   create_table "loyalty_card_terms", force: :cascade do |t|
