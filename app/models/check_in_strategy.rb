@@ -1,0 +1,2 @@
+class CheckInStrategy < ApplicationRecord
+end

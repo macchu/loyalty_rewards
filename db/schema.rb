@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914155933) do
+ActiveRecord::Schema.define(version: 20160919154518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "check_in_strategies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["name"], name: "index_check_in_strategies_on_name", using: :btree
+  end
 
   create_table "check_ins", force: :cascade do |t|
     t.float    "lat"
