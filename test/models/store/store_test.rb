@@ -11,6 +11,10 @@ class StoreTest < ActiveSupport::TestCase
     assert_equal store.empty?, true
   end
 
+  test ".find_by_email_for_check_ins" do
+    assert_equal @coop, Store.find_by_email_for_check_ins('coop@stampstamp.com')
+  end
+
   test "one store found" do
     
   end
