@@ -14,13 +14,13 @@ class ParseEmailMessageTest < ActiveSupport::TestCase
     #@check_in = CheckIn.create( params )
 
     contents = File.open("#{fixture_path}sms_check_in_with_code.eml", "r"){ |file| file.read }
-    message = Mail.new(contents)
-
+    @message = Mail.new(contents)
   end
 
   test 'Verify setup' do
+    ap CheckIn.count
     assert_difference('CheckIn.count') do
-      ParseEmailMessage.new(message)
+      ParseEmailMessage.new(@message)
     end
   end
 

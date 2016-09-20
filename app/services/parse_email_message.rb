@@ -1,13 +1,11 @@
 require 'mailman'
 
-# Extracts elements from a Mail object.  Usefull for instantiating a 
-# a model object, like LoyaltySubmission, that persists those elements in
-# a database and trigger other business processes.
+# Extracts elements from a Mail object and determines if it is a
+# check_in or an enrollment message.  It then determines what response
+# to give the sender, essentially behaving like a HTTP controller.
 #
 # ==== Examples
-#   Steps
-#   1. mail_elements = EmailMessageParser.new(message) #=> {sender: 'mthomas@yahoo.com', subject: 'Enroll in rewards', body: 'Please..',..}
-#   2. LoyaltySubmission.create(mail_elements)
+#   
 class ParseEmailMessage
   attr_reader :sender, :sender_local_part, :body, :body_text_part, :body_html_part, :recipient
   
@@ -34,10 +32,10 @@ class ParseEmailMessage
     params =  { check_in_strategy: CheckInStrategy.find_by_name(:sms_with_code), 
                 phone_number: @sender_local_part,
                 store: Store.find_by_email_for_check_ins(@recipient),
-                patronage_proof_attributes: { @body_html_part}
+                patronage_proof_attributes: { code: @body_html_part }
               }
 
-    @check_in = CheckIn.new(params)
+    @check_in = CheckIn.create(params)
     #LoyaltySubmission.create(sender: sender, body: body)
   end
 end
