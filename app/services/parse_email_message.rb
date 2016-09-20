@@ -32,12 +32,12 @@ class ParseEmailMessage
     end
 
     params =  { check_in_strategy: CheckInStrategy.find_by_name(:sms_with_code), 
-                phone_number: @julieta.digit_only_phone_number,
-                store: Store.find_by_email_for_check_ins('coop@stampstamp.com'),
-                patronage_proof_attributes: { code: 'Z100'}
+                phone_number: @sender_local_part,
+                store: Store.find_by_email_for_check_ins(@recipient),
+                patronage_proof_attributes: { @body_html_part}
               }
 
-    @check_in = CheckIn.new(check_in_strategy: :sms_with_code, phone: @sender_local_part )
+    @check_in = CheckIn.new(params)
     #LoyaltySubmission.create(sender: sender, body: body)
   end
 end
