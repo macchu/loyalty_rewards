@@ -9,7 +9,7 @@ class PostMessage
     @uri = URI(check_ins_url)
   end
 
-  def start
+  def start_post
     acquire_authenticity_token_using_get
   end
 
