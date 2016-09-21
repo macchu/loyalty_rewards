@@ -27,17 +27,9 @@ class ParseEmailMessage
         end
       end
     end
+  end
 
-    params =  { check_in_strategy: CheckInStrategy.find_by_name(:sms_with_code), 
-                phone_number: @sender_local_part,
-                store: Store.find_by_email_for_check_ins(@recipient),
-                patronage_proof_attributes: { code: @body_html_part }
-              }
-
-    # post = PostMessage.new(params)
-    # post.acquire_authenticity_token_using_get
-
-    @check_in = CheckIn.create(params)
-    #LoyaltySubmission.create(sender: sender, body: body)
+  def check_in_params
+    { phone_number: @sender_local_part }
   end
 end
