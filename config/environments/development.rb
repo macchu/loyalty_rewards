@@ -53,12 +53,15 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   Mailman.config.imap = {
-  server: 'imap.gmail.com',
-  port: 993, # you usually don't need to set this, but it's there if you need to
-  ssl: true,
-  # Use starttls instead of ssl (do not specify both)
-  #starttls: true,
-  username: ENV['GMAIL_USERNAME'],
-  password: ENV['GMAIL_PASSWORD']
-}
+    server: 'imap.gmail.com',
+    port: 993, # you usually don't need to set this, but it's there if you need to
+    ssl: true,
+    # Use starttls instead of ssl (do not specify both)
+    #starttls: true,
+    username: ENV['GMAIL_USERNAME'],
+    password: ENV['GMAIL_PASSWORD']
+  }
+
+  config.default_host_for_posting_emails = 'localhost:3000'
+
 end
