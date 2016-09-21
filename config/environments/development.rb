@@ -62,6 +62,4 @@ Rails.application.configure do
     password: ENV['GMAIL_PASSWORD']
   }
 
-  config.default_host_for_posting_emails = 'localhost:3000'
-
 end

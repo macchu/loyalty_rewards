@@ -39,8 +39,6 @@ Rails.application.configure do
 
   config.log_level = :debug
 
-  config.default_host_for_posting_emails = 'localhost:80'
-
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
