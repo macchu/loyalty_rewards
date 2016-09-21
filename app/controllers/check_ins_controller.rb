@@ -23,7 +23,7 @@ class CheckInsController < ApplicationController
         render :ambiguous_store
       else
         ap "else"
-      end
+      end 
     else
       render :ask_for_location
     end

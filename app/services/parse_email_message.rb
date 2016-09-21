@@ -1,8 +1,7 @@
 require 'mailman'
 
 # Extracts elements from a Mail object and determines if it is a
-# check_in or an enrollment message.  It then determines what response
-# to give the sender, essentially behaving like a HTTP controller.
+# check_in or an enrollment message.
 #
 # ==== Examples
 #   
@@ -35,16 +34,10 @@ class ParseEmailMessage
                 patronage_proof_attributes: { code: @body_html_part }
               }
 
-    post = PostMessage.new(params)
-    post.acquire_authenticity_token_using_get
+    # post = PostMessage.new(params)
+    # post.acquire_authenticity_token_using_get
 
-    # res = Net::HTTP.get_response(URI('http://localhost:3000/check_ins'))
-    # ap res.body
-
-    # Net::HTTP.post_form URI('http://localhost:3000/check_ins/'),
-    #                 { "q" => "ruby", "max" => "50" }
-
-    #@check_in = CheckIn.create(params)
+    @check_in = CheckIn.create(params)
     #LoyaltySubmission.create(sender: sender, body: body)
   end
 end

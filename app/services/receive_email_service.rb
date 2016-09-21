@@ -11,7 +11,7 @@ class ReceiveEmailService
 
       to 'linden_hills_coop@stampstamp.com' do
         ap "Message received: to linden_hills_coop.", options = {color: { string: :green} }
-        ParseEmailMessage.new(message)
+        CheckInMessageController.new(message)
       end
     end
   end

@@ -1,11 +1,12 @@
 include Rails.application.routes.url_helpers
 
+#TODO: Delete this code if I move away from HTTP posting the contents of messages.
 class PostMessage
   attr_reader :message, :uri, :authenticity_token
   
   def initialize(message)
     @message = message
-    Rails.application.routes.default_url_options[:host] ||= Rails.configuration.default_host_for_posting_emails
+    #Rails.application.routes.default_url_options[:host] ||= Rails.configuration.default_host_for_posting_emails
     @uri = URI(check_ins_url)
   end
 
