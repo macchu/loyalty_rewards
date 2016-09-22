@@ -7,4 +7,7 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def fixture(*name)
+    File.open(File.join(fixture_path, 'messages', name) + '.eml').read
+  end
 end
