@@ -3,7 +3,6 @@
 class CheckInMessageController
   def initialize(message)
     Rails.logger.info " #{self.class.to_s}##{__method__.to_s}"
-    ap "Initializing ParseEmailMessage"
     parsed_message = ParseEmailMessage.new(message)
     params = { phone_number: parsed_message.sender_local_part }
     @check_in = CheckIn.create(params)

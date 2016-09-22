@@ -1,0 +1,2 @@
+class PatronEnrollmentMailer < ApplicationMailer
+end
