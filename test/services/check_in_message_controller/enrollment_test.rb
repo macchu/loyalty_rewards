@@ -3,12 +3,12 @@ require 'test_helper'
 class CheckInMessageControllerTest
   class EnrollmentTest < ActionDispatch::IntegrationTest
     def setup
-      
+      @message = Mail.new(fixture('unknown_sender_with_code'))
     end
 
     test 'Send an invitation message when receiving unknown check_in.' do 
       assert_difference 'ActionMailer::Base.deliveries.size', +1 do
-        @controller = CheckInMessageController.new(message)
+        @controller = CheckInMessageController.new(@message)
       end
       invite_email = ActionMailer::Base.deliveries.last
    
