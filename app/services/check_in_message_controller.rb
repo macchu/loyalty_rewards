@@ -11,9 +11,10 @@ class CheckInMessageController
     when :check_in
       
     when :enroll
+      Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: :enroll."
       @check_in_id = @check_in.id
       @new_patron = Patron.new(phone_number: @check_in.phone_number)
-      #send_complete_check_in_message(@new_patron)
+      PatronEnrollmentMailer.provide_name(parsed_message.sender).deliver_now 
     
     end
   end

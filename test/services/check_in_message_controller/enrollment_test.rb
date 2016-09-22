@@ -13,7 +13,7 @@ class CheckInMessageControllerTest
       invite_email = ActionMailer::Base.deliveries.last
    
       assert_equal '6124567890@vzwpix.com', invite_email.to[0]
-      assert_match(/What is your name?  First & Last please./, invite_email.body.to_s)
+      assert_match(/Thanks!  Please reply to this message with your full name so we can "stamp" your card./, invite_email.body.to_s)
     end
 
   end
