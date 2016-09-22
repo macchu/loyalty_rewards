@@ -10,9 +10,8 @@ class ParseEmailMessage
   
   def initialize(message)
     Rails.logger.info "#{self.class.to_s}##{__method__.to_s}:"
-    Rails.logger.debug message
     @sender = message.from.nil? ? "unknown" : message.from.first
-    @sender_local_part = sender.partition('@').first
+    @sender_local_part = @sender.partition('@').first
     @body = message.body.to_s
     @recipient = message.to.first
 
