@@ -28,8 +28,4 @@ class ParseEmailMessage
       end
     end
   end
-
-  def check_in_params
-    { phone_number: @sender_local_part }
-  end
 end
