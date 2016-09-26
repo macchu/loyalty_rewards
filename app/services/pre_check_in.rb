@@ -1,17 +1,17 @@
 #This module contains Interactors for processing check ins.
 #  There are a lot of different 
 module PreCheckIn
-  class SMSCheck
+  class SMSCheckIn
     def initialize(check_in_message, email_of_store)
+      Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: email_of_store -> #{email_of_store}"
       message = ParseEmailMessage.new(check_in_message)
-      store = Store.find_by_email(email_of_store)
-      patron = Patron.find_by_digit_only_phone_number(message.local_part_only)
-
+      store = Store.find_by_email_for_check_ins(email_of_store)
+      patron = Patron.find_by_digit_only_phone_number(message.sender_local_part)
       case 
-      when patron.nil
-        enroller = EnrollPatron.start( phone_number: check_in_message.local_part_only )
-        Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: :enroll_patron #{parsed_message.sender} "
-        PatronEnrollmentMailer.provide_name(parsed_message.sender).deliver_now
+      when patron.nil?
+        Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: enroll_patron #{message.sender} "
+        enroller = EnrollPatron.start( phone_number: message.sender_local_part )
+        PatronEnrollmentMailer.provide_name(message.sender).deliver_now
       
       when patron.pending
         #Finish sms_enrollment(patron: patron, full_name: message.body)

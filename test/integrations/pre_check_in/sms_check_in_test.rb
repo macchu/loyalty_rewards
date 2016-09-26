@@ -3,12 +3,12 @@ require 'test_helper'
 class PreCheckInTest
   class SMSCheckInTest < ActionDispatch::IntegrationTest
     def setup
-      new_patron_msg = Fixtures('unknown_sender_with_code')
+      @new_patron_msg = Mail.new(fixture('unknown_sender_with_code'))
     end
 
     test 'A check in from a new patron generates an enrollment message.' do
       assert_difference 'ActionMailer::Base.deliveries.size', +1 do
-        @controller = CheckInMessageController.new(@message)
+        @controller = PreCheckIn::SMSCheckIn.new(@new_patron_msg,'france_44@stampstamp.com')
       end
       invite_email = ActionMailer::Base.deliveries.last
    
