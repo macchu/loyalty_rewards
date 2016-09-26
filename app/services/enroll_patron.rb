@@ -1,11 +1,9 @@
 class EnrollPatron
-  #Begin the enrollment process.
-  def self.start(phone_number)
-    if Patron.create(phone_number: phone_number, pending: true)
+  attr_reader :patron
 
-    else
-      #TODO: Send error email.
-    end
+  #Begin the enrollment process.
+  def self.start(params)
+    @patron = Patron.create(params)
   end
 
   #Finish the enrollment process.
