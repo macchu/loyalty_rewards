@@ -12,8 +12,8 @@ module PreCheckIn
       case 
       when patron.nil?
         Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: enroll_patron #{message.sender} "
-        
-        EnrollPatron.start( phone_number: message.sender_local_part, patronage_proof:  )
+      
+        EnrollPatron.start( params(message) )
         
         PatronEnrollmentMailer.provide_name(message.sender).deliver_now
       
@@ -25,9 +25,11 @@ module PreCheckIn
 
     end
 
-    def enroll_patron_params(message)
+    def params(message)
       params = { phone_number: message.sender_local_part }
-      params << { patronage_proofs: { code: message.body_text_part} } if message.body_text_part
+
+      #TODO: Account for texted codes or pictures of receipts.
+      params[:patronage_proofs] = { code: message.body_text_part} if message.body_text_part
     end
 
   end
