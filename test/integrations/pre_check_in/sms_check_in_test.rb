@@ -10,10 +10,11 @@ class PreCheckInTest
 
     test 'A check in from a new patron generates an enrollment message.' do
       assert 1, ActionMailer::Base.deliveries.size - @actionmailer_size_start 
+      
       invite_email = ActionMailer::Base.deliveries.last
-   
       assert_equal '6124567890@vzwpix.com', invite_email.to[0]
-      assert_match /Thanks!  Please reply to this message with your full name so we can "stamp" your card./, invite_email.body.to_s
+      assert_match /Thanks!  Please reply to this message with your full name so we can "stamp" your card./, 
+                    invite_email.body.to_s
     
     end
 
@@ -23,6 +24,10 @@ class PreCheckInTest
 
     test 'A pending patron retains the verification code from their purchase.' do
       assert 'Z105', Patron.last.check_ins.last.patronage_proof.code
+    end
+
+    test 'Patron.sms_address was set.' do
+      assert '6124567890@vzwpix.com', Patron.last.sms_address
     end
   end
 end

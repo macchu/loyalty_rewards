@@ -28,7 +28,7 @@ module PreCheckIn
 
     private 
     def patron_params(message)
-      params = { phone_number: message.sender_local_part, pending: true }
+      params = { phone_number: message.sender_local_part, sms_address: message.sender, pending: true }
       
     end
 
