@@ -17,10 +17,10 @@ class ParseEmailMessage
 
     if message.multipart?
       message.parts.each do |part|
-        case part.content_type
-        when 'text/plain'
+        case 
+        when part.content_type.include?('text/plain')
           @body_text_part = part.decode_body
-        when 'text/HTML'
+        when part.content_type.include?('text/HTML')
           @body_html_part = part.decode_body
         else
           # Do nothing.

@@ -14,14 +14,16 @@ class ParseEmailMessageTest < ActiveSupport::TestCase
     #@check_in = CheckIn.create( params )
 
     contents = File.open("#{fixture_path}messages/sms_check_in_with_code.eml", "r"){ |file| file.read }
-    @message = Mail.new(contents)
+    message = Mail.new(contents)
+    @parsed_message = ParseEmailMessage.new(message)
   end
 
-  test 'Verify setup' do
-    ap CheckIn.count
-    assert_difference('CheckIn.count') do
-      ParseEmailMessage.new(@message)
-    end
+  test '.sender_local_part' do
+    assert_equal '9528761234', @parsed_message.sender_local_part
+  end
+
+  test '.body_text_part' do
+    assert @parsed_message.body_text_part.include?('Z105')
   end
 
   # test 'Check In is created' do

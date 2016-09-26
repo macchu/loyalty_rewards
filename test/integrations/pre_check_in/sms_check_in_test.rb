@@ -22,6 +22,8 @@ class PreCheckInTest
     end
 
     test 'A pending patron retains the verification code from their purchase.' do
+      # ap Patron.last.check_ins
+      # ap CheckIn.last.patronage_proof
       assert 'Z105', Patron.last.check_ins.last.patronage_proof.code
     end
   end

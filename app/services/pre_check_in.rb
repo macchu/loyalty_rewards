@@ -17,6 +17,7 @@ module PreCheckIn
         
         PatronEnrollmentMailer.provide_name(message.sender).deliver_now #TODO: move this inside EnrollPatron.
 
+        ap check_in_params(patron: patron, store: store, message: message)
         CheckIn.create( check_in_params(patron: patron, store: store, message: message)  )
       when patron.pending
         #Finish sms_enrollment(patron: patron, full_name: message.body)
@@ -33,6 +34,7 @@ module PreCheckIn
     end
 
     def check_in_params(patron: patron, store: store, message: message)
+      ap message.body_text_part
       params = { patron_id: patron.id, store_id: store.id, phone_number: patron.phone_number }
       #TODO: Account for texted codes or pictures of receipts.
       params[:patronage_proof_attributes] = { code: message.body_text_part} if message.body_text_part
