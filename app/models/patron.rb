@@ -4,6 +4,7 @@ class Patron < ApplicationRecord
 
   before_save :create_digit_only_phone_number
 
+  #TODO: Delete if this is slower than .find_by_digit_only_phone_number().
   def self.find_by_phone(phone)
     digit_only_phone = phone.gsub(/\D/, '')
     self.where(digit_only_phone_number: digit_only_phone)
