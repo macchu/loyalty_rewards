@@ -35,7 +35,7 @@ module PreCheckIn
     def check_in_params(patron: patron, store: store, message: message)
       params = { patron_id: patron.id, store_id: store.id, phone_number: patron.phone_number }
       #TODO: Account for texted codes or pictures of receipts.
-      params[:patronage_proofs] = { code: message.body_text_part} if message.body_text_part
+      params[:patronage_proof_attributes] = { code: message.body_text_part} if message.body_text_part
       return params
     end
 
