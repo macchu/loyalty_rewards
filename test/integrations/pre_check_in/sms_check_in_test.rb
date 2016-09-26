@@ -15,7 +15,6 @@ class PreCheckInTest
       assert_equal '6124567890@vzwpix.com', invite_email.to[0]
       assert_match /Thanks!  Please reply to this message with your full name so we can "stamp" your card./, 
                     invite_email.body.to_s
-    
     end
 
     test 'A check from a new patron creates a pending patron.' do
