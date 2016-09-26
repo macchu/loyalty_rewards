@@ -1,8 +1,11 @@
+#This module contains Interactors for processing check ins.
+#  There are a lot of different 
 module PreCheckIn
   class SMSCheck
     def initialize(check_in_message, email_of_store)
+      message = ParseEmailMessage.new(check_in_message)
       store = Store.find_by_email(email_of_store)
-      patron = Patron.find_by_digit_only_phone_number(check_in_message.local_part_only)
+      patron = Patron.find_by_digit_only_phone_number(message.local_part_only)
 
       case 
       when patron.nil

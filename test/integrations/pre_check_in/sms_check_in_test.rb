@@ -3,7 +3,7 @@ require 'test_helper'
 class PreCheckInTest
   class SMSCheckInTest < ActionDispatch::IntegrationTest
     def setup
-      new_patron_msg = Fixture('unknown_sender_with_code')
+      new_patron_msg = Fixtures('unknown_sender_with_code')
     end
 
     test 'A check in from a new patron generates an enrollment message.' do
