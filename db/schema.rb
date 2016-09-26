@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924131937) do
+ActiveRecord::Schema.define(version: 20160926195543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20160924131937) do
     t.datetime "updated_at",              null: false
     t.string   "digit_only_phone_number"
     t.boolean  "pending"
+    t.string   "sms_address"
     t.index ["digit_only_phone_number"], name: "index_patrons_on_digit_only_phone_number", using: :btree
   end
 
