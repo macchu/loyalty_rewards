@@ -12,3 +12,10 @@ julieta:
   digit_only_phone_number: '9528761234' #Usually populated in a callback.
   first_name: Julieta
   last_name: Martinez
+
+walter:
+  phone_number: '(701) 555-1234'
+  digit_only_phone_number: '7015551234' #Usually populated in a callback.
+  first_name: Walter
+  last_name: Williams
+  pending: true
