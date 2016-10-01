@@ -4,22 +4,20 @@ class EnrollPatron
   #Begin the enrollment process.
   def self.start(params)
     patron = Patron.create(params)
-    PatronEnrollmentMailer.provide_name(patron.sms_address).deliver_now #TODO: move this inside EnrollPatron.
+    PatronEnrollmentMailer.provide_name(patron.sms_address).deliver_now
     return patron
   end
 
   #Finish the enrollment process.
   def self.finish(patron_to_finish:, enrollment_message: )
-    name_parser = FullNameParser.new(enrollment_message.body_part)
+    name_parser = FullNameParser.new(enrollment_message.body_text_part)
 
-    ap name_parser
-    
     patron_to_finish.first_name = name_parser.first_name
     patron_to_finish.last_name = name_parser.last_name
     patron_to_finish.pending = false
     patron_to_finish.save
-
-
+    
+    PatronEnrollmentMailer.received_name(patron_to_finish).deliver_now
   end
 
 end

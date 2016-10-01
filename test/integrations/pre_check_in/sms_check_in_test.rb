@@ -9,7 +9,7 @@ class PreCheckInTest
     end
 
     test 'A check in from a new patron generates an enrollment message.' do
-      assert 1, ActionMailer::Base.deliveries.size - @actionmailer_size_start 
+      assert_equal 1, ActionMailer::Base.deliveries.size - @actionmailer_size_start 
       
       invite_email = ActionMailer::Base.deliveries.last
       assert_equal '6124567890@vzwpix.com', invite_email.to[0]
@@ -32,27 +32,25 @@ class PreCheckInTest
 
   class FinishEnrollmentTest < ActionDispatch::IntegrationTest
     def setup
-      @walter = patrons(:walter)
+      @pending_patron = patrons(:pending_patron)
       @actionmailer_size_start = ActionMailer::Base.deliveries.size
       @new_patrons_name_msg = Mail.new(fixture('enrollment_message_with_patron_name'))
       PreCheckIn::SMSCheckIn.new(@new_patrons_name_msg,'france_44@stampstamp.com')
     end
 
     test 'The patron is no longer pending' do
-      assert @walter.pending
+      assert @pending_patron.pending
 
-      refute Patron.last.pending
-      assert_equal @walter, Patron.last
+      refute Patron.find(@pending_patron.id).pending
     end
 
     test 'A thank you email was sent.' do
-
+      assert_equal 1, ActionMailer::Base.deliveries.size - @actionmailer_size_start 
     end
 
     test 'A stamped card was attached to the message.' do
-
+      message = ActionMailer::Base.deliveries.last
+      assert 'loyalty_card.jpg', message.attachments.first.filename
     end
-
-
   end
 end

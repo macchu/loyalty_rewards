@@ -9,7 +9,6 @@ module PreCheckIn
       
       message = ParseEmailMessage.new(check_in_message)
       patron = Patron.find_by_digit_only_phone_number(message.sender_local_part)
-      ap "Patron: #{patron.last_name}"
       case 
       when patron.nil?
         Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: enroll_patron #{message.sender} "
@@ -21,8 +20,7 @@ module PreCheckIn
       when patron.pending
         #Finish sms_enrollment(patron: patron, full_name: message.body)
         Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: finalize enrollment for #{patron.digit_only_phone_number}"
-        
-        EnrollPatron.finish(patron, message)
+        EnrollPatron.finish(patron_to_finish: patron, enrollment_message: message)
       
       else
         process_stamp(patron, store)
