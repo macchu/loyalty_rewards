@@ -19,6 +19,13 @@ class Patron < ApplicationRecord
     loyalty_card = loyalty_card.nil? ? self.loyalty_cards.create(store_id: store_id) : loyalty_card
   end
 
+  def finish_enrollment(_first_name, _last_name)
+    self.first_name = _first_name
+    self.last_name = _last_name
+    self.pending = false
+    self.save
+  end
+
   private 
     def create_digit_only_phone_number()
       self.digit_only_phone_number = self.phone_number.gsub(/\D/, '')
