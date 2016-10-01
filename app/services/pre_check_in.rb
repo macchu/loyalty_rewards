@@ -25,7 +25,6 @@ module PreCheckIn
       else
         process_stamp(patron, store)
       end
-
     end
 
     private 
@@ -39,6 +38,9 @@ module PreCheckIn
       params[:patronage_proof_attributes] = { code: message.body_text_part} if message.body_text_part
       return params
     end
+  end
+
+  class WebCheckIn
 
   end
 end
