@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class PreCheckInTest
-  class SMSCheckInTest < ActionDispatch::IntegrationTest
+  class EnrollmentTest < ActionDispatch::IntegrationTest
     def setup
       @actionmailer_size_start = ActionMailer::Base.deliveries.size
       @new_patron_msg = Mail.new(fixture('unknown_sender_with_code'))
