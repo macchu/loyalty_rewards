@@ -4,7 +4,7 @@ card_for_bill:
   store: france_44
   date_issued: 2016-08-23 16:47:42
   date_completed: 
-  stamp_required: 10
+  stamps_required: 10
   stamp_count: 2
 
 new_card_for_bill:
@@ -12,5 +12,5 @@ new_card_for_bill:
   store: coop
   date_issued: 2016-08-23 16:47:42
   date_completed: 
-  stamp_required: 10
+  stamps_required: 10
   stamp_count: nil

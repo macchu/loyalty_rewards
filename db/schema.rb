@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160926195543) do
+ActiveRecord::Schema.define(version: 20161002215200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,10 +47,10 @@ ActiveRecord::Schema.define(version: 20160926195543) do
     t.integer  "store_id"
     t.datetime "date_issued"
     t.datetime "date_completed"
-    t.integer  "stamp_required"
+    t.integer  "stamps_required"
     t.integer  "stamp_count"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "patronage_proofs", force: :cascade do |t|
