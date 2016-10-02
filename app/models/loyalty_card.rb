@@ -7,6 +7,8 @@ class LoyaltyCard < ApplicationRecord
   end
 
   def apply_stamp
-
+    self.stamp_count ||= 0 #Set stamp_count to 0 if it was nil.
+    self.stamp_count += 1
+    self.save
   end
 end
