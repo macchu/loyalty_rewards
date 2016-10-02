@@ -22,7 +22,7 @@ module PreCheckIn
         #Finish sms_enrollment(patron: patron, full_name: message.body)
         Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: finalize enrollment for #{patron.digit_only_phone_number}"
         EnrollPatron.finish(patron_to_finish: patron, enrollment_message: message)
-      
+        ApplyStamp.new(patron, store)
       else
         ApplyStamp.new(patron, store)
       end
