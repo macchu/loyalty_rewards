@@ -1,5 +1,6 @@
-#This module contains Interactors for processing check ins.
-#  There are a lot of different 
+#This module contains Interactors for processing check ins from different
+# media types.  It parses the check in message and then forwards the information
+# on to a different service to finish the enrollment, apply the stamp, etc. 
 module PreCheckIn
   class SMSCheckIn
     def initialize(check_in_message, email_of_store)
@@ -23,7 +24,7 @@ module PreCheckIn
         EnrollPatron.finish(patron_to_finish: patron, enrollment_message: message)
       
       else
-        process_stamp(patron, store)
+        ApplyStamp.new(patron, store)
       end
     end
 
