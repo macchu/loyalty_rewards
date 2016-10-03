@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ApplyStampTest < ActiveSupport::TestCase
   def setup
-    @full_card = loyalty_cards(:card_for)
+    @full_card = loyalty_cards(:full_card)
   end
 
   test 'Verify setup' do
