@@ -1,4 +1,4 @@
-required 'test_helper'
+require 'test_helper'
 
 class ApplyStampTest < ActiveSupport::TestCase
   def setup
