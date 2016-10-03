@@ -16,14 +16,19 @@ class Patron < ApplicationRecord
   end
 
   def find_or_create_loyalty_card(store_id)
+    loyalty_card = nil
     cards = self.loyalty_cards.where(store_id: store_id)
-
-    loyalty_card = cards.empty? ? self.loyalty_cards.create(store_id: store_id) : cards.last
+    if cards.empty?
+      loyalty_card = self.loyalty_cards.create(store_id: store_id)
+    else
+      loyalty_card = cards.last
+    end 
 
     #Is the card full?
     if loyalty_card.full?
       loyalty_card = self.loyalty_cards.create(store_id: store_id)
     end
+    
     return loyalty_card
   end
 

@@ -4,20 +4,11 @@ class ApplyStamp
     Rails.logger.info " #{self.class.to_s}##{__method__.to_s}"
     #Create a check in if necessary.
     check_in ||= CheckIn.create(patron: patron, store: store)
-    ap "check_in: #{check_in}"
 
     #Get or create the LoyaltyCard.
-    @card = patron.find_or_create_loyalty_card(store)
-
-    ap "card:"
-    ap @card
+    @card = patron.find_or_create_loyalty_card(store.id)
 
     #Stamp the card.
     @card.apply_stamp
-    ap @card.errors
-
-    ap "Stamping"
-    ap @card.stamp_count
-
   end
 end

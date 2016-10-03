@@ -5,9 +5,11 @@ class PatronTest
     def setup
       @julieta = patrons(:julieta)
       @bill = patrons(:bill)
+
       @france_44 = stores(:france_44)
       @coop = stores(:coop)
       @settergrens = stores(:settergrens)
+
       @bills_coop_card = loyalty_cards(:card_for_bill)
       @bills_france44_card = loyalty_cards(:card_for_bill)
     end
@@ -17,7 +19,6 @@ class PatronTest
       card = @julieta.find_or_create_loyalty_card(@france_44.id)
       assert_equal 1, @julieta.loyalty_cards.size
       assert_equal @france_44, @julieta.loyalty_cards.first.store
-
     end
 
     test 'creates a new card when the patron had a card for a different store' do
