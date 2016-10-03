@@ -7,7 +7,9 @@ class PatronTest
       @bill = patrons(:bill)
       @france_44 = stores(:france_44)
       @coop = stores(:coop)
-      @loyalty_card_for_bill = loyalty_cards(:card_for_bill)
+      @settergrens = stores(:settergrens)
+      @bills_coop_card = loyalty_cards(:card_for_bill)
+      @bills_france44_card = loyalty_cards(:card_for_bill)
     end
 
     test 'creates a new card when patron had no cards at all' do
@@ -19,20 +21,18 @@ class PatronTest
     end
 
     test 'creates a new card when the patron had a card for a different store' do
-      assert_equal 1, @bill.loyalty_cards.size
-      card = @bill.find_or_create_loyalty_card(@coop.id)
-      assert_equal 2, @bill.loyalty_cards.size
-      assert_equal @coop, @bill.loyalty_cards.last.store
+      card = @bill.find_or_create_loyalty_card(@settergrens.id)
+      assert_equal @settergrens, @bill.loyalty_cards.last.store
     end
 
-    test 'finds a patrons existing card without creating a new one.' do
-      assert_equal @france_44, @bill.find_or_create_loyalty_card(@france_44.id)
+    test 'finds a card for the appropriate store, when they have cards for multiple stores.' do
+      assert_equal @bills_france44_card, @bill.find_or_create_loyalty_card(@france_44.id)
     end
 
     test 'creates a new card when the current card is full.' do
       #Fill the card.
-      @loyalty_card_for_bill.stamp_count =  @loyalty_card_for_bill.stamps_required
-      @loyalty_card_for_bill.save
+      @bills_coop_card.stamp_count =  @bills_coop_card.stamps_required
+      @bills_coop_card.save
 
       assert_difference("LoyaltyCard.count", +1) do
         @bill.find_or_create_loyalty_card(@france_44.id)

@@ -22,8 +22,9 @@ class Patron < ApplicationRecord
 
     #Is the card full?
     if loyalty_card.full?
-      self.loyalty_cards.create(store_id: store_id)
+      loyalty_card = self.loyalty_cards.create(store_id: store_id)
     end
+    return loyalty_card
   end
 
   def finish_enrollment(_first_name, _last_name)
