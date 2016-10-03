@@ -14,3 +14,7 @@ new_card_for_bill:
   date_completed: 
   stamps_required: 10
   stamp_count: nil
+
+full_card:
+  stamps_required: 10
+  stamp_count: 10
