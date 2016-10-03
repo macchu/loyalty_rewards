@@ -19,6 +19,7 @@ class Patron < ApplicationRecord
     loyalty_card = nil
     cards = self.loyalty_cards.where(store_id: store_id)
     if cards.empty?
+      Store.create_card_for_patron(self)
       loyalty_card = self.loyalty_cards.create(store_id: store_id)
     else
       loyalty_card = cards.last
@@ -28,7 +29,7 @@ class Patron < ApplicationRecord
     if loyalty_card.full?
       loyalty_card = self.loyalty_cards.create(store_id: store_id)
     end
-    
+
     return loyalty_card
   end
 

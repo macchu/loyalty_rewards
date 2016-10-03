@@ -4,6 +4,7 @@ class StoreTest < ActiveSupport::TestCase
   def setup
     @coop = stores(:coop)
     @france_44 = stores(:france_44)
+
   end
 
   test "no store found" do 
