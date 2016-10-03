@@ -26,8 +26,17 @@ class PatronTest
     end
 
     test 'finds a patrons existing card without creating a new one.' do
-      assert_equal 1, @bill.loyalty_cards.count
-      assert_equal @france_44, @bill.loyalty_cards.first.store
+      assert_equal @france_44, @bill.find_or_create_loyalty_card(@france_44.id)
+    end
+
+    test 'creates a new card when the current card is full.' do
+      #Fill the card.
+      @loyalty_card_for_bill.stamp_count =  @loyalty_card_for_bill.stamps_required
+      @loyalty_card_for_bill.save
+
+      assert_difference("LoyaltyCard.count", +1) do
+        @bill.find_or_create_loyalty_card(@france_44.id)
+      end
     end
       
   end

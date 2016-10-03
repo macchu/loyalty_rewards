@@ -11,4 +11,8 @@ class LoyaltyCard < ApplicationRecord
     self.stamp_count += 1
     self.save
   end
+
+  def full?
+    self.stamp_count.nil? ? false : self.stamps_required <= self.stamp_count
+  end
 end
