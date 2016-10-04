@@ -40,12 +40,10 @@ class PreCheckInTest
 
     test 'The patron is no longer pending' do
       assert @pending_patron.pending
-
       refute Patron.find(@pending_patron.id).pending
     end
 
-    test 'A thank you email was sent.' do
-      ap "mailer start size: #{@actionmailer_size_start} mailer_end_size: #{ActionMailer::Base.deliveries.size}"
+    test 'An email was sent after finishing enrollment.' do
       assert_equal 1, ActionMailer::Base.deliveries.size - @actionmailer_size_start 
     end
 
