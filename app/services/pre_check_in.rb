@@ -16,15 +16,18 @@ module PreCheckIn
         
         patron = EnrollPatron.start( patron_params(message) )
         
-        CheckIn.create( check_in_params(patron: patron, store: store, message: message)  )
+        CheckIn.create( check_in_params(patron: patron, store: store, message: message) )
       
       when patron.pending
         #Finish sms_enrollment(patron: patron, full_name: message.body)
         Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: finalize enrollment for #{patron.digit_only_phone_number}"
         EnrollPatron.finish(patron_to_finish: patron, enrollment_message: message)
-        ApplyStamp.new(patron, store)
+        ApplyStamp.new(patron: patron, store: store, check_in: nil)
+      
       else
-        ApplyStamp.new(patron, store)
+        check_in = CheckIn.create( check_in_params(patron: patron, store: store, message: message) )
+        ApplyStamp.new(patron: patron, store: store, check_in: check_in)
+      
       end
     end
 

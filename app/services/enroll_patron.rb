@@ -1,14 +1,14 @@
 class EnrollPatron
   attr_reader :patron
 
-  #Begin the enrollment process.
+  #Create a pending patron and send message asking patron for their name.
   def self.start(params)
     patron = Patron.create(params)
     PatronEnrollmentMailer.provide_name(patron.sms_address).deliver_now
     return patron
   end
 
-  #Finish the enrollment process.
+  #Marks the patron as enrolled and sends confirmation message.
   def self.finish(patron_to_finish:, enrollment_message: )
     name_parser = FullNameParser.new(enrollment_message.body_text_part)
 

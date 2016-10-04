@@ -33,8 +33,8 @@ class PreCheckInTest
   class FinishEnrollmentTest < ActionDispatch::IntegrationTest
     def setup
       @pending_patron = patrons(:pending_patron)
-      @actionmailer_size_start = ActionMailer::Base.deliveries.size
       @new_patrons_name_msg = Mail.new(fixture('enrollment_message_with_patron_name'))
+      @actionmailer_size_start = ActionMailer::Base.deliveries.size
       PreCheckIn::SMSCheckIn.new(@new_patrons_name_msg,'france_44@stampstamp.com')
     end
 
@@ -45,6 +45,7 @@ class PreCheckInTest
     end
 
     test 'A thank you email was sent.' do
+      ap "mailer start size: #{@actionmailer_size_start} mailer_end_size: #{ActionMailer::Base.deliveries.size}"
       assert_equal 1, ActionMailer::Base.deliveries.size - @actionmailer_size_start 
     end
 
@@ -53,4 +54,5 @@ class PreCheckInTest
       assert 'loyalty_card.jpg', message.attachments.first.filename
     end
   end
+
 end
