@@ -53,4 +53,7 @@ class PreCheckInTest
     end
   end
 
+  class NormalCheckInTest < ActionDispatch::IntegrationTest
+
+  end
 end
