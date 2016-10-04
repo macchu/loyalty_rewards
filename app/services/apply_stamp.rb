@@ -6,7 +6,7 @@ class ApplyStamp
     check_in ||= CheckIn.create(patron: patron, store: store)
 
     #Get or create the LoyaltyCard.
-    @card = store.create_loyalty_card_for_patron(patron)
+    @card = patron.find_or_create_loyalty_card(store)
 
     #Stamp the card.
     @card.apply_stamp

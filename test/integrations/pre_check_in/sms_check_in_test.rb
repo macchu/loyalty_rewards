@@ -54,6 +54,26 @@ class PreCheckInTest
   end
 
   class NormalCheckInTest < ActionDispatch::IntegrationTest
+    def setup
+      @existing_patron_message = Mail.new(fixture('sms_check_in_with_code'))
+      @julieta = patrons(:julieta)
+      @coop = stores(:coop)
+      @card_for_julieta = @coop.create_loyalty_card_for_patron(@julieta)
+      @actionmailer_size_start = ActionMailer::Base.deliveries.size
+      #PreCheckIn::SMSCheckIn.new(@existing_patron_message,'linden_hills_coop@stampstamp.com')
+    end
 
+    test 'Julieta has a new stamp on her coop card.' do
+      assert_equal 0, @card_for_julieta.stamp_count
+      PreCheckIn::SMSCheckIn.new(@existing_patron_message,'linden_hills_coop@stampstamp.com')
+      assert_equal 1, @julieta.loyalty_cards.count
+      assert_equal 1, LoyaltyCard.find(@card_for_julieta.id).stamp_count
+    end
+
+    test 'A stamped card was attached to the message.' do
+      PreCheckIn::SMSCheckIn.new(@existing_patron_message,'linden_hills_coop@stampstamp.com')
+      message = ActionMailer::Base.deliveries.last
+      assert 'loyalty_card.jpg', message.attachments.first.filename
+    end
   end
 end

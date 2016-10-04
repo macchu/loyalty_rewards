@@ -12,6 +12,7 @@ julieta:
   digit_only_phone_number: '9528761234' #Usually populated in a callback.
   first_name: Julieta
   last_name: Martinez
+  sms_address: '9527861234@sms.att.com'
 
 pending_patron:
   phone_number: '(701) 555-1234'
