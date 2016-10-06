@@ -15,7 +15,6 @@ module PreCheckIn
         Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: enroll_patron #{message.sender} "
         
         patron = EnrollPatron.start( patron_params(message) )
-        
         CheckIn.create( check_in_params(patron: patron, store: store, message: message) )
       
       when patron.pending
