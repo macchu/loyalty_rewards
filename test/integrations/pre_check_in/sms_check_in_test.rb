@@ -73,7 +73,17 @@ class PreCheckInTest
     test 'A stamped card was attached to the message.' do
       PreCheckIn::SMSCheckIn.new(@existing_patron_message,'linden_hills_coop@stampstamp.com')
       message = ActionMailer::Base.deliveries.last
-      assert 'loyalty_card.jpg', message.attachments.first.filename
+      assert 'loyalty_card_1.jpg', message.attachments.first.filename
+    end
+
+    test 'A card with two stamps is sent during the second check in.' do
+      #Hardcode an extra stamp on the loyalty_card.
+      @card_for_julieta.stamp_count = 2
+      @card_for_julieta.save
+
+      PreCheckIn::SMSCheckIn.new(@existing_patron_message,'linden_hills_coop@stampstamp.com')
+      message = ActionMailer::Base.deliveries.last
+      assert 'loyalty_card_2.jpg', message.attachments.first.filename
     end
 
     test 'Julieta gets a new card & stamp for her first time checking into a new store.' do

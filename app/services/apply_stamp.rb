@@ -1,5 +1,8 @@
 class ApplyStamp
   attr_reader :card
+  #TODO: card = ApplyStamp.new() looks bad.  What syntax more
+  # clearly communicates that we are stamping a card and returning that card for
+  # to be sent?
   def initialize(patron:, store:, check_in:)
     Rails.logger.info " #{self.class.to_s}##{__method__.to_s}"
     #Create a check in if necessary.
@@ -10,5 +13,6 @@ class ApplyStamp
 
     #Stamp the card.
     @card.apply_stamp
+    return @card.attachment_file_name
   end
 end
