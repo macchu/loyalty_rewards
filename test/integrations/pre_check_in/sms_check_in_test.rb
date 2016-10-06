@@ -63,7 +63,7 @@ class PreCheckInTest
       #PreCheckIn::SMSCheckIn.new(@existing_patron_message,'linden_hills_coop@stampstamp.com')
     end
 
-    test 'Julieta has a new stamp on her coop card.' do
+    test 'Julieta has a new stamp on her existing coop card.' do
       assert_equal 0, @card_for_julieta.stamp_count
       PreCheckIn::SMSCheckIn.new(@existing_patron_message,'linden_hills_coop@stampstamp.com')
       assert_equal 1, @julieta.loyalty_cards.count
@@ -74,6 +74,14 @@ class PreCheckInTest
       PreCheckIn::SMSCheckIn.new(@existing_patron_message,'linden_hills_coop@stampstamp.com')
       message = ActionMailer::Base.deliveries.last
       assert 'loyalty_card.jpg', message.attachments.first.filename
+    end
+
+    test 'Julieta gets a new card & stamp for her first time checking into a new store.' do
+
+    end
+
+    test 'When julieta fills a card, she gets sent a benefit code & a new card.' do
+
     end
   end
 end
