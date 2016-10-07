@@ -13,6 +13,6 @@ class ApplyStamp
 
     #Stamp the card.
     @card.apply_stamp
-    return @card.attachment_file_name
+    return @card.card_to_display
   end
 end
