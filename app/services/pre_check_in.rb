@@ -25,9 +25,9 @@ module PreCheckIn
 
       else
         check_in = CheckIn.create( check_in_params(patron: patron, store: store, message: message) )
-        loyalty_card = ApplyStamp.new(patron: patron, store: store, check_in: check_in)
+        file_name_of_card = ApplyStamp.new(patron: patron, store: store, check_in: check_in).file_name_of_card
         
-        LoyaltyCardMailer.stamped_card(patron.sms_address).deliver_now
+        LoyaltyCardMailer.stamped_card(patron.sms_address, file_name_of_card).deliver_now
       end
     end
 

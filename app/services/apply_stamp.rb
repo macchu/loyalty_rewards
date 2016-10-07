@@ -1,5 +1,5 @@
 class ApplyStamp
-  attr_reader :card
+  attr_reader :file_name_of_card
   #TODO: card = ApplyStamp.new() looks bad.  What syntax more
   # clearly communicates that we are stamping a card and returning that card for
   # to be sent?
@@ -9,10 +9,12 @@ class ApplyStamp
     check_in ||= CheckIn.create(patron: patron, store: store)
 
     #Get or create the LoyaltyCard.
-    @card = patron.find_or_create_loyalty_card(store)
-
+    card = patron.find_or_create_loyalty_card(store)
+    
     #Stamp the card.
-    @card.apply_stamp
-    return @card.card_to_display
+    card.apply_stamp
+    
+    @file_name_of_card = card.card_to_display
   end
+
 end

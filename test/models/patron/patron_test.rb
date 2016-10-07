@@ -24,5 +24,4 @@ class PatronTest < ActiveSupport::TestCase
     @jill.finish_enrollment("Jill", "Johnson")
     refute Patron.find(@jill.id).pending
   end
-
 end
