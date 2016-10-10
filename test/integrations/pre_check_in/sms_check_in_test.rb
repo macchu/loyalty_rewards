@@ -44,7 +44,7 @@ class PreCheckInTest
     end
 
     test 'An email was sent after finishing enrollment.' do
-      assert_equal 1, ActionMailer::Base.deliveries.size - @actionmailer_size_start 
+      assert_equal 2, ActionMailer::Base.deliveries.size - @actionmailer_size_start 
     end
 
     test 'A stamped card was attached to the message.' do

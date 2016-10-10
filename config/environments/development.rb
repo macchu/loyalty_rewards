@@ -52,6 +52,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  #Mailman monitors an inbox for incoming mail.
   Mailman.config.imap = {
     server: 'imap.gmail.com',
     port: 993, # you usually don't need to set this, but it's there if you need to
@@ -61,6 +62,7 @@ Rails.application.configure do
     username: ENV['GMAIL_USERNAME'],
     password: ENV['GMAIL_PASSWORD']
   }
+  Mailman.config.poll_interval = 5
 
   
 config.action_mailer.delivery_method = :smtp

@@ -21,9 +21,12 @@ module PreCheckIn
         #Finish sms_enrollment(patron: patron, full_name: message.body)
         Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: finalize enrollment for #{patron.digit_only_phone_number}"
         EnrollPatron.finish(patron_to_finish: patron, enrollment_message: message)
-        ApplyStamp.new(patron: patron, store: store, check_in: nil)
+        
+        file_name_of_card = ApplyStamp.new(patron: patron, store: store, check_in: nil).file_name_of_card
+        LoyaltyCardMailer.stamped_card(patron.sms_address, file_name_of_card).deliver_now
 
       else
+        Rails.logger.info " #{self.class.to_s}##{__method__.to_s} check in for existing patron."
         check_in = CheckIn.create( check_in_params(patron: patron, store: store, message: message) )
         file_name_of_card = ApplyStamp.new(patron: patron, store: store, check_in: check_in).file_name_of_card
         
