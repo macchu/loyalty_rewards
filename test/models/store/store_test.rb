@@ -13,7 +13,7 @@ class StoreTest < ActiveSupport::TestCase
   end
 
   test ".find_by_email_for_check_ins" do
-    assert_equal @coop, Store.find_by_email_for_check_ins('coop@stampstamp.com')
+    assert_equal @coop, Store.find_by_email_for_check_ins('linden_hills_coop@stampstamp.com')
   end
 
   test "one store found" do
@@ -25,9 +25,10 @@ class StoreTest < ActiveSupport::TestCase
   end
 
   test "Returns a redemption_code_type when one is defined." do
-    ap RedemptionCodeType.all
-    ap @coop.redemption_code_type_id
-    ap RedemptionCodeType.first.stores
     assert_equal "QCode", @coop.redemption_code_type.description
+  end
+
+  test "Returns a nil when no redemption_code_type is defined." do
+    assert_equal nil, @france_44.redemption_code_type
   end
 end
