@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  description: MyString
+qcode:
+  description: QCode
 
-two:
-  description: MyString
+random_alpha_numeric:
+  description: random_alpha_numeric

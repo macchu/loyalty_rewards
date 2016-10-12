@@ -23,4 +23,11 @@ class StoreTest < ActiveSupport::TestCase
   test "multiple stores found" do
 
   end
+
+  test "Returns a redemption_code_type when one is defined." do
+    ap RedemptionCodeType.all
+    ap @coop.redemption_code_type_id
+    ap RedemptionCodeType.first.stores
+    assert_equal "QCode", @coop.redemption_code_type.description
+  end
 end
