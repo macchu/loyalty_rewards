@@ -8,7 +8,7 @@ class RedemptionCodeTypeTest < ActiveSupport::TestCase
   end
 
   test 'Returns nil when redemption_code_type is nil.' do
-    
+    assert_equal nil, @loyalty_card_for_bill.redemption_code_type
   end
 
   test 'Returns :qcode.' do

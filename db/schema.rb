@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002215200) do
+ActiveRecord::Schema.define(version: 20161012200224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,12 @@ ActiveRecord::Schema.define(version: 20161002215200) do
     t.index ["digit_only_phone_number"], name: "index_patrons_on_digit_only_phone_number", using: :btree
   end
 
+  create_table "redemption_code_types", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "stamps", force: :cascade do |t|
     t.integer  "loyalty_card_id"
     t.datetime "date_given"
@@ -93,9 +99,10 @@ ActiveRecord::Schema.define(version: 20161002215200) do
     t.string   "name"
     t.float    "lat"
     t.float    "lng"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.string   "email_for_check_ins"
+    t.integer  "redemption_code_type_id"
     t.index ["email_for_check_ins"], name: "index_stores_on_email_for_check_ins", using: :btree
   end
 

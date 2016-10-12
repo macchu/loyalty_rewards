@@ -4,6 +4,7 @@ class Store < ApplicationRecord
   has_many :check_ins
   has_many :loyalty_cards
   has_many :loyalty_card_terms
+  has_many :redemption_code_types
 
   def self.find_store_for_check_in(range, coordinates)
     result = Store.within(range, origin: coordinates) 
