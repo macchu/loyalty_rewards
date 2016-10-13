@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  loyalty_card_id: 1
+  redemption_code_type_id: 1
+  code: MyString
+  store_id: 1
+  patron_id: 1
+  redeemed: false
+
+two:
+  loyalty_card_id: 1
+  redemption_code_type_id: 1
+  code: MyString
+  store_id: 1
+  patron_id: 1
+  redeemed: false

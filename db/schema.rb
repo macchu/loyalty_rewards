@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161012200224) do
+ActiveRecord::Schema.define(version: 20161013182203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,17 @@ ActiveRecord::Schema.define(version: 20161012200224) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "redemptions", force: :cascade do |t|
+    t.integer  "loyalty_card_id"
+    t.integer  "redemption_code_type_id"
+    t.string   "code"
+    t.integer  "store_id"
+    t.integer  "patron_id"
+    t.boolean  "redeemed"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "stamps", force: :cascade do |t|
