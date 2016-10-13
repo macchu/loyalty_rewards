@@ -17,6 +17,13 @@ class LoyaltyCard < ApplicationRecord
   end
 
   def redemption_code_type
-    store.redemption_code_type
+    case 
+    when store.nil?
+      nil
+    when store.redemption_code_type.nil?
+      nil
+    else
+      store.redemption_code_type.description.downcase.to_sym
+    end
   end
 end

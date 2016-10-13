@@ -2,16 +2,15 @@ require 'test_helper'
 
 class RedemptionCodeTypeTest < ActiveSupport::TestCase
   def setup
-    @france_44 = stores(:france_44)
-    @loyalty_card_for_bill = loyalty_cards(:card_for_bill)
-    @full_card = loyalty_cards(:full_card)
+    @card_without_redemption_type = loyalty_cards(:card_for_bill)
+    @card_with_redemption_type = loyalty_cards(:new_card_for_bill)
   end
 
   test 'Returns nil when redemption_code_type is nil.' do
-    assert_equal nil, @loyalty_card_for_bill.redemption_code_type
+    assert_equal nil, @card_without_redemption_type.redemption_code_type
   end
 
   test 'Returns :qcode.' do
-
+    assert_equal :qcode, @card_with_redemption_type.redemption_code_type 
   end
 end
