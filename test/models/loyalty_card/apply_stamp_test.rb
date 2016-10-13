@@ -15,11 +15,4 @@ class ApplyStampTest < ActiveSupport::TestCase
     @loyalty_card_for_bill.apply_stamp
     assert_equal 1, LoyaltyCard.find(@loyalty_card_for_bill.id).stamp_count
   end
-
-  test ".stamp_count starts a new card when stamps_required is exceeded." do
-    assert_difference("LoyaltyCard.count", +1) do
-      @loyalty_card_for_bill.stamp_count = @loyalty_card_for_bill.stamps_required + 1
-      @loyalty_card_for_bill.save
-    end
-  end
 end

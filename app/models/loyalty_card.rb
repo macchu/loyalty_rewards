@@ -26,4 +26,15 @@ class LoyaltyCard < ApplicationRecord
       store.redemption_code_type.description.downcase.to_sym
     end
   end
+
+  def reward_description
+    case 
+    when store.nil?
+      nil
+    when store.loyalty_card_terms.empty?
+      nil
+    else
+      store.loyalty_card_terms.first.reward_description
+    end
+  end
 end

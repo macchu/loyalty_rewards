@@ -26,16 +26,12 @@ class LoyaltyCardTest < ActiveSupport::TestCase
   end
 
   test "Provides a description of the reward." do
-    assert_equal "Free beer opener.", @loyalty_card_for_bill.reward_description
+    assert_equal "Free mug", @loyalty_card_for_bill.reward_description
   end
 
   test "Provides the rewards expiration." do
     #assert_equal Date.new(2018, 1, 15), @display_loyalty_card.expriration
   end 
-
-  test 'Knows that a user has an unredeemed code' do
-    assert_includes "234098", @loyalty_card_for_bill.unredeemed_codes
-  end
 
   test '.full?' do
     assert @full_card.full?
