@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   post '/check_ins/', to: 'check_ins#create'
 
   post 'patrons', to: 'check_ins#create_patron'  #This one is reached first.
-  
+
+  get 'redemption/edit' to: 'redemption#edit'
+  put 'redemption', to: 'redemption#update'
 end
   
