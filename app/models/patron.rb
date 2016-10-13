@@ -1,6 +1,7 @@
 class Patron < ApplicationRecord
   has_many :check_ins
   has_many :loyalty_cards
+  has_many :redemptions
 
   before_save :create_digit_only_phone_number
 

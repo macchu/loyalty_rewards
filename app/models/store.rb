@@ -4,6 +4,7 @@ class Store < ApplicationRecord
   has_many :check_ins
   has_many :loyalty_cards
   has_many :loyalty_card_terms
+  has_many :redemptions
   belongs_to :redemption_code_type
 
   def self.find_store_for_check_in(range, coordinates)
