@@ -1,1 +1,7 @@
-Redeem!
+<div name="patron_name"><%= @loyalty_card.patron.full_name %>!</div>
+<div name="reward_description">Claim your <%= @loyalty_card.store.loyalty_card_terms.first.reward_description %></div>
+<div name="store_name"><%= @loyalty_card.store.name %></div>
+<%= form_for @redemption, url: redemption_path do |f| %>
+  <%= f.hidden_field :id %>
+  <%= f.submit 'Claim' %>
+<% end %>

@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   post 'patrons', to: 'check_ins#create_patron'  #This one is reached first.
 
   get 'redemptions/edit/:loyalty_card_id', to: 'redemptions#edit'
-  put 'redemptions', to: 'redemptions#update'
-end
+  patch 'redemption', to: 'redemptions#update'
+ end
   

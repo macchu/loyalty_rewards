@@ -1,17 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  loyalty_card_id: 1
-  redemption_code_type_id: 1
-  code: MyString
-  store_id: 1
-  patron_id: 1
-  redeemed: false
+redeemed:
+  loyalty_card: full_card
+  code: 'abc123'
+  store: coop
+  patron: julieta
+  redeemed: true
 
-two:
-  loyalty_card_id: 1
-  redemption_code_type_id: 1
-  code: MyString
-  store_id: 1
-  patron_id: 1
+unredeemed:
+  loyalty_card: full_card
+  code: nil
+  store: coop
+  patron: julieta
   redeemed: false

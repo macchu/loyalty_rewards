@@ -16,5 +16,7 @@ new_card_for_bill:
   stamp_count: nil
 
 full_card:
+  store: france_44
+  patron: julieta
   stamps_required: 10
   stamp_count: 10
