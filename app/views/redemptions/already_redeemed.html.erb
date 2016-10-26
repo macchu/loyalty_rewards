@@ -1,1 +1,2 @@
-That code was already redeemed on <%= @redemption.updated_at %>.
+That code was already redeemed <%= local_relative_time(@redemption.updated_at, type: 'time-ago') %>
+on <%= local_time(@redemption.updated_at) %>.

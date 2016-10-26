@@ -1,4 +1,4 @@
 <div name="top-filler">Redeemed!</div>
 <div name="code"><%= @redemption.code %></div>
-<div name="redeemed_at_roughly"></div>
-<div name="redeemed_at_exactly"></div>
+<div name="redeemed_at_roughly"><%= local_relative_time(@redemption.updated_at, type: 'time-ago') %></div>
+<div name="redeemed_at_exactly"><%= local_time(@redemption.updated_at) %></div>
