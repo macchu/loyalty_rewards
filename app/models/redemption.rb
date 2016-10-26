@@ -6,11 +6,11 @@ class Redemption < ApplicationRecord
   def redeem
     if redeemed #Prevents people from faking redemptions by bypassing the controller/view logic.
       return :already_redeemed
-    elsif self.update_attributes( {redeemed: true, code: GenerateRewardsCode.new(loyalty_card)} )
+    elsif self.update_attributes( {redeemed: true, code: GenerateRewardsCode.new(loyalty_card).code} )
       return :success
     else
       return :failed
     end
   end
-  
+
 end
