@@ -37,11 +37,12 @@ class LoyaltyCardTest < ActiveSupport::TestCase
     assert @full_card.full?
   end
 
-  test '.create_redemption_if_full' do
-    assert_change("Redemption.count", +1) do
+  test '.create_redemption_if_full creates a redemption when it is full.' do
+    assert_difference("Redemption.count", +1) do
       @full_card.create_redemption_if_full
     end
 
+    refute Redemption.last.redeemed
   end
 
 end

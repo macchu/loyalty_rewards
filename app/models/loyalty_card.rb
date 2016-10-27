@@ -17,6 +17,14 @@ class LoyaltyCard < ApplicationRecord
     self.stamp_count.nil? ? false : self.stamps_required <= self.stamp_count
   end
 
+  def create_redemption_if_full
+    if self.full?
+      redemption = Redemption.new(loyalty_card: self, store: self.store, patron: self.patron, redemption_code_type: self.store.redemption_code_type)
+      redemption.redeemed = false
+      redemption.save
+    end
+  end
+
   def redemption_code_type
     case 
     when store.nil?
