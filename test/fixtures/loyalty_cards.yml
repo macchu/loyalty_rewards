@@ -20,3 +20,9 @@ full_card:
   patron: julieta
   stamps_required: 10
   stamp_count: 10
+
+nearly_full_card:
+  store: france_44
+  patron: julieta
+  stamps_required: 10
+  stamp_count: 9

@@ -18,7 +18,7 @@ class ApplyStamp
 
     #Create redemption if card is full
     if card.full?
-      redemption = card.create_redemption
+      redemption = card.create_redemption_if_full
       @redemption_url = "http://www.stampstamp.com/redemptions/redeem/#{redemption.id}"
     end
 

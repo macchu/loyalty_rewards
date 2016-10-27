@@ -10,6 +10,9 @@ class ApplyStampTest < ActiveSupport::TestCase
     @bill = @loyalty_card_for_bill.patron
     @store = @loyalty_card_for_bill.store
 
+    @nearly_full_card = loyalty_cards(:nearly_full_card)
+    @patron_for_nearly_full = @nearly_full_card.patron
+    @store_for_nearly_full = @nearly_full_card.store
   end
 
   test 'Verify setup' do
@@ -19,6 +22,12 @@ class ApplyStampTest < ActiveSupport::TestCase
   test 'A new loyalty card is created and stamped if the current card is full.' do
     assert_difference("LoyaltyCard.count", +1) do
       ApplyStamp.new(patron: @bill, store: @store, check_in: nil)
+    end
+  end
+
+  test 'A Redemption is created when the card is full' do
+    assert_difference("Redemption.count", +1) do
+      ApplyStamp.new(patron: @patron_for_nearly_full, store: @store_for_nearly_full, check_in: nil)
     end
   end
 end
