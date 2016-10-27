@@ -1,8 +1,7 @@
-class ApplyStamp
+class ApplyStampService
   attr_reader :file_name_of_card
   attr_reader :redemption_url
-  attr_reader
-  #TODO: card = ApplyStamp.new() looks bad.  What syntax more
+  #TODO: card = ApplyStampService.new() looks bad.  What syntax more
   # clearly communicates that we are stamping a card and returning that card for
   # to be sent?
   def initialize(patron:, store:, check_in:)
@@ -18,8 +17,8 @@ class ApplyStamp
 
     #Create redemption if card is full
     if card.full?
-      redemption = card.create_redemption_if_full
-      @redemption_url = "http://www.stampstamp.com/redemptions/redeem/#{redemption.id}"
+      card.create_redemption_if_full
+      @redemption_url = "http://www.stampstamp.com/redemptions/redeem/#{card.redemption.id}"
     end
 
     @file_name_of_card = card.card_to_display
