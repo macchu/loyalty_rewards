@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ApplyStampTest < ActiveSupport::TestCase
+class ApplyStampServiceTest < ActiveSupport::TestCase
   def setup
     #Fill the card with stamps.
     @loyalty_card_for_bill = loyalty_cards(:card_for_bill)
