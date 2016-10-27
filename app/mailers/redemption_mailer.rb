@@ -1,0 +1,2 @@
+class RedemptionMailer < ApplicationMailer
+end
