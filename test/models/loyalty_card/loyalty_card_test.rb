@@ -38,11 +38,30 @@ class LoyaltyCardTest < ActiveSupport::TestCase
   end
 
   test '.create_redemption_if_full creates a redemption when it is full.' do
+    Redemption.delete_all
+
     assert_difference("Redemption.count", +1) do
       @full_card.create_redemption_if_full
     end
-
     refute Redemption.last.redeemed
+  end
+
+  test '.create_redemption_if_full does NOT create additional redemptions when one already exists.' do
+    Redemption.delete_all
+    @full_card.create_redemption_if_full
+    assert_equal Redemption.last, @full_card.redemption
+
+    assert_difference("Redemption.count", 0) do
+      @full_card.create_redemption_if_full
+    end
+    assert_equal Redemption.last, @full_card.redemption
+  end
+
+  test '.create_redemption_if_full does NOT create a redemption when the card is not full.' do
+    assert_difference("Redemption.count", 0) do
+      @loyalty_card_for_bill.create_redemption_if_full
+    end
+    assert_equal nil, @loyalty_card_for_bill.redemption
   end
 
 end
