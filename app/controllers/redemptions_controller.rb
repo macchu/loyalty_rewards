@@ -11,8 +11,7 @@ class RedemptionsController < ApplicationController
     end
 
     rescue ActiveRecord::RecordNotFound
-      flash[:notice] = "Wrong post it"
-      redirect_to :action => 'index'
+      render :not_found
   end
 
   def edit
