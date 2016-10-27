@@ -9,7 +9,7 @@ redeemed:
 
 unredeemed:
   loyalty_card: full_card
-  code: nil
+  code: 
   store: coop
   patron: julieta
   redeemed: false

@@ -1,13 +1,13 @@
 class RedemptionsController < ApplicationController
   def show
     @redemption = Redemption.find(params[:id])
-    case @redemption
-    when @redemption.nil
-      render :redemption_not_found
-    when @redemption.redeemed 
+
+    if @redemption.nil?
+      render :not_found
+    elsif @redemption.redeemed
       render :already_redeemed
     else
-      redirect_to redeem_redemptions_path(@redemption.id)
+      redirect_to "/redemptions/redeem/#{@redemption.id}"
     end
 
     rescue ActiveRecord::RecordNotFound
@@ -30,8 +30,6 @@ class RedemptionsController < ApplicationController
       render :failed
     end
   end
-
-
 
   private
   

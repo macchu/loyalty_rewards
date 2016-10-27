@@ -13,7 +13,7 @@ class ApplyStamp
     
     #Stamp the card.
     card.apply_stamp
-    
+
     @file_name_of_card = card.card_to_display
   end
 
