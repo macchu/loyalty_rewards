@@ -9,7 +9,7 @@ class GenerateRewardsCode
 
     when :barcode
 
-    when :alpha_numeric
+    when :random_alpha_numeric
       @code = random_alpha_numeric_string_generator
     else
       @code = random_alpha_numeric_string_generator

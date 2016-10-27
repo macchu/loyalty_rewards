@@ -6,6 +6,7 @@ redeemed:
   store: coop
   patron: julieta
   redeemed: true
+  redemption_code_type: random_alpha_numeric
 
 unredeemed:
   loyalty_card: full_card
@@ -13,3 +14,4 @@ unredeemed:
   store: coop
   patron: julieta
   redeemed: false
+  redemption_code_type: random_alpha_numeric

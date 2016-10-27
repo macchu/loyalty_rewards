@@ -11,6 +11,7 @@ class RedemptionTest < ActiveSupport::TestCase
 
     assert_equal :success, @redemption.redeem
     
+    #@redemption.update_attributes( { redeemed: true, code: '123sdfs' })
     assert @redemption.redeemed?
     assert_equal String, @redemption.code.class
     assert @redemption.code.length > 0
