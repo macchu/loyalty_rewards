@@ -37,4 +37,11 @@ class LoyaltyCardTest < ActiveSupport::TestCase
     assert @full_card.full?
   end
 
+  test '.create_redemption_if_full' do
+    assert_change("Redemption.count", +1) do
+      @full_card.create_redemption_if_full
+    end
+
+  end
+
 end

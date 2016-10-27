@@ -13,7 +13,8 @@ class RedemptionMailerTest < ActionMailer::TestCase
  
     # Test the body of the sent email contains what we expect it to
     #assert_equal '', email.subject
-    assert_includes 'Click this link when you are ready to redeem your reward: http://www.example.com/redemptions/redeem/1234.', email.body.to_s.strip
+    assert_includes 'Click this link when you are ready to redeem your reward: http://www.example.com/redemptions/redeem/1234.', 
+                    email.body.to_s.strip
     
   end
 
