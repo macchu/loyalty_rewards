@@ -13,6 +13,8 @@ class ApplyStampServiceTest < ActiveSupport::TestCase
     @nearly_full_card = loyalty_cards(:nearly_full_card)
     @patron_for_nearly_full = @nearly_full_card.patron
     @store_for_nearly_full = @nearly_full_card.store
+
+    @new_card = loyalty_cards(:new_card_for_bill)
   end
 
   test 'Verify setup' do
@@ -41,7 +43,13 @@ class ApplyStampServiceTest < ActiveSupport::TestCase
     assert_equal "http://www.stampstamp.com/redemptions/redeem/#{@nearly_full_card.redemption.id}", stamp_service.redemption_url
   end
 
-  test 'full_card' do
+  test '.full_card is true for a full card' do
+    stamp_service = ApplyStampService.new(patron: @patron_for_nearly_full, store: @store_for_nearly_full, check_in: nil)
+    assert stamp_service.full_card
+  end
 
+  test '.full_card is false for an empty card' do
+    stamp_service = ApplyStampService.new(patron: @new_card.patron, store: @new_card.store, check_in: nil)
+    refute stamp_service.full_card
   end
 end

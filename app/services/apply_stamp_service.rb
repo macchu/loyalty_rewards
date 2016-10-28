@@ -1,6 +1,7 @@
 class ApplyStampService
   attr_reader :file_name_of_card
   attr_reader :redemption_url
+  attr_reader :full_card
   #TODO: card = ApplyStampService.new() looks bad.  What syntax more
   # clearly communicates that we are stamping a card and returning that card for
   # to be sent?
@@ -16,8 +17,10 @@ class ApplyStampService
     card.apply_stamp
 
     #Create redemption if card is full
+    @full_card = false
     if card.full?
       card.create_redemption_if_full
+      @full_card = true
       @redemption_url = "http://www.stampstamp.com/redemptions/redeem/#{card.redemption.id}"
     end
 
