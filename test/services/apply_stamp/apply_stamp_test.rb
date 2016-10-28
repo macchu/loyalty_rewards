@@ -30,4 +30,17 @@ class ApplyStampServiceTest < ActiveSupport::TestCase
       ApplyStampService.new(patron: @patron_for_nearly_full, store: @store_for_nearly_full, check_in: nil)
     end
   end
+
+  test '.file_name_of_card' do
+    stamp_service = ApplyStampService.new(patron: @patron_for_nearly_full, store: @store_for_nearly_full, check_in: nil)
+    assert_equal "http://www.stampstamp.com/redemptions/redeem/#{@nearly_full_card.redemption.id}", stamp_service.file_name_of_card
+  end
+
+  test '.redemption_url' do
+
+  end
+
+  test 'full_card' do
+
+  end
 end
