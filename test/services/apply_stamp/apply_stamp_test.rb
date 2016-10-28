@@ -33,11 +33,12 @@ class ApplyStampServiceTest < ActiveSupport::TestCase
 
   test '.file_name_of_card' do
     stamp_service = ApplyStampService.new(patron: @patron_for_nearly_full, store: @store_for_nearly_full, check_in: nil)
-    assert_equal "http://www.stampstamp.com/redemptions/redeem/#{@nearly_full_card.redemption.id}", stamp_service.file_name_of_card
+    assert_equal "France_44_10.jpg", stamp_service.file_name_of_card
   end
 
   test '.redemption_url' do
-
+    stamp_service = ApplyStampService.new(patron: @patron_for_nearly_full, store: @store_for_nearly_full, check_in: nil)
+    assert_equal "http://www.stampstamp.com/redemptions/redeem/#{@nearly_full_card.redemption.id}", stamp_service.redemption_url
   end
 
   test 'full_card' do
