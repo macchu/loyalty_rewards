@@ -61,6 +61,7 @@ class PreCheckInTest
       @card_for_julieta = @coop.create_loyalty_card_for_patron(@julieta)
       @actionmailer_size_start = ActionMailer::Base.deliveries.size
       #PreCheckIn::SMSCheckIn.new(@existing_patron_message,'linden_hills_coop@stampstamp.com')
+
     end
 
     test 'Julieta has a new stamp on her existing coop card.' do
@@ -91,6 +92,19 @@ class PreCheckInTest
     end
 
     test 'When julieta fills a card, she gets sent a benefit code & a new card.' do
+      #Hardcode a nearly full loyalty_card.
+      @card_for_julieta.stamp_count = @card_for_julieta.stamps_required - 1
+      @card_for_julieta.save
+
+      #Start the check in that fills the card.
+      PreCheckIn::SMSCheckIn.new(@existing_patron_message,'linden_hills_coop@stampstamp.com')
+      
+      #Two emails, one for a new card, and one for a redemption link should have been sent.
+      assert_equal 2, ActionMailer::Base.deliveries.count
+
+      #First email should be the redemption link.
+      ap ActionMailer::Base.deliveries.first
+      assert_match "/redemptions/redeem/", ActionMailer::Base.deliveries.first.body.to_s
 
     end
   end

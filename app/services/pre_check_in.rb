@@ -30,7 +30,7 @@ module PreCheckIn
         check_in = CheckIn.create( check_in_params(patron: patron, store: store, message: message) )
         stamp_service = ApplyStampService.new(patron: patron, store: store, check_in: check_in)
         
-        RedemptionMailer.link(patron.sms_address, stamp_service.redemption_link).deliver_now if stamp_service.full_card?
+        RedemptionMailer.send_link(patron.sms_address, stamp_service.redemption_url).deliver_now if stamp_service.full_card
         LoyaltyCardMailer.stamped_card(patron.sms_address, stamp_service.file_name_of_card).deliver_now
       end
     end
