@@ -67,7 +67,7 @@ class PreCheckInTest
     test 'Julieta has a new stamp on her existing coop card.' do
       assert_equal 0, @card_for_julieta.stamp_count
       PreCheckIn::SMSCheckIn.new(@existing_patron_message,'linden_hills_coop@stampstamp.com')
-      assert_equal 1, @julieta.loyalty_cards.count
+      assert @julieta.loyalty_cards.count > 1
       assert_equal 1, LoyaltyCard.find(@card_for_julieta.id).stamp_count
     end
 
