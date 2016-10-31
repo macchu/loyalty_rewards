@@ -102,10 +102,11 @@ class PreCheckInTest
       #Two emails, one for a new card, and one for a redemption link should have been sent.
       assert_equal 2, ActionMailer::Base.deliveries.count
 
-      #First email should be the redemption link.
-      ap ActionMailer::Base.deliveries.first
-      assert_match "/redemptions/redeem/", ActionMailer::Base.deliveries.first.body.to_s
+      #First email should have a full loyalty_card
+      assert_match "loyalty_card_#{@card_for_julieta.stamps_required}", ActionMailer::Base.deliveries.first.attachements.first.filename
 
+      #Second email should
+      assert_match "/redemptions/redeem/", ActionMailer::Base.deliveries.last.body.to_s
     end
   end
 end
