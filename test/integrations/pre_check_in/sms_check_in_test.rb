@@ -103,7 +103,7 @@ class PreCheckInTest
       assert_equal 2, ActionMailer::Base.deliveries.count
 
       #First email should have a full loyalty_card
-      assert_match "loyalty_card_#{@card_for_julieta.stamps_required}", ActionMailer::Base.deliveries.first.attachements.first.filename
+      assert_match "Linden_Hills_Coop_#{@card_for_julieta.stamps_required}", ActionMailer::Base.deliveries.first.attachments.first.filename
 
       #Second email should
       assert_match "/redemptions/redeem/", ActionMailer::Base.deliveries.last.body.to_s

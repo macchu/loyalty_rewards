@@ -21,7 +21,7 @@ class ApplyStampService
     if card.full?
       card.create_redemption_if_full
       @full_card = true
-      @redemption_url = "http://www.stampstamp.com/redemptions/redeem/#{card.redemption.id}"
+      @redemption_url = "#{Rails.application.secrets.host_name}/redemptions/redeem/#{card.redemption.id}"
     end
 
     @file_name_of_card = card.card_to_display
