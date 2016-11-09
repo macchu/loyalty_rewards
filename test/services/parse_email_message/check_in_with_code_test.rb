@@ -1,7 +1,7 @@
 require 'test_helper'
 
 #Tests basic checkin and enrollment functionality.
-class ParseEmailMessageTest < ActiveSupport::TestCase
+class ParseEmailMessageCheckInTests < ActiveSupport::TestCase
   def setup
     # @julieta = patrons(:julieta)
     # @coop = stores(:coop)
