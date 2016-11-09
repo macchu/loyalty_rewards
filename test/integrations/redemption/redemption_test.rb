@@ -25,5 +25,11 @@ class RedemptionTest < ActionDispatch::IntegrationTest
     patch "/redemption/", params: { redemption: { id: @card_for_julieta.redemption.id } }
     assert_match "Redeemed!", response.body
   end
+
+  test "handle missing redemption" do
+    get "/redemptions/redeem/-1"
+
+    assert_match "Sorry, that reward could not be found.", response.body
+  end
   
 end
