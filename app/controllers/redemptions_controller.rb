@@ -16,6 +16,9 @@ class RedemptionsController < ApplicationController
 
   def edit
     @redemption = Redemption.find( params[:redemption_id] )
+
+  rescue ActiveRecord::RecordNotFound
+    render :not_found
   end
 
   def update

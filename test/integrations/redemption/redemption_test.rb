@@ -29,7 +29,7 @@ class RedemptionTest < ActionDispatch::IntegrationTest
   test "handle missing redemption" do
     get "/redemptions/redeem/-1"
 
-    assert_match "Sorry, that reward could not be found.", response.body
+    assert_match "Sorry, that redemption was not found.", response.body
   end
   
 end

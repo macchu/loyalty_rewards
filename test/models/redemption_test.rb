@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RedemptionTest < ActiveSupport::TestCase
+class RedemptionModelTest < ActiveSupport::TestCase
   def setup
     @redemption = redemptions(:unredeemed)
     @redeemed = redemptions(:redeemed)
