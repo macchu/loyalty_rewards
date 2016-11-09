@@ -15,12 +15,11 @@ class RedemptionsController < ApplicationController
   end
 
   def edit
-    @redemption = Redemption.find_by_loyalty_card_id( params[:loyalty_card_id] )
-    @loyalty_card = LoyaltyCard.find( params[:loyalty_card_id])
+    @redemption = Redemption.find( params[:redemption_id] )
   end
 
   def update
-    @redemption = Redemption.find(params[:redemption][:id])
+    @redemption = Redemption.find(params[:redemption_id])
     case @redemption.redeem
     when :success
       render :success
