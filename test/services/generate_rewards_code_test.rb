@@ -29,5 +29,12 @@ class GenerateRewardsCodeTest < ActiveSupport::TestCase
     card.store.redemption_code_type = redemption_code_types(:qcode)
     card.store.save
 
+    # Run the test.
+    reward_code = GenerateRewardsCode.new(card)
+    code = reward_code.code
+    qrcode = reward_code.qrcode_image
+    assert code.length > 0
+    assert_equal String, code.class
+    assert_equal ChunkyPNG::Image, qrcode.class
   end
 end
