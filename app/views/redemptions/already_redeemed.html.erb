@@ -1,2 +1,6 @@
 That code was already redeemed <%= local_relative_time(@redemption.updated_at, type: 'time-ago') %>
 on <%= local_time(@redemption.updated_at) %>.
+
+<div>Code used was:</div>
+
+<div class="code_image"><%= raw @redemption.code_as_image %></div>

@@ -14,4 +14,17 @@ class Redemption < ApplicationRecord
     end
   end
 
+  def code_as_image
+    case self.redemption_code_type.description
+    when "qrcode"
+      qrcode = RQRCode::QRCode.new(self.code)
+      qrcode.as_html
+
+    when "barcode"
+      nil
+    else
+      nil
+    end
+  end
+
 end
