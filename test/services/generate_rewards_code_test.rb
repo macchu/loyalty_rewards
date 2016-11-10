@@ -22,4 +22,12 @@ class GenerateRewardsCodeTest < ActiveSupport::TestCase
     assert code.length > 0
     assert_equal String, code.class
   end
+
+  test 'A QRCode is generated' do
+    #Change redemption type to QRCode.
+    card = loyalty_cards(:new_card_for_bill)
+    card.store.redemption_code_type = redemption_code_types(:qcode)
+    card.store.save
+
+  end
 end
