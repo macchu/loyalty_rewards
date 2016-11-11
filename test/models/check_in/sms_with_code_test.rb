@@ -7,7 +7,7 @@ class SMSWithCodeTest < ActiveSupport::TestCase
     @sms_with_code = check_in_strategies(:sms_with_code)
     params =  { check_in_strategy: CheckInStrategy.find_by_name(:sms_with_code), 
                 phone_number: @julieta.digit_only_phone_number,
-                store: Store.find_by_email_for_check_ins('coop@stampstamp.com'),
+                store: Store.find_by_email_for_check_ins('linden_hills_coop@stampstamp.com'),
                 patronage_proof_attributes: { code: 'Z100'}
               }
     @check_in = CheckIn.create( params )
