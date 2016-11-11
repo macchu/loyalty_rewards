@@ -6,6 +6,6 @@ class PatronageVerificationTechniqueTest < ActiveSupport::TestCase
   end
 
   test "ActiveRecord stuff" do 
-    assert_equal 1, PatronageVerificationTechnique.count
+    assert PatronageVerificationTechnique.count > 0
   end
 end
