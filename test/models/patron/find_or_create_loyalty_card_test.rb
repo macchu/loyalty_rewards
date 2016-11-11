@@ -14,10 +14,16 @@ class FindOrCreateLoyaltyCardTest < ActiveSupport::TestCase
   end
 
   test 'creates a new card when patron had no cards at all' do
+    #Setup the test
+    @julieta.loyalty_cards.destroy_all
+
     assert_equal 0, @julieta.loyalty_cards.count
-    card = @julieta.find_or_create_loyalty_card(@france_44)
-    assert_equal 1, @julieta.loyalty_cards.size
-    assert_equal @france_44, @julieta.loyalty_cards.first.store
+    @julieta.find_or_create_loyalty_card(@france_44)
+    #Reload @julieta.
+    julieta = Patron.find(@julieta.id)
+
+    assert_equal 1, julieta.loyalty_cards.count
+    assert_equal @france_44, julieta.loyalty_cards.first.store
   end
 
   test 'creates a new card when the patron had a card for a different store' do
