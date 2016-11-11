@@ -27,8 +27,4 @@ class StoreTest < ActiveSupport::TestCase
   test "Returns a redemption_code_type when one is defined." do
     assert_equal "QCode", @coop.redemption_code_type.description
   end
-
-  test "Returns a nil when no redemption_code_type is defined." do
-    assert_equal nil, @france_44.redemption_code_type
-  end
 end
