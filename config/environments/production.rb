@@ -83,4 +83,29 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  
+  #Mailman monitors an inbox for incoming mail.
+  Mailman.config.imap = {
+    server: 'imap.gmail.com',
+    port: 993, # you usually don't need to set this, but it's there if you need to
+    ssl: true,
+    # Use starttls instead of ssl (do not specify both)
+    #starttls: true,
+    username: ENV['GMAIL_USERNAME'],
+    password: ENV['GMAIL_PASSWORD']
+  }
+  Mailman.config.poll_interval = 5
+
+  
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+  address:              'smtp.gmail.com',
+  port:                 587,
+  domain:               'google.com',
+  user_name:            ENV['GMAIL_USERNAME'],
+  password:             ENV['GMAIL_PASSWORD'],
+  authentication:       'plain',
+  enable_starttls_auto: true  }
+
 end
