@@ -1,6 +1,6 @@
-namespace :email_service do
+namespace :jobs do
   desc "Begin rake task to for listening to email."
-  task :listen => :environment do
+  task :work => :environment do
     MailmanServiceJob.perform_now
   end
 end
