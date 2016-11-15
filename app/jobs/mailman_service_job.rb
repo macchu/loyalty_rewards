@@ -10,7 +10,7 @@ class MailmanServiceJob < ApplicationJob
       end
 
       to 'admin@rasmussonprogramming.com' do
-        ap "Message received to desking.board@gmail.com, substituting france_44."
+        ap "Message received to admin@rasmussonprogramming.com, substituting france_44."
         PreCheckIn::SMSCheckIn.new(message,'france_44@stampstamp.com')
       end
     end
