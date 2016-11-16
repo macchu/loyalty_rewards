@@ -1,6 +1,19 @@
-That code was already redeemed <%= local_relative_time(@redemption.updated_at, type: 'time-ago') %>
-on <%= local_time(@redemption.updated_at) %>.
+<div class="row">
+  <div class="col-md-8 offset-md-4 col-xs-12">
+    Already redeemed <%= local_relative_time(@redemption.updated_at, type: 'time-ago') %>
+  </div>
+</div>
 
-<div>Code used was:</div>
+<div class="row">
+  <div class="col-md-8 offset-md-4 col-xs-10 offset-xs-1">
+    on <%= local_time(@redemption.updated_at) %>.
+  </div>
+</div>
 
-<div class="code_image"><%= raw @redemption.code_as_image %></div>
+<div class="row">
+  <div class="col-md-8 offset-md-4 col-xs-10 offset-xs-1">Code used was:</div>
+</div>
+
+<div class="row">
+  <div class="code_image col-md-8 offset-md-4 col-xs-10 offset-xs-1"><%= raw @redemption.code_as_image %></div>
+</div>
