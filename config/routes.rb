@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   get 'redemption/', to: 'redemptions#show'
   get 'redemptions/redeem/:redemption_id', to: 'redemptions#edit'
   patch 'redemption', to: 'redemptions#update'
+
+  get 'store/:id/loyalty_card/:id', to: 'loyalty_cards#edit'
  end
   
