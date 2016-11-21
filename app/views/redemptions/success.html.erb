@@ -1,5 +1,29 @@
-<div name="top-filler">Redeemed!</div>
-<div name="code_image" class="code_image" > <%= raw @redemption.code_as_image %> </div>
-<div name="code"><%= @redemption.code %></div>
-<div name="redeemed_at_roughly"><%= local_relative_time(@redemption.updated_at, type: 'time-ago') %></div>
-<div name="redeemed_at_exactly"><%= local_time(@redemption.updated_at) %></div>
+<div class="row">
+  <div name="top-filler" class="col-md-8 offset-md-4 col-xs-10 offset-xs-2">
+    Redeemed!
+  </div>
+</div>
+
+<div class="row">
+  <div name="code_image" class="code_image col-md-8 offset-md-4 col-xs-10 offset-xs-2">
+    <%= raw @redemption.code_as_image %> 
+  </div>
+</div>
+
+<div class="row">
+  <div name="code" class="col-md-8 offset-md-4 col-xs-10 offset-xs-2">
+    <%= @redemption.code %>
+  </div>
+</div>
+
+<div class="row">
+  <div name="redeemed_at_roughly" class="col-md-8 offset-md-4 col-xs-10 offset-xs-2">
+    <%= local_relative_time(@redemption.updated_at, type: 'time-ago') %>
+  </div>
+</div>
+
+<div class="row">
+  <div name="redeemed_at_roughly" class="col-md-8 offset-md-4 col-xs-10 offset-xs-2">
+    <%= local_time(@redemption.updated_at) %>
+  </div>
+</div>
