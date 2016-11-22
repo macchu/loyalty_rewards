@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'redemptions/redeem/:redemption_id', to: 'redemptions#edit'
   patch 'redemption', to: 'redemptions#update'
 
-  get 'store/:id/loyalty_card/:id', to: 'loyalty_cards#edit'
+  get 'loyalty_card_terms/:id/edit', to: 'loyalty_card_terms#edit', as: 'edit_loyalty_card_terms'
+  patch 'loyalty_card_term', to: 'loyalty_card_terms#update'
  end
   
