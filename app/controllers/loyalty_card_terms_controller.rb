@@ -1,12 +1,10 @@
 class LoyaltyCardTermsController < ApplicationController
   def edit
     @terms = LoyaltyCardTerm.find(params[:id])
-    ap CheckInStrategy.all
-    @check_in_strategies = CheckInStrategy.all
   end
 
   def show
-    @terms = LoyaltyCardTerm.find(params[:loyalty_card_term_id])
+    @terms = LoyaltyCardTerm.find(params[:id])
   end
 
   def update
@@ -24,6 +22,6 @@ class LoyaltyCardTermsController < ApplicationController
   private
   # Rails 4+ requires parameter whitelisting.
   def loyalty_card_terms_parameters
-    params.require(:loyalty_card_term).permit(:id, :reward_description, :stamps_required)
+    params.require(:loyalty_card_term).permit(:id, :reward_description, :stamps_required, :check_in_strategy_id)
   end
 end
