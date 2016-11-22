@@ -14,7 +14,7 @@ class LoyaltyCardTermsController < ApplicationController
       redirect_to edit_loyalty_card_terms_path(@terms)
     else
       flash[:error] = "There was a problem."
-      render :edit
+      redirect_to edit_loyalty_card_terms_path(@terms)
     end
 
   end
