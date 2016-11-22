@@ -1,8 +1,8 @@
-<h4> Loyalty Card Terms </h4>
 <%= bootstrap_form_for(@terms, layout: :horizontal, label_col: "col-md-3 offset-md-1 col-xs-3 offset-xs-1", control_col: "col-md-6 col-xs-6") do |f| %>
   <%= f.hidden_field :id %>
   <%= f.text_field :reward_description %>
   <%= f.number_field :stamps_required %>  
+  <%= f.collection_check_boxes :check_in_strategy, @check_in_strategies, :id, :description %>
   <%= f.form_group( class: 'offset-md-4') do %>
     <%= f.primary "Save Card", class: "btn btn-success" %>
   <% end %>

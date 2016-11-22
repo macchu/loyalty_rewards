@@ -1,6 +1,8 @@
 class LoyaltyCardTermsController < ApplicationController
   def edit
     @terms = LoyaltyCardTerm.find(params[:id])
+    ap CheckInStrategy.all
+    @check_in_strategies = CheckInStrategy.all
   end
 
   def show
