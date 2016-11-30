@@ -1,3 +1,5 @@
+ #DELETE: I think this has been supplanted by services/pre_check_in.rb
+
 #Determines how to respond to the patron's message.
 #  Echos logic found in controllers/check_ins_controller.rb
 class CheckInMessageController

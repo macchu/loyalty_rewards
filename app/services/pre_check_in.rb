@@ -13,10 +13,10 @@ module PreCheckIn
       case 
       when patron.nil?
         Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: enroll_patron #{message.sender} "
-        
         patron = EnrollPatron.start( patron_params(message) )
         CheckIn.create( check_in_params(patron: patron, store: store, message: message) )
-      
+        #TODO: Link Patrons & Stores here.
+
       when patron.pending
         #Finish sms_enrollment(patron: patron, full_name: message.body)
         Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: finalize enrollment for #{patron.digit_only_phone_number}"

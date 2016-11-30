@@ -3,8 +3,8 @@ class Patron < ApplicationRecord
   has_many :loyalty_cards
   has_many :redemptions
 
-  has_many :patrons_stores
-  has_many :stores, through: :patrons_stores
+  has_many :patron_stores
+  has_many :stores, through: :patron_stores
 
   before_save :create_digit_only_phone_number
 

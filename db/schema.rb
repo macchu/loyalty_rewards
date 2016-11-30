@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130165451) do
+ActiveRecord::Schema.define(version: 20161130202428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,11 @@ ActiveRecord::Schema.define(version: 20161130165451) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "patron_stores", id: false, force: :cascade do |t|
+    t.integer "store_id",  null: false
+    t.integer "patron_id", null: false
+  end
+
   create_table "patronage_proofs", force: :cascade do |t|
     t.integer "check_in_id"
     t.integer "patronage_verification_technique_id"
@@ -77,11 +82,6 @@ ActiveRecord::Schema.define(version: 20161130165451) do
     t.boolean  "pending"
     t.string   "sms_address"
     t.index ["digit_only_phone_number"], name: "index_patrons_on_digit_only_phone_number", using: :btree
-  end
-
-  create_table "patrons_stores", id: false, force: :cascade do |t|
-    t.integer "store_id",  null: false
-    t.integer "patron_id", null: false
   end
 
   create_table "redemption_code_types", force: :cascade do |t|

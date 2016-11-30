@@ -5,9 +5,10 @@ class CheckInTest
     def setup
       @new_patron= patrons(:julieta)
       @coop = stores(:coop)
-      @check_in = CheckIn.new(lat: @coop.lat, lng: @coop.lng, patron_id: nil, store_id: nil)
+      @check_in = CheckIn.new(lat: @coop.lat, lng: @coop.lng, patron_id: nil, store_id: nil)  
+      @check_in.find_store
 
-      @check_in_with_patron = CheckIn.new(lat: @coop.lat, lng: @coop.lng, patron_id: @new_patron.id, store_id: nil) 
+      @check_in_with_patron = CheckIn.new(lat: @coop.lat, lng: @coop.lng, patron_id: @new_patron.id, store_id: nil)
     end
 
     test "CheckIn finds a store after updating the patron." do
