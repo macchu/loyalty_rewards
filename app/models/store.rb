@@ -7,8 +7,8 @@ class Store < ApplicationRecord
   has_many :redemptions
   belongs_to :redemption_code_type
 
- has_many :patrons_stores
-has_many :patrons, through: :patrons_stores
+  has_many :patrons_stores
+  has_many :patrons, through: :patrons_stores
 
   def self.find_store_for_check_in(range, coordinates)
     result = Store.within(range, origin: coordinates) 

@@ -4,18 +4,18 @@ terms_for_coop:
   reward_description: 'Free mug'
   expiration: 2016-08-23 16:47:42
   stamps_required: 9
-  verification_technique_id: 1
+  check_in_strategy_id: 1
 
 terms_for_france_44:
   store: france_44
   reward_description: 'Free mug'
   expiration: 2016-08-23 16:47:42
   stamps_required: 20
-  verification_technique_id: 1
+  check_in_strategy_id: 1
 
 terms_for_settergrens:
   store: settergrens
   reward_description: '10% Discount'
   expiration: 2016-08-23 16:47:42
   stamps_required: 20
-  verification_technique_id: 1
+  check_in_strategy_id: 1
