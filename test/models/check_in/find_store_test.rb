@@ -11,13 +11,13 @@ class CheckInTest
 
     test "Returns :ambiguous_stores for two close stores" do
       @check_in.find_store(10) #Ten ensures an ambiguous result.
-      assert_equal :ambiguous_stores, @check_in.status
+      assert_equal :ambiguous_store, @check_in.status
       assert_includes(@check_in.possible_stores, @coop)
       assert_includes(@check_in.possible_stores, @france_44)
     end
 
     test "Returns :success when one store matches" do
-      @check_in.find_store()
+      @check_in.find_store(0.001)
       assert_equal :success, @check_in.status
       assert_nil @check_in.possible_stores
     end

@@ -56,7 +56,7 @@ class CheckIn < ApplicationRecord
     end
   end
 
-  def find_store(range=10.01)
+  def find_store(range=10.01)  #MDR: Range is intentionally big for testing purposes.
     logger.info " #{self.class.to_s}##{__method__.to_s}"
     
     store_result = Store.within(range, origin: [self.lat, self.lng])
