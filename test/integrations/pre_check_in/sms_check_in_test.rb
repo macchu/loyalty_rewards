@@ -28,6 +28,11 @@ class PreCheckInTest
     test 'Patron.sms_address was set.' do
       assert '6124567890@vzwpix.com', Patron.last.sms_address
     end
+
+    test 'Patron and Store are linked.' do
+      assert stores(:coop), Patron.last.stores.first
+      assert Patron.last, stores(:coop).patrons.last
+    end
   end
 
   class FinishEnrollmentTest < ActionDispatch::IntegrationTest
