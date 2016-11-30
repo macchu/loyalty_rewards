@@ -5,7 +5,8 @@ class PatronsController < ApplicationController
   end
 
   def show
-
+    @store = Store.find(params[:store_id])
+    @patron = Patron.find(params[:id])
   end
 
 end
