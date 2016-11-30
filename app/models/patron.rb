@@ -3,6 +3,9 @@ class Patron < ApplicationRecord
   has_many :loyalty_cards
   has_many :redemptions
 
+  has_many :patrons_stores
+  has_many :stores, through: :patrons_stores
+
   before_save :create_digit_only_phone_number
 
   #TODO: Delete if this is slower than .find_by_digit_only_phone_number().
