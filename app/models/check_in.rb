@@ -14,6 +14,9 @@ class CheckIn < ApplicationRecord
   belongs_to :store, optional: true
   belongs_to :check_in_strategy, optional: true
 
+  scope :for_store, -> (store_id) { where("store_id = ?", store_id)}
+  scope :most_recent, -> (limit) { order("created_at desc").limit(limit) }
+
   def find_patron_and_store
     logger.info " #{self.class.to_s}##{__method__.to_s}"
     

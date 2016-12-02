@@ -1,1 +1,5 @@
-Activity for <%= @patron.full_name %>
+<div> Activity for <%= @patron.full_name %> </div>
+<div> Check Ins </div>
+<% @check_ins_for_this_store.each do |check_in| %>
+  <div><%= check_in.created_at %><div>
+<% end %>
