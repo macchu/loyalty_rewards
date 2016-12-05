@@ -3,6 +3,10 @@ class LoyaltyCard < ApplicationRecord
   belongs_to :store 
   has_one :redemption
 
+  scope :for_store, -> (store_id) { where("store_id = ?", store_id) }
+  scope :for_patron, -> (patron_id) { where("patron_id =?", patron_id) }
+  scope :most_recent, -> (limit) { order("created_at desc").limit(limit) }
+
   def card_to_display
     "#{store.name_with_underscores}_#{stamp_count}.jpg"
   end

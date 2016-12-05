@@ -19,6 +19,15 @@ class Patron < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def display_current_loyalty_card_for_store(store)
+    card = LoyaltyCard.for_patron(self).for_store(store).most_recent(1)
+    if card.empty?
+      ""
+    else
+      card.first.card_to_display
+    end
+  end
+
   def find_or_create_loyalty_card(store)
     loyalty_card = nil
     cards = self.loyalty_cards.where(store_id: store.id)
