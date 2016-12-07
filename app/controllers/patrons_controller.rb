@@ -4,7 +4,10 @@ class PatronsController < ApplicationController
   def index
     @store = Store.find(params[:store_id])
     @patrons = @store.patrons
-    ap @patrons
+    respond_to do |format|
+      format.html
+      format.xls
+    end
   end
 
   def show
