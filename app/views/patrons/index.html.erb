@@ -1,8 +1,26 @@
-<div name="store-name"><%= @store.name %></div>
+  <h2>Patrons</h2>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Check Ins</th>
+          <th>Redemptions</th>
+          <th>Amount Spent</th>
+          <th>Stamps</th>
+          <th> Last Visit </th>
+        </tr>
+      </thead>
 
-Patrons
-<% @patrons.each do |p| %>
-  <div name="patron">
-    <%= link_to p.full_name, "/store/#{@store.id}/patrons/#{p.id}", class: "patron", id: "patron-link-#{p.id}" %>
+      <tbody>
+        <% @patrons.each do |p| %>
+          <tr>
+            <td><%= link_to p.full_name, "/store/#{@store.id}/patrons/#{p.id}", class: "patron", id: "patron-link-#{p.id}" %></td>
+            <td><%= p.check_ins.count %></td>
+            <td>N/A</td>
+            <td><%= p.loyalty_cards.last.stamp_count %></td>
+            <td><%= local_relative_time(p.check_ins.last.created_at, type: 'time-ago') %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-<% end %>

@@ -1,0 +1,31 @@
+.tile {
+  background-color: $mint-green;
+  padding: 20px;
+}
+
+.tile .title {
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+}
+
+.tile .value {
+  color: white;
+  font-size: 30px;
+  text-align: center;
+}
+
+.mint-green {
+  background-color: $mint-green;
+}
+
+.ruby-red {
+  background-color: $ruby-red;
+}
+
+.mustard-yellow {
+  background-color: $mustard-yellow;
+}
+
+.light-purple {
+  background-color: $light-purple;
+}

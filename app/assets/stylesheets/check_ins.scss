@@ -1,0 +1,22 @@
+.outside-form {
+  margin-top: 5px;
+}
+
+/* Used by QRCode */
+div.code_image table {
+  border-width: 0;
+  border-style: none;
+  border-color: #0000ff;
+  border-collapse: collapse;
+}
+
+div.code_image td {
+  border-left: solid 5px #000;
+  padding: 0; 
+  margin: 0; 
+  width: 0px; 
+  height: 5px; 
+}
+
+div.code_image td.black { border-color: #000; }
+div.code_image td.white { border-color: #fff; }
