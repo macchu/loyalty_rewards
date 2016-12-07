@@ -3,6 +3,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
+          <th></th>
           <th>Check Ins</th>
           <th>Redemptions</th>
           <th>Amount Spent</th>
@@ -16,6 +17,7 @@
           <tr>
             <td><%= link_to p.full_name, "/store/#{@store.id}/patrons/#{p.id}", class: "patron", id: "patron-link-#{p.id}" %></td>
             <td><%= p.check_ins.count %></td>
+            <td>N/A</td>
             <td>N/A</td>
             <td><%= p.loyalty_cards.last.stamp_count %></td>
             <td><%= local_relative_time(p.check_ins.last.created_at, type: 'time-ago') %> </td>

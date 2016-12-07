@@ -2,10 +2,12 @@
   <h1><%= @store.name %></h1>
 
   <div class="row">
-    <%= render partial: 'layouts/store_admin_tile', locals: {title: 'Patrons', value: 2305, color: 'mint-green'} %>
-    <%= render partial: 'layouts/store_admin_tile', locals: {title: 'Check Ins', value: 9, color: 'mustard-yellow'} %>
-    <%= render partial: 'layouts/store_admin_tile', locals: {title: 'Redemptions', value: 1909, color: 'ruby-red'} %>
-    <%= render partial: 'layouts/store_admin_tile', locals: {title: 'Check Ins', value: 9, color: 'light-purple'} %>
+    <%= render partial: 'layouts/store_admin_tile', 
+        locals: { title: 'Patrons', value: @patrons.count, color: 'mint-green'} %>
+    <%= render partial: 'layouts/store_admin_tile', 
+        locals: { title: 'Check Ins', value: @store.check_ins.count, color: 'light-purple'} %>
+    <%= render partial: 'layouts/store_admin_tile', locals: { title: 'Redemptions', value: 1909, color: 'ruby-red'} %>
+    <%= render partial: 'layouts/store_admin_tile', locals: { title: 'Ad Campaigns', value: 9, color: 'mustard-yellow'} %>
   </div>
 
 <%= yield %>

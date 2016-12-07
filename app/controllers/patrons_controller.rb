@@ -4,6 +4,7 @@ class PatronsController < ApplicationController
   def index
     @store = Store.find(params[:store_id])
     @patrons = @store.patrons
+    ap @patrons
   end
 
   def show
