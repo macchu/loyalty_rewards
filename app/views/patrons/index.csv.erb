@@ -1,0 +1,7 @@
+<% csv_string = CSV.generate do |csv| %>
+  <% csv << ["id", "first_name", "last_name", "phone_number"] %>
+  <% @patrons.pluck("id", "first_name", "last_name", "phone_number").each do |patron| %>
+    <% csv << patron %>
+  <% end %>
+<% end %>
+<%= csv_string %>
