@@ -1,4 +1,6 @@
 class Patron < ApplicationRecord
+  require 'csv'
+
   has_many :check_ins
   has_many :loyalty_cards
   has_many :redemptions

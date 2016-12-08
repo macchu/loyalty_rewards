@@ -6,7 +6,7 @@ class PatronsController < ApplicationController
     @patrons = @store.patrons
     respond_to do |format|
       format.html
-      format.xls
+      format.csv
     end
   end
 
