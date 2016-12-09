@@ -36,11 +36,11 @@ class Patron < ApplicationRecord
   end
 
   def display_current_loyalty_card_for_store(store)
-    card = current_loyalty_card_for_store
-    if card.empty?
+    card = current_loyalty_card_for_store(store)
+    if card.nil?
       ""
     else
-      card.first.card_to_display
+      card.card_to_display
     end
   end
 

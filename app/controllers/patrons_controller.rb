@@ -13,8 +13,10 @@ class PatronsController < ApplicationController
 
   def show
     @store = Store.find(params[:store_id])
+    @patrons = @store.patrons
     @patron = Patron.find(params[:id])
     @check_ins_for_this_store = @patron.check_ins.for_store(@store).limit(10)
+    ap @store
     @current_card = @patron.display_current_loyalty_card_for_store(@store)
   end
 
