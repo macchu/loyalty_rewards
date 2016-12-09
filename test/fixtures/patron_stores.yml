@@ -1,0 +1,11 @@
+bill_to_france44:
+  patron: bill
+  store: france_44
+
+bill_to_coop:
+  patron: bill
+  store: coop
+
+pending_to_france44:
+  patron: pending_patron
+  store: france_44
