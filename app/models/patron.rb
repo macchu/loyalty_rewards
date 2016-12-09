@@ -21,8 +21,22 @@ class Patron < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def display_current_loyalty_card_for_store(store)
+  def stamp_count_for_store(store)
+    card = current_loyalty_card_for_store(store)
+    card.nil? ? 0 : card.stamp_count
+  end
+
+  def current_loyalty_card_for_store(store)
     card = LoyaltyCard.for_patron(self).for_store(store).most_recent(1)
+    if card.empty?
+      nil
+    else
+      card.first
+    end
+  end
+
+  def display_current_loyalty_card_for_store(store)
+    card = current_loyalty_card_for_store
     if card.empty?
       ""
     else

@@ -24,4 +24,54 @@ class PatronTest < ActiveSupport::TestCase
     @jill.finish_enrollment("Jill", "Johnson")
     refute Patron.find(@jill.id).pending
   end
+
+  class ContextPatronOfMultipleStores < ActiveSupport::TestCase
+    def setup
+      @bill = patrons(:bill)
+
+      #Hardcode the first cards stamp count.
+      @card_1 = @bill.loyalty_cards.first
+      @card_1.update_attribute(:stamp_count, 3)
+
+      @card_2 = @bill.loyalty_cards.last
+
+      @store_1 = @card_1.store
+      @store_2 = @card_2.store
+    end
+
+    test "setup" do
+      assert @bill.loyalty_cards.count > 1
+      refute @store_1 == @store_2
+    end
+
+    test "#stamp_count_for_store" do
+      stamp_count = @bill.stamp_count_for_store(@store_1)
+      assert_equal 3, stamp_count
+    end
+
+    test "#current_loyalty_card_for_store" do
+      assert @card_1, @bill.current_loyalty_card_for_store(@store_1)
+      assert @card_2, @bill.current_loyalty_card_for_store(@store_2)
+    end
+  end
+
+  class ContextPendingPatron < ActiveSupport::TestCase
+    def setup
+      @pending_patron = patrons(:pending_patron)
+      @store = @pending_patron.stores.first
+    end
+
+    test "setup" do
+      assert @pending_patron.loyalty_cards.empty?
+      assert @store
+    end
+
+    test "#stamp_count_for_store" do
+      assert_equal 0, @pending_patron.stamp_count_for_store(@store)
+    end
+
+    test "#current_loyalty_card_for_store" do
+      assert_equal nil, @pending_patron.current_loyalty_card_for_store(@store)
+    end
+  end
 end
