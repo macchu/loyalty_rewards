@@ -4,6 +4,7 @@ class PatronsController < ApplicationController
   def index
     @store = Store.find(params[:store_id])
     @patrons = @store.patrons
+    
     respond_to do |format|
       format.html
       format.csv
