@@ -4,12 +4,12 @@
 
 <div> Check Ins </div>
 <% @check_ins_for_this_store.each do |check_in| %>
-  <div><%= check_in.created_at %><div>
+  <div><%= local_relative_time(check_in.created_at) %><div>
 <% end %>
 
 <div> Redemptions </div>
 <% @patron.redemptions.each do |redemption| %>
-  <div> <%= redemption.created_at %> </div>
+  <div> <%= local_relative_time(redemption.created_at) %> </div>
 <% end %>
 
 
