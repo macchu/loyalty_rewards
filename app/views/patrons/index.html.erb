@@ -19,7 +19,7 @@
             <td><%= p.check_ins.count %></td>
             <td>N/A</td>
             <td>N/A</td>
-            <td><%= p.stamp_count_for_current_store(@store) %></td>
+            <td><%= p.stamp_count_for_store(@store) %></td>
             <td><%= local_relative_time(p.check_ins.last.created_at, type: 'time-ago') %> </td>
           </tr>
         <% end %>
