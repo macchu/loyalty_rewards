@@ -11,22 +11,22 @@
       <div class="navbar-toggleable-xs collapse" id="bd-main-nav" aria-expanded="false" style="">
         <ul class="nav navbar-nav">
           <li class="nav-item active">
-            <a class="nav-item nav-link " href="/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Bootstrap');">Bootstrap</a>
+            <a  class="nav-item nav-link" 
+                href=<%=store_patrons_path(@store) %> >
+              Patrons
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-item nav-link active" href="/getting-started/introduction/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Docs');">Documentation</a>
+            <a class="nav-item nav-link" href="/#">Check ins</a>
           </li>
           <li class="nav-item">
-            <a class="nav-item nav-link " href="/examples/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Examples');">Examples</a>
+            <a class="nav-item nav-link " href="#">Loyalty cards</a>
           </li>
           <li class="nav-item">
-            <a class="nav-item nav-link" href="https://themes.getbootstrap.com" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Themes');">Themes</a>
+            <a class="nav-item nav-link" href="#">Ads</a>
           </li>
           <li class="nav-item">
-            <a class="nav-item nav-link" href="https://expo.getbootstrap.com" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Expo');">Expo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-item nav-link" href="https://blog.getbootstrap.com" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Blog');">Blog</a>
+            <a class="nav-item nav-link" href="#">Admin</a>
           </li>
         </ul>
       </div>
