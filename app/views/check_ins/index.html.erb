@@ -1,0 +1,30 @@
+  <h2>Check Ins</h2>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Stamp</th>
+          <th>Check Ins</th>
+          <th>Method</th>
+          <th>Amount Spent</th>
+          <th> Date of Visit </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @check_ins.each do |c| %>
+          <tr>
+            <td><%= link_to c.patron.full_name, "/store/#{@store.id}/patrons/#{c.patron.id}", class: "patron", id: "patron-link-#{c.patron.id}" %></td>
+            <td><%= c.patron.stamp_count_for_store(@store) %></td>
+            <td><%= CheckIn.for_store(@store.id).for_patron(c.patron.id).count %></td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td><%= local_relative_time(c.created_at, type: 'time-ago') %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= link_to "Download", store_patrons_path(2, format: :csv) %>

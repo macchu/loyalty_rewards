@@ -1,6 +1,8 @@
 #This module contains Interactors for processing check ins from different
 # media types.  It parses the check in message and then forwards the information
-# on to a different service to finish the enrollment, apply the stamp, etc. 
+# on to a different service to finish the enrollment, apply the stamp, etc.
+#
+#This module should reflect the responsibilities of a controller. 
 module PreCheckIn
   class SMSCheckIn
     def initialize(check_in_message, email_of_store)

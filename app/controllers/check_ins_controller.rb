@@ -1,4 +1,11 @@
 class CheckInsController < ApplicationController
+  layout 'store_admin'
+  
+  def index
+    @store = Store.find(params[:store_id])
+    @check_ins = @store.check_ins.order('created_at DESC')
+    @patrons = @store.patrons
+  end
 
   def ask_for_location
     @check_in = CheckIn.new
