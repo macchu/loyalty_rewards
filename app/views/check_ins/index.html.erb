@@ -15,7 +15,7 @@
         <% @check_ins.each do |c| %>
           <tr>
             <td><%= link_to c.patron.full_name, "/store/#{@store.id}/patrons/#{c.patron.id}", class: "patron", id: "patron-link-#{c.patron.id}" %></td>
-            <td><%= c.resulting_stamp_count.nil ? ? 0 : c.resulting_stamp_count %></td>
+            <td><%= c.resulting_stamp_count.nil? ? 0 : c.resulting_stamp_count %></td>
             <td>N/A</td>
             <td>N/A</td>
             <td><%= local_relative_time(c.created_at, type: 'time-ago') %> </td>
