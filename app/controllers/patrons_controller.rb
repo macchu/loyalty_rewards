@@ -15,8 +15,7 @@ class PatronsController < ApplicationController
     @store = Store.find(params[:store_id])
     @patrons = @store.patrons
     @patron = Patron.find(params[:id])
-    @check_ins_for_this_store = @patron.check_ins.for_store(@store).limit(10)
-    ap @store
+    @check_ins = @patron.check_ins.for_store(@store).order(created_at: :desc).limit(10)
     @current_card = @patron.display_current_loyalty_card_for_store(@store)
   end
 
