@@ -2,6 +2,8 @@
 <div> Current Card </div>
 <%= image_tag @current_card %>
 
+<%= render 'check_ins/table', check_ins: @check_ins_for_this_store %>
+
 <div> Check Ins </div>
 <% @check_ins_for_this_store.each do |check_in| %>
   <div><%= local_relative_time(check_in.created_at) %><div>
