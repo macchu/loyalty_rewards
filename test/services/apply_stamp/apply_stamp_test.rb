@@ -52,4 +52,15 @@ class ApplyStampServiceTest < ActiveSupport::TestCase
     stamp_service = ApplyStampService.new(patron: @new_card.patron, store: @new_card.store, check_in: nil)
     refute stamp_service.full_card
   end
+
+  test 'The resulting stamp count is saved in the associated CheckIn' do
+    check_in = CheckIn.create(patron: @new_card.patron, store: @new_card.store, phone_number: "5551231234" )
+    stamp_service = ApplyStampService.new(patron: @new_card.patron, store: @new_card.store, check_in: check_in)
+
+    #Reload the objects.
+    check_in = CheckIn.find(check_in.id)
+    new_card = LoyaltyCard.find(@new_card.id)
+
+    assert_equal check_in.resulting_stamp_count, new_card.stamp_count
+  end
 end

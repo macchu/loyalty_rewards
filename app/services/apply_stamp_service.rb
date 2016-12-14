@@ -16,6 +16,10 @@ class ApplyStampService
     #Stamp the card.
     card.apply_stamp
 
+    #Reflect the result in check in.
+    check_in.resulting_stamp_count = card.stamp_count
+    check_in.save
+
     #Create redemption if card is full
     @full_card = false
     if card.full?
