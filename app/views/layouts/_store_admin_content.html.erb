@@ -1,13 +1,11 @@
-<div class="col-md-10 col-sm-10 col-xs-10 main">
+<div class="main col-xs-10 col-sm-12 col-md-12 col-lg-10">
   <h1><%= @store.name %></h1>
-
   <div class="row">
     <%= render partial: 'layouts/store_admin_tile', 
         locals: { title: 'Patrons', value: @patrons.count, color: 'mint-green'} %>
     <%= render partial: 'layouts/store_admin_tile', 
         locals: { title: 'Check Ins', value: @store.check_ins.count, color: 'light-purple'} %>
     <%= render partial: 'layouts/store_admin_tile', locals: { title: 'Redemptions', value: 1909, color: 'ruby-red'} %>
-    <%= render partial: 'layouts/store_admin_tile', locals: { title: 'Ad Campaigns', value: 9, color: 'mustard-yellow'} %>
-  </div>
-
+    <%= render partial: 'layouts/store_admin_tile', locals: { title: 'Campaigns', value: 9, color: 'mustard-yellow'} %>
+</div>
 <%= yield %>
