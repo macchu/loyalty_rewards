@@ -1,5 +1,6 @@
 class HeroPagesController < ApplicationController
+  layout 'hero_page'  
   def index 
-    render :hero_page
+    render :index
   end
 end

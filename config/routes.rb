@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/', to: 'hero_pages#index'#, as: ''
+
   get '/check_ins/', to: 'check_ins#ask_for_location'
   post '/check_ins/ambiguous_store', to: 'check_ins#select_store'
   post '/check_ins/', to: 'check_ins#create'
