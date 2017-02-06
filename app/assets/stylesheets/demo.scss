@@ -1,5 +1,5 @@
 #demo-section {
-    background-image: image-url('mcm_wallpaper.png');
+    //background-image: image-url('mcm_wallpaper.png');
 }
 
 // #main-page-jumbotron {
@@ -11,6 +11,7 @@
 //     overflow: hidden;
 // }
 
+/* This is the hexagon SVG. */
 // #main-page-jumbotron {
 //   background:
 //     radial-gradient(circle farthest-side at 0% 50%,#fb1 23.5%,rgba(240,166,17,0) 0)21px 30px,
@@ -22,8 +23,19 @@
 //     background-size:40px 60px;
 
 #main-page-jumbotron {
-  background: -webkit-linear-gradient(left,rgba(164,163,147,0),rgba(164,163,147,1)); /*Safari 5.1-6*/
-  background: -o-linear-gradient(right,rgba(164,163,147,0),rgba(164,163,147,1)); /*Opera 11.1-12*/
-  background: -moz-linear-gradient(right,rgba(164,163,147,0),rgba(164,163,147,1)); /*Fx 3.6-15*/
-  background: linear-gradient(to right, rgba(164,163,147,0), rgba(164,163,147,1)); /*Standard*/
+  background: -webkit-linear-gradient(left,rgba(164,163,147,0.3),rgba(164,163,147,1)); /*Safari 5.1-6*/
+  background: -o-linear-gradient(right,rgba(164,163,147,0.3),rgba(164,163,147,1)); /*Opera 11.1-12*/
+  background: -moz-linear-gradient(right,rgba(164,163,147,0.3),rgba(164,163,147,1)); /*Fx 3.6-15*/
+  background: linear-gradient(to right, rgba(164,163,147,0.3), rgba(164,163,147,1)); /*Standard*/
+
+  margin-bottom: 0px;
+}
+
+.demo-step {
+  padding-bottom: 5px;
+  
+}
+
+.card {
+  box-shadow: 2px 2px 2px #888888;
 }

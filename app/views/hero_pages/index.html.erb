@@ -1,33 +1,43 @@
 
 <div id="main-page-jumbotron" class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-3">Freebee</h1>
-    <p class="lead">No cards.  No apps.  Just rewards. </p>
+    <div class="col-sm-6">
+      <h1 class="display-3">Freebee</h1>
+      <p class="lead">No cards.  No apps.  Just rewards. </p>
+    </div>
   </div>
 </div>
 
 <div id="demo-section"> 
-<div class="row">
-  <div class="offset-sm-2">
-    <h4>Try the demo to see if we are right for your customers.</h4> 
-   </div>
-</div>
-
-  <div class="row">
-    <div class="col-sm-6 offset-sm-3">
-      <%= render 'step_1' %>
+  <div class="container">
+    <div class="row">
+      <div class="offset-sm-3">
+        See how it works.
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-sm-6 offset-sm-3">
-      <%= render 'step_2' %>
+    <div class="row demo-step">
+      <div class="col-sm-6 offset-sm-3">
+        <%= render 'step_1' %>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-sm-6 offset-sm-3">
-      <%= render 'step_3' %>
+    <div class="row demo-step">
+      <div class="col-sm-6 offset-sm-3">
+        <img src=<%= image_url('France_44_1.jpg') %> class="img-fluid" alt="Loyalty Card">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 offset-sm-3">
+        <%= render 'step_2' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 offset-sm-3">
+        <%= render 'step_3' %>
+      </div>
     </div>
   </div>
 </div>
