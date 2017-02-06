@@ -13,6 +13,13 @@ class MailmanServiceJob < ApplicationJob
         ap "Message received to admin@rasmussonprogramming.com, substituting france_44."
         PreCheckIn::SMSCheckIn.new(message,'france_44@stampstamp.com')
       end
+
+      to 'demo_%id%@rasmussonprogramming.com' do
+        ap "Received..."
+        Rails.logger.info("Received message for demo_#{params[:id]}@rasmussonprogramming.com")
+        PreCheckIn::SMSCheckIn.new(message,'france_44@stampstamp.com')
+      end
+
     end
   end
 end
