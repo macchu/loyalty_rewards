@@ -62,7 +62,7 @@ Rails.application.configure do
     username: ENV['EMAIL_USERNAME'],
     password: ENV['EMAIL_PASSWORD']
   }
-  Mailman.config.poll_interval = 5
+  Mailman.config.poll_interval = 1
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -73,5 +73,25 @@ Rails.application.configure do
     authentication:       :plain,
     enable_starttls_auto: true  
   }
+
+  #   #Mailman monitors an inbox for incoming mail.
+  # Mailman.config.imap = {
+  #   server: 'email-smtp.us-west-2.amazonaws.com',
+  #   port: 25, # you usually don't need to set this, but it's there if you need to
+  #   starttls: true,
+  #   username: 'ses-smtp-user.matt_rasmusson',
+  #   password: 'AKIAI666XERLVJ3GSMSQ,ArX0qPl3Xxf8KGT4Wmjzog6H+7ojXecStMZ8vBc8yBFt'
+  # }
+  # Mailman.config.poll_interval = 1
+
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address:              'email-smtp.us-west-2.amazonaws.com',
+  #   port:                 587,
+  #   user_name:            'AKIAI666XERLVJ3GSMSQ',
+  #   password:             'ArX0qPl3Xxf8KGT4Wmjzog6H+7ojXecStMZ8vBc8yBFt',
+  #   authentication:       :login,
+  #   enable_starttls_auto: true  
+  # }
 
 end

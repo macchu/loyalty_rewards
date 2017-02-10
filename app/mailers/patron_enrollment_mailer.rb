@@ -13,5 +13,6 @@ class PatronEnrollmentMailer < ApplicationMailer
     # loyalty_card_file = Rails.root.join('app', 'assets', 'images', 'lunchit_loyalty_card.jpg').to_s
     # attachments['loyalty_card.jpg'] = File.read(loyalty_card_file)
     mail(to: patron.sms_address, subject: "Thanks, #{patron.first_name}!", body: nil)
+
   end
 end

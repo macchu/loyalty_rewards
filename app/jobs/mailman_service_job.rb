@@ -15,9 +15,9 @@ class MailmanServiceJob < ApplicationJob
       end
 
       to 'demo_%id%@rasmussonprogramming.com' do
-        ap "Received..."
         Rails.logger.info("Received message for demo_#{params[:id]}@rasmussonprogramming.com")
         PreCheckIn::SMSCheckIn.new(message,'france_44@stampstamp.com')
+        Rails.logger.info("Done")
       end
 
     end
