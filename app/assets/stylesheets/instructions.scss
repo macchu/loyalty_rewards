@@ -1,1 +1,31 @@
-instructions.scss
+$mint-green-trans: rgba(27, 201, 142, 0.3);
+$mint-green-opaque: rgba(27, 201, 142, 1);
+
+/* Ribbon is a background on which the demo's instructions are displayed.*/
+.ribbon {
+  background: -webkit-linear-gradient(left, $mint-green-opaque, $mint-green-trans); /*Safari 5.1-6*/
+  background: -o-linear-gradient(right, $mint-green-opaque, $mint-green-trans); /*Opera 11.1-12*/
+  background: -moz-linear-gradient(right, $mint-green-opaque, $mint-green-trans); /*Fx 3.6-15*/
+  background: linear-gradient(to right,  $mint-green-opaque,  $mint-green-trans);
+}
+
+/* Terse task to complete, such as 'Send text to...'.  
+  Color: contrasts the underlying .ribbon. 
+  Position: Top, text aligned left.
+  Size: ?
+  */
+.instruction {
+  color: gray;
+}
+
+/* Small line that dives the instruction from the explanation.  */
+.divider {
+
+}
+
+
+/* Text explaining why the task is necessary. Faint, grayish-white text in 
+    a small font. */
+.explanation {
+
+}
