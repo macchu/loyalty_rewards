@@ -1,5 +1,3 @@
-$mint-green-trans: rgba(27, 201, 142, 0.3);
-$mint-green-opaque: rgba(27, 201, 142, 1);
 
 /* Ribbon is a background on which the demo's instructions are displayed.*/
 .ribbon {
@@ -14,8 +12,21 @@ $mint-green-opaque: rgba(27, 201, 142, 1);
   Position: Top, text aligned left.
   Size: ?
   */
-.instruction {
+.instruction-title {
   color: gray;
+  //padding-left: 10px;
+  border-bottom: thin solid $mint-green-light;
+}
+.instruction-title-v2 {
+  color: gray;
+  text-transform: uppercase;
+}
+
+/* More verbose instruction details that could include images, buttons, etc.*/
+.instruction-body {
+  //padding-top: 20px;
+  padding-left: 10px;
+  //padding-bottom: 20px;
 }
 
 /* Small line that dives the instruction from the explanation.  */
@@ -27,5 +38,7 @@ $mint-green-opaque: rgba(27, 201, 142, 1);
 /* Text explaining why the task is necessary. Faint, grayish-white text in 
     a small font. */
 .explanation {
-
+  padding-top: 1px;
+  vertical-align: bottom;
+  border-top: thin solid $mint-green-light;
 }

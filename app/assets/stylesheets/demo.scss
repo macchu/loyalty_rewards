@@ -18,7 +18,7 @@
 
 .demo-step-label {
   background-color: $mint-green;
-  padding: 20px;
+  padding: 10px;
   box-shadow: 2px 2px 2px #888888;
 }
 
@@ -30,12 +30,13 @@
 
 .demo-step-label .step {
   color: white;
-  font-size: 30px;
+  font-size: 20px;
   text-align: center;
 }
 
 .mint-green {
   background-color: $mint-green;
+  opacity: .6;
 }
 
 .ruby-red {
