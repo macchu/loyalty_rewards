@@ -1,21 +1,26 @@
-<div class="row">
-  <div class="col-12">
-    <button type="button" class="btn btn-primary btn-circle btn-lg"><%= step_number %></i></button>
-    <span class="instruction-title-v2 align-middle">ENROLLMENT</span>
+<div class="demo-step">
+  <div class="row">
+    <div class="col-12">
+      <button type="button" class="btn btn-primary btn-circle btn-lg"><%= step_number %></i></button>
+      <span class="instruction-title-v2 align-middle"><%= title %></span>
+    </div>
   </div>
-</div>
 
-
-<div class="row hidden-sm-up">
-  <div class="col-10 offset-2">
-    <a class="btn btn-primary" href="sms:demo@freebeefor.me">demo@freebeefor.me</a>
+  <div class="row hidden-sm-up instruction-body">
+    <div class="col-11 offset-1">
+      <small>Text <em>'hello'</em> to</small> <a class="btn btn-warning btn-sm" href="sms:demo@freebeefor.me">demo@freebeefor.me</a>
+    </div>
   </div>
-</div>
 
-  <!-- <div class="hidden-xs-down"> -->
-   <!--  <div class="col-10 offset-2"> -->
-   <div class="row hidden-xs-down">
-      <div class="col-10 offset-1"> <p>Send a text to <span class="badge badge-success">demo@freebeefor.me</span>.</p></div>
-    <!-- </div> -->
+  <div class="row hidden-xs-down">
+    <div class="col-10 offset-1"> 
+      Text <em>'hello'</em> to <span class="badge badge-success">demo@freebeefor.me</span>.</p>
+    </div>
+  </div>
+
+  <div class="row demo-step-explanation">
+    <div class="col-10 offset-1"> 
+      <small class="text-muted">This captures your customer's mobile # so they can get card punches and redemption codes.</small>
+    </div>
   </div>
 </div>

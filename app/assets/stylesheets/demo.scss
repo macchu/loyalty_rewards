@@ -12,8 +12,15 @@
 }
 
 .demo-step {
+  padding-top: 2px;
+  padding-left: 2px;
   padding-bottom: 5px;
-  
+  //box-shadow: -1px 1px 1px 1px rgb(164,163,147);
+  //border: thin solid rgba(164,163,147,0.3);
+}
+
+.demo-step-explanation {
+  padding-top: 10px;
 }
 
 .card {
