@@ -1,5 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.log_level = :debug
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -54,22 +55,22 @@ Rails.application.configure do
 
   #Mailman monitors an inbox for incoming mail.
   Mailman.config.imap = {
-    server: 'mail.privateemail.com',
+    server: 'box.freebeefor.me',
     port: 993, # you usually don't need to set this, but it's there if you need to
     ssl: true,
     # Use starttls instead of ssl (do not specify both)
     #starttls: true,
-    username: ENV['EMAIL_USERNAME'],
-    password: ENV['EMAIL_PASSWORD']
+    username: 'demo@freebeefor.me',
+    password: 'fr33b33p@ss'
   }
   Mailman.config.poll_interval = 1
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'mail.privateemail.com',
+    address:              'box.freebeefor.me',
     port:                 587,
-    user_name:            ENV['EMAIL_USERNAME'],
-    password:             ENV['EMAIL_PASSWORD'],
+    user_name: 'demo@freebeefor.me',
+    password: 'fr33b33p@ss',
     authentication:       :plain,
     enable_starttls_auto: true  
   }

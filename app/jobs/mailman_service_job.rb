@@ -20,6 +20,12 @@ class MailmanServiceJob < ApplicationJob
         Rails.logger.info("Done")
       end
 
+      to 'demo@freebeefor.me' do
+        Rails.logger.info("Received message for demo@freebeefor.me")
+        PreCheckIn::SMSCheckIn.new(message,'france_44@stampstamp.com')
+        Rails.logger.info("Done")
+      end
+
     end
   end
 end

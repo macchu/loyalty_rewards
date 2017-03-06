@@ -1,6 +1,6 @@
 class PatronEnrollmentMailer < ApplicationMailer
-  default from: "admin@rasmussonprogramming.com",
-          return_path: "admin@rasmussonprogramming.com"
+  default from: "demo@freebeefor.me",
+          return_path: "demo@freebeefor.me"
 
   def provide_name(patron_address)
     logger.info " #{self.class.to_s}##{__method__.to_s}: #{patron_address}"
