@@ -55,22 +55,22 @@ Rails.application.configure do
 
   #Mailman monitors an inbox for incoming mail.
   Mailman.config.imap = {
-    server: 'box.freebeefor.me',
+    server: ENV['FREEBEE_EMAIL_SERVER'],
     port: 993, # you usually don't need to set this, but it's there if you need to
     ssl: true,
     # Use starttls instead of ssl (do not specify both)
     #starttls: true,
-    username: ENV['EMAIL_USERNAME'],
-    password: ENV['EMAIL_PASSWORD']
+    username: ENV['FREEBEE_EMAIL_USERNAME'],
+    password: ENV['FREEBEE_EMAIL_PASSWORD']
   }
   Mailman.config.poll_interval = 1
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'box.freebeefor.me',
+    address:              ENV['FREEBEE_EMAIL_SERVER'],
     port:                 587,
-    user_name: ENV['EMAIL_USERNAME'],
-    password: ENV['EMAIL_PASSWORD'],
+    user_name: ENV['FREEBEE_EMAIL_USERNAME'],
+    password: ENV['FREEBEE_EMAIL_PASSWORD'],
     authentication:       :plain,
     enable_starttls_auto: true  
   }
