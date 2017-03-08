@@ -60,8 +60,8 @@ Rails.application.configure do
     ssl: true,
     # Use starttls instead of ssl (do not specify both)
     #starttls: true,
-    username: 'demo@freebeefor.me',
-    password: 'fr33b33p@ss'
+    username: ENV['EMAIL_USERNAME'],
+    password: ENV['EMAIL_PASSWORD']
   }
   Mailman.config.poll_interval = 1
 
@@ -69,8 +69,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'box.freebeefor.me',
     port:                 587,
-    user_name: 'demo@freebeefor.me',
-    password: 'fr33b33p@ss',
+    user_name: ENV['EMAIL_USERNAME'],
+    password: ENV['EMAIL_PASSWORD'],
     authentication:       :plain,
     enable_starttls_auto: true  
   }
