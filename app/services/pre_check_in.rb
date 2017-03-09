@@ -29,9 +29,9 @@ module PreCheckIn
 
       else
         Rails.logger.info " #{self.class.to_s}##{__method__.to_s} check in for existing patron."
-        Rails.logger.info "patron: #{patron}"
-        Rails.logger.info "store: #{store}"
-        Rails.logger.info "message: #{store}"
+        Rails.logger.info "patron: #{patron.full_name}"
+        Rails.logger.info "store: #{store.name}"
+        Rails.logger.info "message: #{message}"
         check_in = CheckIn.create( check_in_params(patron: patron, store: store, message: message) )
         stamp_service = ApplyStampService.new(patron: patron, store: store, check_in: check_in)
         LoyaltyCardMailer.stamped_card(patron.sms_address, stamp_service.file_name_of_card).deliver_now
