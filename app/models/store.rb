@@ -15,7 +15,11 @@ class Store < ApplicationRecord
   end
 
   def create_loyalty_card_for_patron(patron)
+    logger.info " #{self.class.to_s}##{__method__.to_s}: for store #{self.inspect}".blue
+    
     terms = self.loyalty_card_terms.last
+
+    logger.info " #{self.class.to_s}##{__method__.to_s}: #{terms.inspect}"
 
     card = self.loyalty_cards.build( patron: patron, 
                                     stamps_required: terms.stamps_required,
