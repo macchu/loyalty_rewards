@@ -1,4 +1,6 @@
 class RedemptionsController < ApplicationController
+  layout 'customers'
+
   def show
     @redemption = Redemption.find(params[:id])
 
