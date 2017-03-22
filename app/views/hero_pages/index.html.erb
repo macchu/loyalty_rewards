@@ -1,8 +1,10 @@
 <%= render 'jumbotron_2' %>
+  
+<div id="flowchart" class="container">
+  <%= render partial: 'flow_chart' %>
 
-  <div id="demo" class="container">
-      <%= render partial: 'instruction_1b', locals: { step_number: 1, title: 'Enrollment' } %>
-  </div>
+  <%= render partial: 'instruction_1b', locals: { step_number: 1, title: 'Enrollment' } %>
+</div>
 
 <!--
     <div class="row demo-step">
