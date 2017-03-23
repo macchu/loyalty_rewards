@@ -1,3 +1,22 @@
 .flowchart-img {
   height: 300px;
 }
+
+.flowchart-title {
+  color: black;
+  text-transform: uppercase;
+  padding-left: 10px;
+}
+
+.flowchart-step-number {
+  font-size: 16px;
+}
+
+.flowchart {
+  padding-top: 2px;
+  padding-left: 2px;
+  // padding-bottom: 5px;
+  margin-top: 4px;
+  box-shadow: 1px 1px 1px rgb(164,163,147);
+  border: thin solid rgba(164,163,147,0.3);
+}
