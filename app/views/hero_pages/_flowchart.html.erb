@@ -1,4 +1,4 @@
-<div class="flowchart">
+<div class="flowchart-box">
   <div class="row justify-content-center">
     <div class="col">
       <span class="badge badge-success flowchart-step-number"><%= step_number %></span>
@@ -8,13 +8,13 @@
   
   <div class="row justify-content-center">
     <div class=""> 
-      <%= image_tag(image, class: "flowchart-img") %>
+      <%= image_tag(image, class: "img-fluid flowchart-img") %>
     </div>
   </div>
 
   <div class="row">
     <div class="col"> 
-      <small class="text-muted"><%= explanation %></small>
+      <small class=""><%= explanation %></small>
     </div>
   </div>
 </div>
