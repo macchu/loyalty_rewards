@@ -1,5 +1,9 @@
-.flowchart-img {
+.flowchart-img-small {
   height: 275px;
+}
+
+.flowchart-img-large {
+  height: 350px;
 }
 
 .flowchart-title {
@@ -17,11 +21,12 @@
   padding-left: 2px;
   // padding-bottom: 5px;
   margin-top: 4px;
-  box-shadow: 1px 1px 1px rgb(164,163,147);
-  border: thin solid rgba(164,163,147,0.3);
+  box-shadow: 10px 10px 10px 3px rgb(164,163,147);
+  //border-left: thin solid rgba(164,163,147,0.3);
+  //border-top: thin solid rgba(164,163,147,0.3);
   background-color: white;
 }
 
 #flowcharts {
-  background-color: rgba(164,163,147,0.3);
+  //background-color: rgba(164,163,147,0.3);
 }
