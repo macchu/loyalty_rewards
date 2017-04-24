@@ -1,17 +1,14 @@
-<div class="row justify-content-center">
-  <div class="hidden-sm-up">
-    <%= image_tag("satisfaction-icon.png", class: "img-fluid flowchart-img-small") %>
-  </div>
-  <div class="hidden-sm-down">
-    <%= image_tag("satisfaction-icon.png", class: "img-fluid flowchart-img-large") %>
-  </div>
+<div class="hidden-sm-up">
+  <%= render partial: 'introduction_small', 
+      locals: { loyalty_rewards_blurb: "Replace your paper puncher with an electronic loyalty rewards system.  You customers simply have to text you a proof of purchase.", 
+                smart_advertising_blurb: "You now have your best customer's phone number.  Now you can buy cheap, targeted ads on Facebook and other new media services."}
+  %>
 </div>
 
-<div class="row justify-content-center">
-  <div class="hidden-sm-up">
-    <%= image_tag("Social_Media_Marketing.png", class: "img-fluid flowchart-img-small") %>
-  </div>
-  <div class="hidden-sm-down">
-    <%= image_tag("Social_Media_Marketing.png", class: "img-fluid flowchart-img-large") %>
-  </div>
+
+<div class="hidden-sm-down">
+  <%= render  partial: 'introduction_large', 
+      locals: { loyalty_rewards_blurb: "Replace your paper puncher with an electronic loyalty rewards system.  You customers simply have to text you a proof of purchase.", 
+                smart_advertising_blurb: "You now have your best customer's phone number.  Now you can buy cheap, targeted ads on Facebook and other new media services."}
+  %>
 </div>
