@@ -26,8 +26,22 @@
       <%= render partial: 'flowchart_v2', 
       locals: { step_number: 'Step 4',
                 title: 'Request Stamp',
-                explanation: 'Customer now texts a proof of purchase to Freebee.',
+                explanation: "Freebee verifies the purchase and stores customer's info.",
                 image: 'step_3b.png'} %>
+    </div>
+    <div class="carousel-item">
+      <%= render partial: 'flowchart_v2', 
+      locals: { step_number: 'Step 5',
+                title: 'Punch card',
+                explanation: "Text the customer a picture of a newly punched loyalty card",
+                image: 'step_4.png'} %>
+    </div>
+    <div class="carousel-item">
+      <%= render partial: 'flowchart_v2', 
+      locals: { step_number: 'Step 6',
+                title: 'Advertise',
+                explanation: "Use your newly acquired customer data to purchase affordable social media ads.",
+                image: 'step_6.png'} %>
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
