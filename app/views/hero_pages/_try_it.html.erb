@@ -1,23 +1,23 @@
-<div id="try-it" class="mint-green">
-  <div class="row">
+<div id="try-it">
+  <div class="row justify-content-end">
     <div class="col-1">
-      <p class="font-italic"> Give it a try. </p>
+      <p id="try-it-badge" class="badge badge-success font-italic">Try it</p>
+      
     </div>
 
-    <div class="col-5">
-      <p class="card-text">Send a text to:</p>
-      <div class="hidden-sm-up">
-        <a class=class="btn btn-primary" href="sms:demo_1678@freebeefor.me">demo@freebeefor.me</a>
-      </div>
-      <div class="hidden-xs-down">
-        <b>demo@freebeefor.me</b>
-      </div>
-      <p class="text-muted">Yes, you can send a text message to an email address.</p>
+    <div class="col-6">
+      <p>Send a text to <u>demo@freebeefor.me</u>
+      <br>
+      <small class="text-muted">&nbsp;&nbsp;&nbsp;*Yes, you can send a text message to an email address.</small></p>
     </div>
 
-    <div id="stamped-card" class="col-4">
-      <h6>Follow the prompts and get a stamped card</h6>
-      <%= image_tag("France_44_1.jpg", class: "field-name-field-highlight-image", id: "stamped-card") %>
+    <div class="col-4" id="stamped-card">
+      <div class="row justify-content-center">
+        <%= image_tag("France_44_1.jpg", class: "rounded col", id: "stamped-card") %>
+      </div>
+      <div class="row">
+        <p class="col">Follow prompts</p>
+      </div>
     </div>
   </div>
 </div>
