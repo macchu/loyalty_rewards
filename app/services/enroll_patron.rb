@@ -8,13 +8,11 @@ class EnrollPatron
     return patron
   end
 
-  #Marks the patron as enrolled and sends confirmation message.
+  #Marks the patron as enrolled.
   def self.finish(patron_to_finish:, enrollment_message: )
     name_parser = FullNameParser.new(enrollment_message.body_text_part)
 
     patron_to_finish.finish_enrollment(name_parser.first_name, name_parser.last_name)
-
-    PatronEnrollmentMailer.received_name(patron_to_finish).deliver_now
   end
 
 end
