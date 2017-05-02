@@ -48,10 +48,6 @@ class PreCheckInTest
       refute Patron.find(@pending_patron.id).pending
     end
 
-    test 'An email was sent after finishing enrollment.' do
-      assert_equal 2, ActionMailer::Base.deliveries.size - @actionmailer_size_start 
-    end
-
     test 'A stamped card was attached to the message.' do
       message = ActionMailer::Base.deliveries.last
       assert 'loyalty_card.jpg', message.attachments.first.filename
