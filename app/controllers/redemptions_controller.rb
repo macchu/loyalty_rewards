@@ -35,6 +35,12 @@ class RedemptionsController < ApplicationController
     end
   end
 
+  def finish_demo
+    #@redemption = Redemption.find(params[:id])
+    render :finished_demo
+
+  end
+
   private
   
   # Rails 4+ requires parameter whitelisting.
