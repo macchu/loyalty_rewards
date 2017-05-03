@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'redemptions/redeem/:redemption_id', to: 'redemptions#edit'
   patch 'redemption', to: 'redemptions#update'
 
+  get 'redemption/demo/:redemption_id', to: 'redemptions#finish_demo'
+
   get 'loyalty_card_terms/:id/edit', to: 'loyalty_card_terms#edit', as: 'edit_loyalty_card_terms'
   patch 'loyalty_card_term', to: 'loyalty_card_terms#update'
 

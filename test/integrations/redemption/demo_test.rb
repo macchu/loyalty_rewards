@@ -1,6 +1,6 @@
 require 'test_helper'
  
-class RedemptionTest < ActionDispatch::IntegrationTest
+class DemoTest < ActionDispatch::IntegrationTest
   def setup
     #Hardcode a nearly full loyalty_card.
     @julieta = patrons(:julieta)
@@ -14,7 +14,7 @@ class RedemptionTest < ActionDispatch::IntegrationTest
   end
 
   test "has a special view for demo redemptions" do
-    get "/redemptions/demo/1"
+    get "/redemption/demo/1"
 
     assert_match "Thanks for trying the demo."
   end
