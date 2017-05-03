@@ -27,7 +27,6 @@ class LoyaltyCard < ApplicationRecord
       redemption = Redemption.new(loyalty_card: self, store: self.store, patron: self.patron, redemption_code_type: self.store.redemption_code_type)
       redemption.redeemed = false
       redemption.save
-      ap redemption.errors
     end
   end
 
