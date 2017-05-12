@@ -1,22 +1,20 @@
 <div id="try-it">
-  <div class="row justify-content-end">
-    <div class="col-1">
-      <p id="try-it-badge" class="badge badge-success font-italic">Try it</p>
-      
-    </div>
-
-    <div class="col-6">
-      <p>Send a text to <u>demo@freebeefor.me</u>
-      <br>
-      <small class="text-muted">&nbsp;&nbsp;&nbsp;*Yes, you can send a text message to an email address.</small></p>
-    </div>
-
-    <div class="col-4" id="stamped-card">
-      <div class="row justify-content-center">
-        <%= image_tag("France_44_1.jpg", class: "rounded col", id: "stamped-card") %>
+  <div class="row">
+    <div class="col-md-2">
+      <p id="try-it-badge" class="badge badge-success font-italic">Try it yourself!</p>
+    </div> 
+    <div class="col-md-5">
+      <div class="hidden-sm-up">
+        Send a text to <a class=class="btn btn-primary" href="sms:demo_1678@freebeefor.me">demo@freebeefor.me</a>
       </div>
-      <div class="row">
-        <p class="col">Follow prompts</p>
+      <div class="hidden-xs-down">
+        Send a text to <b>demo@freebeefor.me</b>
+      </div>
+      <div class="hidden-sm-up">
+        <small class="text-muted">&nbsp;&nbsp;&nbsp;*Yes, you can text an email address.</small></p>
+      </div>
+      <div class="hidden-xs-down">
+        <small class="text-muted">&nbsp;&nbsp;&nbsp;*Yes, you can send a text message to an email address.</small></p>
       </div>
     </div>
   </div>
