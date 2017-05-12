@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'contact/index'
+
   get '/', to: 'hero_pages#index'#, as: ''
 
   get '/check_ins/', to: 'check_ins#ask_for_location'
