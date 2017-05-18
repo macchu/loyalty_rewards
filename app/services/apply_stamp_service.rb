@@ -26,7 +26,11 @@ class ApplyStampService
       Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: Card ##{card.id} is full."
       card.create_redemption_if_full
       @full_card = true
-      @redemption_url = "#{Rails.application.secrets.host_name}/redemptions/redeem/#{card.redemption.id}"
+      if is_demo
+        @redemption_url = "#{Rails.application.secrets.host_name}/redemptions/redeem/demo/#{card.redemption.id}"
+      else
+        @redemption_url = "#{Rails.application.secrets.host_name}/redemptions/redeem/#{card.redemption.id}"
+      end
       Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: Created redemption URL of #{@redemption_url}."
     end
 
