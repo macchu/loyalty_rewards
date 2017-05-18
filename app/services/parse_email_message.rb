@@ -6,7 +6,7 @@ require 'mailman'
 # ==== Examples
 #   
 class ParseEmailMessage
-  attr_reader :sender, :sender_local_part, :body, :body_text_part, :body_html_part, :recipient
+  attr_reader :sender, :sender_local_part, :body, :body_text_part, :body_html_part, :recipient, :is_demo
   
   def initialize(message)
     Rails.logger.info "#{self.class.to_s}##{__method__.to_s}:"
@@ -14,7 +14,8 @@ class ParseEmailMessage
     @sender_local_part = @sender.partition('@').first
     @body = message.body.to_s
     @recipient = message.to.first
-
+    @is_demo = @recipient == "demo@freebeefor.me"
+    
     if message.multipart?
       message.parts.each do |part|
         case 
