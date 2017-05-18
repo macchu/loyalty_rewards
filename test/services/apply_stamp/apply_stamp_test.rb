@@ -43,11 +43,6 @@ class ApplyStampServiceTest < ActiveSupport::TestCase
     assert_match "/redemptions/redeem/#{@nearly_full_card.redemption.id}", stamp_service.redemption_url
   end
 
-  test ".redemption_url contains '/redeem/demo/' when redeeming a demo card" do
-    stamp_service = ApplyStampService.new(patron: @patron_for_nearly_full, store: @store_for_nearly_full, check_in: nil, is_demo: true)
-    assert_match "/redemptions/redeem/demo/#{@nearly_full_card.redemption.id}", stamp_service.redemption_url
-  end
-
   test '.full_card is true for a full card' do
     stamp_service = ApplyStampService.new(patron: @patron_for_nearly_full, store: @store_for_nearly_full, check_in: nil)
     assert stamp_service.full_card
