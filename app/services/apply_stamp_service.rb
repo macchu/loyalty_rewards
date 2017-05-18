@@ -5,7 +5,7 @@ class ApplyStampService
   #TODO: card = ApplyStampService.new() looks bad.  What syntax more
   # clearly communicates that we are stamping a card and returning that card for
   # to be sent?
-  def initialize(patron:, store:, check_in:)
+  def initialize(patron:, store:, check_in:, is_demo: false)
     Rails.logger.info " #{self.class.to_s}##{__method__.to_s}"
     #Create a check in if necessary.
     check_in ||= CheckIn.create(patron: patron, store: store)
