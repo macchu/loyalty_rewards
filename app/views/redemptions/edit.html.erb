@@ -1,13 +1,13 @@
 <div class="container">
 <div class="row align-items-center">
-  <div class="col-sm-8">
-    <div class="card">
+  <div class="col col-md-6 offset-md-3">
+    <div class="card text-center">
       <div class="card-block">
         <h3 class="card-title">Get your freebee reward.</h3>
         <p class="card-text"><%= @redemption.store.name %> is giving you <%= @redemption.store.loyalty_card_terms.last.reward_description %></p>
         <%= form_for @redemption, url: redemption_path do |f| %>
           <%= f.hidden_field :id %>
-          <%= f.submit 'Claim', class: "col-md-3 offset-md-4 col-xs-3 offset-xs-4 btn btn-primary" %>
+          <%= f.submit 'Claim', class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>

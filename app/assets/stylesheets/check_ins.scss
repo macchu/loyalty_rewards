@@ -4,6 +4,7 @@
 
 /* Used by QRCode */
 div.code_image table {
+  margin: auto;  //Added by me to center the image.
   border-width: 0;
   border-style: none;
   border-color: #0000ff;
