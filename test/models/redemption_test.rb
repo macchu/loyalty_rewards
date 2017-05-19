@@ -4,6 +4,7 @@ class RedemptionModelTest < ActiveSupport::TestCase
   def setup
     @redemption = redemptions(:unredeemed)
     @redeemed = redemptions(:redeemed)
+    @unredeemed_demo = redemptions(:unredeemed_demo)
   end
 
   test '#redeem -> redeemed: true, code: <SomeString>, returns :success' do 
@@ -25,6 +26,10 @@ class RedemptionModelTest < ActiveSupport::TestCase
     assert @redeemed.redeemed?
     assert_equal String, @redeemed.code.class
     assert @redeemed.code.length > 0
+  end
+
+  test '.is_demo' do
+    assert @unredeemed_demo.is_demo
   end
 
 end

@@ -15,3 +15,12 @@ unredeemed:
   patron: julieta
   redeemed: false
   redemption_code_type: random_alpha_numeric
+
+unredeemed_demo:
+  loyalty_card: full_card
+  code: 
+  store: coop
+  patron: julieta
+  redeemed: false
+  redemption_code_type: random_alpha_numeric
+  is_demo: true

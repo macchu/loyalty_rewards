@@ -33,11 +33,11 @@ class LoyaltyCardTest < ActiveSupport::TestCase
     #assert_equal Date.new(2018, 1, 15), @display_loyalty_card.expriration
   end 
 
-  test '.full?' do
+  test '#full?' do
     assert @full_card.full?
   end
 
-  test '.create_redemption_if_full creates a redemption when it is full.' do
+  test '#create_redemption_if_full creates a redemption when it is full.' do
     Redemption.delete_all
 
     assert_difference("Redemption.count", +1) do
@@ -46,7 +46,7 @@ class LoyaltyCardTest < ActiveSupport::TestCase
     refute Redemption.last.redeemed
   end
 
-  test '.create_redemption_if_full does NOT create additional redemptions when one already exists.' do
+  test '#create_redemption_if_full does NOT create additional redemptions when one already exists.' do
     Redemption.delete_all
     @full_card.create_redemption_if_full
     assert_equal Redemption.last, @full_card.redemption
@@ -57,11 +57,20 @@ class LoyaltyCardTest < ActiveSupport::TestCase
     assert_equal Redemption.last, @full_card.redemption
   end
 
-  test '.create_redemption_if_full does NOT create a redemption when the card is not full.' do
+  test '#create_redemption_if_full does NOT create a redemption when the card is not full.' do
     assert_difference("Redemption.count", 0) do
       @loyalty_card_for_bill.create_redemption_if_full
     end
-    assert_equal nil, @loyalty_card_for_bill.redemption
+    assert_nil @loyalty_card_for_bill.redemption
+  end
+
+  test "#create_redemption_if_full records whether the redemption is for a demo." do
+    Redemption.delete_all
+
+    assert_difference("Redemption.count", +1) do
+      @full_card.create_redemption_if_full(is_demo: true)
+    end
+    assert Redemption.last.is_demo
   end
 
 end

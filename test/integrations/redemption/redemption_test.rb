@@ -15,7 +15,7 @@ class RedemptionTest < ActionDispatch::IntegrationTest
 
   test "can see the welcome page." do
     get @redemption_url
-    assert_match "Claim your #{@coop.loyalty_card_terms.last.reward_description}", response.body
+    assert_match "#{@coop.name} is giving you #{@coop.loyalty_card_terms.last.reward_description}", response.body
     assert_select "form input" do
       assert_select "[value=?]", 'Claim'
     end
@@ -23,13 +23,17 @@ class RedemptionTest < ActionDispatch::IntegrationTest
 
   test "the Success page is rendered after claiming a reward." do
     patch "/redemption/", params: { redemption: { id: @card_for_julieta.redemption.id } }
-    assert_match "Redeemed!", response.body
+    assert_match "Show this to the cashier", response.body
   end
 
   test "handle missing redemption" do
     get "/redemptions/redeem/-1"
 
-    assert_match "Sorry, that redemption was not found.", response.body
+    assert_match "We could not find that redemption", response.body
+  end
+
+  test "a successful normal redemption page does NOT display marketing information" do
+
   end
   
 end
