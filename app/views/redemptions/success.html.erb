@@ -1,9 +1,8 @@
-<div class="container">
+<div class="container p-1">
   <div class="row align-items-center">
     <div class="col col-md-6 offset-md-3">
       <div class="card text-center">
         <div class="card-block">
-          <h3 class="card-title">Okay</h3>
           <p class="card-text">Show this to the cashier</p>
           <div name="code_image" class="code_image">
            <%= raw @redemption.code_as_image %>
@@ -12,8 +11,9 @@
       </div>
     </div>
   </div>
+
+  <% if @redemption.is_demo %>
+    <%= render partial: 'marketing_stuff' %>
+  <% end %>
 </div>
 
-<% if @redemption.is_demo %>
-  <%= render partial: 'marketing_stuff' %>
-<% end %>
