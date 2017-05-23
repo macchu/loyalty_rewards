@@ -1,6 +1,7 @@
 class CheckInsController < ApplicationController
-  layout 'store_admin'
-  
+  #layout 'store_admin'
+  layout 'customers'
+
   def index
     @store = Store.find(params[:store_id])
     @check_ins = @store.check_ins.order('created_at DESC')
