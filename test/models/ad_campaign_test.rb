@@ -2,12 +2,12 @@ require 'test_helper'
 
 class AdCampaignTest < ActiveSupport::TestCase
   def setup
-    @facebook_for_coop = ad_campaigns(:facebook_for_coop)
+    @facebook_for_france_44 = ad_campaigns(:facebook_for_france_44)
 
   end
 
   test "setup worked" do 
-    assert @facebook_for_coop
+    assert @facebook_for_france_44
   end
 
 end

@@ -1,7 +1,4 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-coop:
+france_44:
   name: France 44
-
-two:
-  name: MyString
