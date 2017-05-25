@@ -44,7 +44,7 @@ class StoreTest < ActiveSupport::TestCase
     assert_equal 0, @coop.redemptions_count
   end
 
-  test "#redemptions_count returns " do
-    assert_equal 1, @coop.redemptions_count
+  test "#redemptions_count returns 3" do
+    assert_equal 3, @coop.redemptions_count
   end
 end
