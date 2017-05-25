@@ -7,7 +7,8 @@ class AdCampaignTest < ActiveSupport::TestCase
   end
 
   test "setup worked" do 
-    assert @facebook_for_france_44
+    assert_equal "France 44", @facebook_for_france_44.company.name
+    assert_equal "Facebook", @facebook_for_france_44.platform.name
   end
 
 end
