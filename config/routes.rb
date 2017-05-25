@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :companies
   get 'contact/index'
 
   get '/', to: 'hero_pages#index'#, as: ''

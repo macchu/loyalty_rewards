@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170518171216) do
+ActiveRecord::Schema.define(version: 20170525161004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ad_campaigns", force: :cascade do |t|
+    t.integer "platform_id"
+    t.integer "company_id"
+  end
 
   create_table "check_in_strategies", force: :cascade do |t|
     t.string   "name"
@@ -33,6 +38,12 @@ ActiveRecord::Schema.define(version: 20170518171216) do
     t.integer  "store_id"
     t.integer  "check_in_strategy_id"
     t.integer  "resulting_stamp_count"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "loyalty_card_terms", force: :cascade do |t|
