@@ -27,4 +27,24 @@ class StoreTest < ActiveSupport::TestCase
   test "Returns a redemption_code_type when one is defined." do
     assert_equal "QCode", @coop.redemption_code_type.description
   end
+
+  test "#check_ins_count returns 0 when CheckIns is empty." do
+    #Destroy the check ins.
+    @coop.check_ins.destroy_all
+    assert_equal 0, @coop.check_ins_count
+  end
+
+  test "#check_ins_count returns " do
+    assert_equal 1, @coop.check_ins_count
+  end
+
+  test "#redemptions_count returns 0 when CheckIns is empty." do
+    #Destroy the check ins.
+    @coop.redemptions.destroy_all
+    assert_equal 0, @coop.redemptions_count
+  end
+
+  test "#redemptions_count returns " do
+    assert_equal 1, @coop.redemptions_count
+  end
 end

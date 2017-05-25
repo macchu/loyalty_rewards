@@ -34,4 +34,14 @@ class Store < ApplicationRecord
   def name_with_underscores
     name.gsub(" ", "_")
   end
+
+  def check_ins_count
+    self.check_ins.all.size
+  end
+
+  def redemptions_count
+    self.redemptions.all.size
+  end
+
+
 end
