@@ -17,7 +17,6 @@ class DemoRedemptionTest < ActionDispatch::IntegrationTest
   test "a successful demo redemption page displays additional marketing information" do
     patch "/redemption/", params: { redemption: { id: @card_for_julieta.redemption.id } }
     
-    assert_match "Show this to the cashier", response.body
-    assert_match "Thanks for completing the Freebee demo!", response.body
+    assert_match "Cool, right?", response.body
   end
 end

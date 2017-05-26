@@ -17,7 +17,6 @@ class SMSWithCodeTest < ActiveSupport::TestCase
     assert_equal @sms_with_code, @check_in.check_in_strategy
     assert_equal @coop, @check_in.store
     assert_equal 'Z100', @check_in.patronage_proof.code
-    assert_equal :success, @check_in.status
   end
 
 end

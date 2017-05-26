@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  layout 'company_admin'
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
   # GET /companies
@@ -65,6 +66,11 @@ class CompaniesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_company
       @company = Company.find(params[:id])
+
+      #Refactor: Currently only fetches the first stores patrons, checkins, etc.
+      @patrons_count = @company.stores.first.patrons.count
+      @check_ins_count = @company.stores.first.check_ins.count
+      @redemptions_count = @company.stores.first.redemptions.count
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
