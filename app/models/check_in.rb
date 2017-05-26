@@ -11,6 +11,7 @@ class CheckIn < ApplicationRecord
   has_one :patronage_proof
   accepts_nested_attributes_for :patronage_proof
   belongs_to :patron, optional: true
+  belongs_to :company, optional: true
   belongs_to :store, optional: true
   belongs_to :check_in_strategy, optional: true
 
