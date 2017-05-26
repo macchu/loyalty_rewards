@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526190242) do
+ActiveRecord::Schema.define(version: 20170526202553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20170526190242) do
     t.integer  "store_id"
     t.integer  "check_in_strategy_id"
     t.integer  "resulting_stamp_count"
+    t.integer  "company_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -93,6 +94,7 @@ ActiveRecord::Schema.define(version: 20170526190242) do
     t.string   "digit_only_phone_number"
     t.boolean  "pending"
     t.string   "sms_address"
+    t.integer  "company_id"
     t.index ["digit_only_phone_number"], name: "index_patrons_on_digit_only_phone_number", using: :btree
   end
 
