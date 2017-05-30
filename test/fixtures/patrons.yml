@@ -21,3 +21,15 @@ pending_patron:
   first_name:
   last_name:
   pending: true
+
+sj_uptown_patron:
+  store: sjs_uptown
+  first_name: Maria
+  last_name: Jorgensen
+  pending: false
+
+sj_lh_patron:
+  store: sjs_linden_hills
+  first_name: Mohammed
+  last_name: Awan
+  pending: false
