@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get 'loyalty_card_terms/:id/edit', to: 'loyalty_card_terms#edit', as: 'edit_loyalty_card_terms'
   patch 'loyalty_card_term', to: 'loyalty_card_terms#update'
 
+  resources :stores
+
   resources :store  do
     resources :patrons, only: [:index, :show]
     resources :check_ins, only: [:index, :show]
