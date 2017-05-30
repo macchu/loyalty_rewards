@@ -6,7 +6,6 @@ class Store < ApplicationRecord
   has_many :loyalty_card_terms
   has_many :redemptions
   belongs_to :redemption_code_type
-  belongs_to :company
 
   has_many :patron_stores
   has_many :patrons, through: :patron_stores

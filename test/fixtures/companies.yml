@@ -1,7 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-france_44:
-  name: France 44
-
-sjs:
-  name: Sebastian Joe's
