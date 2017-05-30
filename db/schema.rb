@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170530182822) do
+ActiveRecord::Schema.define(version: 20170530183106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,7 +134,6 @@ ActiveRecord::Schema.define(version: 20170530182822) do
     t.datetime "updated_at",              null: false
     t.string   "email_for_check_ins"
     t.integer  "redemption_code_type_id"
-    t.integer  "company_id"
     t.index ["email_for_check_ins"], name: "index_stores_on_email_for_check_ins", using: :btree
   end
 
