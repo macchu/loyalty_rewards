@@ -21,12 +21,10 @@ settergrens:
   email_for_check_ins: 'settergrens@stampstamp.com'
 
 sjs_linden_hills:
-  company: sjs
   name: Sebastian Joe's in Linden Hills
   email_for_check_ins: 'sjs_lh@freebeefor.me'
 
 sjs_uptown:
-  company: sjs
   name: Sebastian Joe's in Uptown
   email_for_check_ins: 'sjs_uptown@freebeefor.me'
 
