@@ -5,15 +5,16 @@ class CompanyTest < ActiveSupport::TestCase
     @sjs = companies(:sjs)
 
 
-    @store_1 = @sjs.create_store(name: "Sebastian Joe's in Linden Hills")
-    @patron_1 = @store_1.create_patron(company: @sjs)
+    @store_1 = @sjs.stores.create(name: "Sebastian Joe's in Linden Hills")
+    @store_1.save
+    @patron_1 = @store_1.patrons.create(company: @sjs)
     @store_2 = @sjs.create_store(name: "Sebastian Joe's in  Uptown")
-    @patron_2 = @store_2.create_patron(company: @sjs)
+    @patron_2 = @store_2.patrons.create(company: @sjs)
 
 
   end
 
-  def "#patron_count finds patrons for multiple stores" do 
+  test "#patron_count finds patrons for multiple stores" do 
       ap @patron_1
       ap @patron_2
   end
