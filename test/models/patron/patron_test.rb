@@ -71,7 +71,7 @@ class PatronTest < ActiveSupport::TestCase
     end
 
     test "#current_loyalty_card_for_store" do
-      assert_equal nil, @pending_patron.current_loyalty_card_for_store(@store)
+      assert_nil @pending_patron.current_loyalty_card_for_store(@store)
     end
   end
 end

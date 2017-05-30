@@ -7,6 +7,7 @@ class AdCampaignTest < ActiveSupport::TestCase
   end
 
   test "setup worked" do 
+    ap @facebook_for_france_44
   end
 
 end
