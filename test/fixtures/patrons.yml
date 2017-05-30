@@ -23,13 +23,13 @@ pending_patron:
   pending: true
 
 sj_uptown_patron:
-  store: sjs_uptown
+  company: sjs
   first_name: Maria
   last_name: Jorgensen
   pending: false
 
 sj_lh_patron:
-  store: sjs_linden_hills
+  company: sjs
   first_name: Mohammed
   last_name: Awan
   pending: false
