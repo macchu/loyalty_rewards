@@ -1,0 +1,24 @@
+<table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <th></th>
+      <th>Last</th>
+      <th>First</th>
+      <th>Phone</th>
+      <th>Last Visit</th>
+      <th>Total Visits</th>
+      <th>Facebook</th>
+      <th>Twitter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @store.patrons.each do |patron| %>
+    <tr>
+      <th scope="row">1</th>
+      <td><%= patron.last_name %></td>
+      <td><%= patron.first_name %></td>
+      <td><%= patron.digit_only_phone_number %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -9,6 +9,7 @@ class Store < ApplicationRecord
 
   has_many :patron_stores
   has_many :patrons, through: :patron_stores
+  has_many :ad_campaigns
 
   def self.find_store_for_check_in(range, coordinates)
     result = Store.within(range, origin: coordinates) 
@@ -35,12 +36,20 @@ class Store < ApplicationRecord
     name.gsub(" ", "_")
   end
 
+  def patrons_count
+    self.patrons.size
+  end
+
   def check_ins_count
     self.check_ins.all.size
   end
 
   def redemptions_count
     self.redemptions.all.size
+  end
+
+  def ad_campaigns_count
+    self.ad_campaigns.size
   end
 
 
