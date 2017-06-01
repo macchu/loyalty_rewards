@@ -13,7 +13,7 @@ class CheckInTest
     end
 
     test 'Ensure 6124567890 is not a known patron.' do
-      assert_equal nil, Patron.find_by_digit_only_phone_number(@unknown_phone)
+      assert_nil Patron.find_by_digit_only_phone_number(@unknown_phone)
     end
 
     test "Creates a check in, but knows Patron needs to finish enrolling." do

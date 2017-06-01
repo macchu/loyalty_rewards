@@ -47,4 +47,8 @@ class StoreTest < ActiveSupport::TestCase
   test "#redemptions_count returns 3" do
     assert_equal 3, @coop.redemptions_count
   end
+
+  test "#define_ad_campaign_targets returns all patrons if no filters are define" do
+    assert_equal @coop.define_ad_campaign_targets, @coop.patrons
+  end
 end

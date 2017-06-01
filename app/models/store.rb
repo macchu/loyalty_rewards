@@ -11,6 +11,8 @@ class Store < ApplicationRecord
   has_many :patrons, through: :patron_stores
   has_many :ad_campaigns
 
+  attr_readable :potential_ad_campaign_targets
+
   def self.find_store_for_check_in(range, coordinates)
     result = Store.within(range, origin: coordinates) 
   end
@@ -52,5 +54,7 @@ class Store < ApplicationRecord
     self.ad_campaigns.size
   end
 
-
+  def define_ad_campaign_targets
+    @potential_ad_campaign_targets = self.patrons
+  end
 end
