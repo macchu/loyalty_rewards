@@ -1,0 +1,2 @@
+class AdCampaignTarget < ApplicationRecord
+end

@@ -11,7 +11,7 @@ class Store < ApplicationRecord
   has_many :patrons, through: :patron_stores
   has_many :ad_campaigns
 
-  attr_readable :potential_ad_campaign_targets
+  attr_reader :potential_ad_campaign_targets
 
   def self.find_store_for_check_in(range, coordinates)
     result = Store.within(range, origin: coordinates) 

@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170530183609) do
+ActiveRecord::Schema.define(version: 20170601182312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ad_campaign_targets", force: :cascade do |t|
+    t.string   "description"
+    t.integer  "ad_campaign_id"
+    t.integer  "patron_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "ad_campaigns", force: :cascade do |t|
     t.integer "platform_id"
