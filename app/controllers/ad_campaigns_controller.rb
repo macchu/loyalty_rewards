@@ -6,6 +6,10 @@ class AdCampaignsController < ApplicationController
     @campaign = @store.ad_campaigns.build()
   end
 
+  def create
+    
+  end
+
   private
 
 end
