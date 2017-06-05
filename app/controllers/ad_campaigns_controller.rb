@@ -4,10 +4,13 @@ class AdCampaignsController < ApplicationController
   def new
     @store = Store.find(params[:store_id])
     @store.define_ad_campaign_targets
-    @campaign = @store.ad_campaigns.build()
+    @campaign = @store.ad_campaigns.build( { ad_campaign_targets_attributes: [ { description: "NA", patron_id: @store.patrons.first.id },
+                                                                                { description: "NA2", patron_id: @store.patrons.last.id } ] })
+    #@campaign.ad_campaign_targets = @store.potential_ad_campaign_targets
   end
 
   def create
+
     @campaign.ad_campaign_audience = @store.pending_ad_campaign_audience
     if @campaign.save
       flash[:notice] = "Campaign updated."
