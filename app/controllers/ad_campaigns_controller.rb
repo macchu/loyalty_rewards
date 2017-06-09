@@ -1,6 +1,10 @@
 class AdCampaignsController < ApplicationController
   layout 'store_admin'
   
+  def index
+    @store = Store.find(params[:store_id])
+  end
+
   def new
     @store = Store.find(params[:store_id])
     @store.define_ad_campaign_targets
@@ -10,29 +14,56 @@ class AdCampaignsController < ApplicationController
   end
 
   def create
-    #byebug
     @campaign = AdCampaign.new(ad_campaign_params)
     @store = @campaign.store
     
     if @campaign.save
-      flash[:success] = "Campaign updated."
+      flash.now[:success] = "Campaign created."
       render :edit
     else
-      flash[:error] = "Failed to create campaign."
+      flash.now[:error] = "Failed to create campaign."
       render :new
     end
   end
 
+  def show
+    @store = Store.find(params[:store_id])
+    @campaign = @store.ad_campaigns.find(params[:id])
+
+    rescue ActiveRecord::RecordNotFound
+      flash.now[:error] = "Could not find that ad campaign."
+      
+  end
+
   def edit
     @store = Store.find(params[:store_id])
-    @campaign = AdCampaign.find(:campaign_id)
-
-
-
+    @campaign = AdCampaign.find(params[:id])
   end
 
   def update
+    @store = Store.find(params[:store_id])
+    @campaign = AdCampaign.find(params[:id])
 
+    if @campaign.update(ad_campaign_params)
+      flash.now[:success] = "Campaign updated."
+      render :edit
+    else
+      flash.now[:error] = "Failed to update campaign."
+      render :new
+    end
+  end
+
+  def destroy
+    @store = Store.find(params[:store_id])
+    @campaign = @store.ad_campaigns.find(params[:id])
+
+    if @campaign.destroy
+      flash.now[:success] = "Campaign deleted."
+      render :index
+    else
+      flash.now[:error] = "Campaign could not be deleted."
+      render :index
+    end
   end
 
   private
