@@ -19,7 +19,7 @@ class AdCampaignsController < ApplicationController
     
     if @campaign.save
       flash.now[:success] = "Campaign created."
-      render :edit
+      redirect_to store_ad_campaign_path(@store, @campaign)
     else
       flash.now[:error] = "Failed to create campaign."
       render :new
@@ -59,10 +59,10 @@ class AdCampaignsController < ApplicationController
 
     if @campaign.destroy
       flash.now[:success] = "Campaign deleted."
-      render :index
+      redirect_to store_ad_campaigns_path(@store)
     else
       flash.now[:error] = "Campaign could not be deleted."
-      render :index
+      redirect_to store_ad_campaigns_path(@store)
     end
   end
 

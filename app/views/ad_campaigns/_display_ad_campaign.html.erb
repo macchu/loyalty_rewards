@@ -1,8 +1,0 @@
-<div class="m-1">
-<%= link_to(ad_campaign.display_description, store_ad_campaign_path(ad_campaign.store_id, ad_campaign.id)) %>
-<%= link_to  fa_icon("trash-o"),  
-              { action: "destroy", store_id: ad_campaign.store_id, id: ad_campaign.id},
-              method: :delete, 
-              data: { confirm: "Are you sure?" },
-              class: 'btn btn-danger trash-o' %>               
-</div>
