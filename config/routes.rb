@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :store  do
     resources :patrons, only: [:index, :show]
     resources :check_ins, only: [:index, :show]
+    resources :redemptions, only: [:index, :show]
   end
 
  end

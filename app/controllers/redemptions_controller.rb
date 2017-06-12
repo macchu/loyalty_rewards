@@ -1,6 +1,24 @@
 class RedemptionsController < ApplicationController
   #layout 'customers'
   layout 'hero_page'
+  
+  def index
+    if params[:store_id]
+      index_for_store_admin
+    else
+      index_for_patrons
+    end
+  end
+
+  def index_for_store_admin
+    layout 'store_admin'
+    @store = Store.find(params[:store_id])
+  end
+
+  def index_for_patrons
+
+  end
+
   def show
     @redemption = Redemption.find(params[:id])
 
