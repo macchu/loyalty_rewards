@@ -15,7 +15,7 @@
   <tbody>
   <% @store.ad_campaigns.each_with_index do | campaign, i | %>
     <tr>
-      <td><%= link_to(campaign.display_description, store_ad_campaign_path(campaign.store_id, campaign.id)) %></td>
+      <td><%= link_to(campaign.platform.name, store_ad_campaign_path(campaign.store_id, campaign.id)) %></td>
       <td><%= campaign.display_description %></td>
       <td> 20,153 </td>
       <td>2 days ago</td>

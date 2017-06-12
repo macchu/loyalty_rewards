@@ -2,9 +2,20 @@
   <h1><%= @store.name %></h1>
   <div class="row">
     <%= render partial: 'layouts/store_admin_tile', 
-        locals: { title: 'Patrons', value: @store.patrons_count, color: 'mint-green'} %>
+          locals: { title: 'Patrons', 
+                  value: @store.patrons_count,
+                  path: store_patrons_path(@store),
+                  color: 'mint-green'} %>
     <%= render partial: 'layouts/store_admin_tile', 
-        locals: { title: 'Check Ins', value: @store.check_ins_count, color: 'light-purple'} %>
-    <%= render partial: 'layouts/store_admin_tile', locals: { title: 'Redemptions', value: @store.redemptions_count, color: 'ruby-red'} %>
-    <%= render partial: 'layouts/store_admin_tile', locals: { title: 'Campaigns', value: @store.ad_campaigns_count, color: 'mustard-yellow'} %>
+          locals: { title: 'Check Ins', 
+                  value: @store.check_ins_count, 
+                  path: store_check_ins_path(@store), 
+                  color: 'light-purple'} %>
+    <%= render partial: 'layouts/store_admin_tile', 
+          locals: { title: 'Redemptions', 
+                    value: @store.redemptions_count, 
+                    path: store_redemptions_path(@store), 
+                    color: 'ruby-red'} %>
+    
+    <%= render partial: 'layouts/store_admin_tile', locals: { title: 'Campaigns', value: @store.ad_campaigns_count, path: "gogo", color: 'mustard-yellow'} %>
 </div>
