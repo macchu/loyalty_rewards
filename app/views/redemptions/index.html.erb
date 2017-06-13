@@ -1,1 +1,26 @@
-Redemptions
+<table class="table">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Patron</th>
+      <th>Description</th>
+      <th>Redeemed?</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @store.redemptions.each do | redemption | %>
+    <tr>
+      <td><%= local_relative_time(redemption.updated_at, type: 'time-ago') %></td>
+      <% if redemption.patron.nil? %>
+        <td>Missing:<%= redemption.id %></td>
+      <% else %>
+        <td><%= redemption.patron.full_name %></td>
+      <% end %>
+      <td><%= redemption.loyalty_card.reward_description %></td>
+      <td><%= redemption.redeemed %></td>
+    </tr>             
+</div>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

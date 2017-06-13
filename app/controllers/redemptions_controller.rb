@@ -11,12 +11,12 @@ class RedemptionsController < ApplicationController
   end
 
   def index_for_store_admin
-    layout 'store_admin'
     @store = Store.find(params[:store_id])
+    render :index, layout: 'store_admin'
   end
 
   def index_for_patrons
-
+    
   end
 
   def show

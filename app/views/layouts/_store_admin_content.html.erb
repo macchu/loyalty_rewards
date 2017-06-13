@@ -17,5 +17,9 @@
                     path: store_redemptions_path(@store), 
                     color: 'ruby-red'} %>
     
-    <%= render partial: 'layouts/store_admin_tile', locals: { title: 'Campaigns', value: @store.ad_campaigns_count, path: "gogo", color: 'mustard-yellow'} %>
+    <%= render partial: 'layouts/store_admin_tile', 
+          locals: { title: 'Campaigns', 
+                  value: @store.ad_campaigns_count, 
+                  path: "gogo", 
+                  color: 'mustard-yellow'} %>
 </div>

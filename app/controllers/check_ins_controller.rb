@@ -3,6 +3,22 @@ class CheckInsController < ApplicationController
   layout 'customers'
 
   def index
+    if params[:store_id]
+      index_for_store_admin
+    else
+      index_for_patrons
+    end
+  end
+
+  def index_for_store_admin
+    @store = Store.find(params[:store_id])
+    @check_ins = @store.check_ins.order('created_at DESC')
+    @patrons = @store.patrons
+
+    render :index, layout: 'store_admin'
+  end
+
+  def index_for_patrons
     @store = Store.find(params[:store_id])
     @check_ins = @store.check_ins.order('created_at DESC')
     @patrons = @store.patrons
