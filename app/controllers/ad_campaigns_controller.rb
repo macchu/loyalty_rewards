@@ -8,6 +8,10 @@ class AdCampaignsController < ApplicationController
   def new
     @store = Store.find(params[:store_id])
     @store.define_ad_campaign_targets
+
+    #Check for patron filters.
+      # @store.patrons.long_time_no_see
+      # @store.ptrons.its_been_awhile
     @campaign = @store.ad_campaigns.build( { ad_campaign_targets_attributes: [ { patron_id: @store.patrons.first.id },
                                                                                 {  patron_id: @store.patrons.last.id } ] })
     #@campaign.ad_campaign_targets = @store.potential_ad_campaign_targets

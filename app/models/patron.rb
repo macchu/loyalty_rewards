@@ -1,6 +1,9 @@
 class Patron < ApplicationRecord
   require 'csv'
 
+  scope :newer_patrons, -> { where("created_at > '#{30.days.ago}'") }
+  scope :frequent_customers, -> { joins(:check_ins).group('patrons.id').having('count(check_ins) > 4')}
+
   has_many :check_ins
   has_many :loyalty_cards
   has_many :redemptions

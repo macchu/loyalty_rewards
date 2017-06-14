@@ -1,4 +1,9 @@
-<h2>Ad Campaigns</h2>
+<h2>
+  Ad Campaigns
+  <%= link_to fa_icon("plus-square-o"),  
+            new_store_ad_campaign_path(@store),
+              class: 'btn btn-success icon-button' %> 
+</h2>
 <table class="table">
   <thead>
     <tr>
@@ -30,7 +35,6 @@
               data: { confirm: "Are you sure?" },
               class: 'btn btn-danger trash-o icon-button' %> 
       </td>              
-</div>
     </tr>
   <% end %>
   </tbody>

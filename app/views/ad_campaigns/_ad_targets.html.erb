@@ -18,6 +18,7 @@
       <td><%= patron.last_name %></td>
       <td><%= patron.first_name %></td>
       <td><%= patron.digit_only_phone_number %></td>
+      <td><%= local_relative_time(patron.check_ins.last.created_at, type: 'time-ago') %></td>
     </tr>
     <% end %>
   </tbody>
