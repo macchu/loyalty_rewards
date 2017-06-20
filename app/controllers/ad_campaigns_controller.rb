@@ -5,6 +5,10 @@ class AdCampaignsController < ApplicationController
     @store = Store.find(params[:store_id])
   end
 
+  def filter
+
+  end
+
   def new
     @store = Store.find(params[:store_id])
     @store.define_ad_campaign_targets

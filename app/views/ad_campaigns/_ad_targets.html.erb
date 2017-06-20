@@ -1,7 +1,7 @@
 <table class="table">
   <thead class="thead-inverse">
     <tr>
-      <th></th>
+      <th><a id="filter-button" data-toggle="modal" data-target="#exampleModal" class="btn"><i class="fa fa-filter"></i></a></th>
       <th>Last</th>
       <th>First</th>
       <th>Phone</th>
@@ -14,7 +14,7 @@
   <tbody>
     <% @store.patrons.each do |patron| %>
     <tr>
-      <th scope="row">1</th>
+      <th scope="row"></th>
       <td><%= patron.last_name %></td>
       <td><%= patron.first_name %></td>
       <td><%= patron.digit_only_phone_number %></td>
@@ -23,3 +23,26 @@
     <% end %>
   </tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Filter customers to target</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= link_to('Newer customers', new_store_ad_campaign_path(@store.id, filter: 'newer_customers') ) %> 
+        <%= link_to('Frequent customers', new_store_ad_campaign_path(@store.id, filter: 'frequent_customers')) %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
