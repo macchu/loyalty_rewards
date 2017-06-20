@@ -1,11 +1,13 @@
-
-<%= bootstrap_form_for( [@store, @campaign], layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f| %>
+<%= bootstrap_form_for( [@store, @campaign], layout: :inline,) do |f| %>
     <%= f.hidden_field :store_id %>
-    <%= f.text_field :description %>
-    <%= f.collection_radio_buttons :platform_id, Platform.all, :id, :name%>
+    <%= f.text_field :description  %>
+    <div class="offset-md-1">
+    <%= f.collection_radio_buttons :platform_id, Platform.all, :id, :name %>
+    </div>
+    <%= f.submit 'Save', class: 'btn btn-warning offset-md-4' %> 
     <%= f.fields_for :ad_campaign_targets do |t| %>
       <%= t.hidden_field :patron_id %>
     <% end %>
 
-    <%= f.submit 'Save', class: 'btn btn-warning' %>     
+        
 <% end %>
