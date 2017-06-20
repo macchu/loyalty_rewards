@@ -9,11 +9,10 @@ class AdCampaignsController < ApplicationController
     @store = Store.find(params[:store_id])
     @store.define_ad_campaign_targets
 
-    #Check for patron filters.
-      # @store.patrons.long_time_no_see
-      # @store.ptrons.its_been_awhile
-    @campaign = @store.ad_campaigns.build( { ad_campaign_targets_attributes: [ { patron_id: @store.patrons.first.id },
-                                                                                {  patron_id: @store.patrons.last.id } ] })
+    potential_ad_campaign_targets = filter_ad_campaign_targets(params[:filter])
+    @campaign = @store.ad_campaigns.build( { ad_campaign_targets_attributes: potential_ad_campaign_targets })
+    #@campaign = @store.ad_campaigns.build( { ad_campaign_targets_attributes: [ { patron_id: @store.patrons.first.id },
+     #                                                                           {  patron_id: @store.patrons.last.id } ] })
     #@campaign.ad_campaign_targets = @store.potential_ad_campaign_targets
   end
 
@@ -76,6 +75,17 @@ class AdCampaignsController < ApplicationController
       # If you use `permit` with just the key that points to the nested attributes hash,
       # it will return an empty hash.
       params.require(:ad_campaign).permit(:store_id, :platform_id, :description, ad_campaign_targets_attributes: [ :patron_id ])
+    end
+
+    def filter_ad_campaign_targets(filter)
+      case filter
+      when "newer_customers"
+        @store.patrons.newer_patrons.map { |p| { patron_id: p.id } }
+      when "its_been_awhile"
+        @store.its_been_awhile.map { |p| { patron_id: p.id } }
+      else
+        @store.patrons.map { |p| { patron_id: p.id } }
+      end
     end
 
 end

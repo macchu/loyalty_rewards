@@ -1,0 +1,5 @@
+<h6>Filters</h6>
+<%= link_to('Newer customers', new_store_ad_campaign_path(@store.id, filter: 'newer_customers') ) %> 
+<%= link_to('Frequent customers', new_store_ad_campaign_path(@store.id, filter: 'frequent_customers')) %>
+
+<a id="filter-button" href="#" onclick="show_patron_filter()" class="btn"><i class="fa fa-filter"></i></a>
