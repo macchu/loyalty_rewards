@@ -25,7 +25,8 @@
       <td><%= patron.digit_only_phone_number %></td>
       <td><%= local_relative_time(patron.check_ins.last.created_at, type: 'time-ago') %></td>
       <td><%= patron.check_in_count %></td>
-      <td><i class="fa fa-check"></i></td>
+      <td><%= randomize_check %></td>
+      <td><%= randomize_check %></td>
     </tr>
     <% end %>
   </tbody>
