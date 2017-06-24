@@ -3,7 +3,9 @@ class Patron < ApplicationRecord
 
   scope :newer_patrons, -> { where("created_at > '#{30.days.ago}'") }
   scope :frequent_customers, -> { joins(:check_ins).group('patrons.id').having('count(check_ins) > 4')}
-
+  scope :joins_check_ins, -> { joins(:check_ins).group('patrons.id') }
+  scope :includes_check_ins, -> { includes(:check_ins).group('patrons.id') }
+  
   has_many :check_ins
   has_many :loyalty_cards
   has_many :redemptions
@@ -22,6 +24,10 @@ class Patron < ApplicationRecord
   #TODO: Store in a database field or in a presenter.
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def check_in_count
+    self.check_ins.size
   end
 
   def stamp_count_for_store(store)
