@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @store.patrons.includes_check_ins.each do |patron| %>
+    <% @store.patrons.includes_check_ins.first(10).each do |patron| %>
     <tr>
       <th scope="row"></th>
       <td><%= patron.last_name %></td>
@@ -31,6 +31,13 @@
     <% end %>
   </tbody>
 </table>
+
+<div>
+Plus  500 more
+
+<!-- store_patrons_path(2, format: :csv) -->
+<%= link_to fa_icon("table"), store_ad_campaign_path(@store, @campaign, format: :csv), class: 'btn btn-success icon-button' %>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

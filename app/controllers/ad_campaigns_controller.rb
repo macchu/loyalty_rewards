@@ -37,6 +37,11 @@ class AdCampaignsController < ApplicationController
     @store = Store.find(params[:store_id])
     @campaign = @store.ad_campaigns.find(params[:id])
 
+    respond_to do |format|
+      format.html
+      format.csv
+    end
+
     rescue ActiveRecord::RecordNotFound
       flash.now[:error] = "Could not find that ad campaign."
       

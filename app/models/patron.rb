@@ -12,6 +12,7 @@ class Patron < ApplicationRecord
 
   has_many :patron_stores
   has_many :stores, through: :patron_stores
+   has_many :ad_campaign_targets, inverse_of: :patrons
 
   before_save :create_digit_only_phone_number
 
