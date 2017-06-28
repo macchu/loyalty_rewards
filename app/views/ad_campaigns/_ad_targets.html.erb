@@ -1,12 +1,7 @@
 <table class="table mt-1">
   <thead class="thead-inverse">
     <tr>
-      <th>
-        <% if @button_type == :filter %>
-          <a id="filter-button" data-toggle="modal" data-target="#exampleModal" class="btn"><i class="fa fa-filter"></i></a></th>
-        <% else %>
-          CSV
-        <% end %>
+      
       <th>Last</th>
       <th>First</th>
       <th>Phone</th>
@@ -19,7 +14,6 @@
   <tbody>
     <% @store.patrons.includes_check_ins.first(10).each do |patron| %>
     <tr>
-      <th scope="row"></th>
       <td><%= patron.last_name %></td>
       <td><%= patron.first_name %></td>
       <td><%= patron.digit_only_phone_number %></td>

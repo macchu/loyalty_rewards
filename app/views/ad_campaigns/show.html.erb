@@ -3,8 +3,8 @@
 <% else %>
   <div><%= @campaign.description %></div>
   <div>Size: <%= @campaign.ad_campaign_targets.size %> max targets</div>  
+
+  <%= render partial: 'ad_targets', locals: { button_type: :download } %>
+
+  <%= render partial: 'download_targets' %>
 <% end %>
-
-<%= render partial: 'ad_targets', locals: { button_type: :download } %>
-
-<%= render partial: 'download_targets' %>
