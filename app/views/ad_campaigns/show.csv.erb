@@ -1,6 +1,6 @@
 <% csv_string = CSV.generate do |csv| %>
   <% csv << ["id", "first_name", "last_name", "phone_number"] %>
-  <% @campaign.ad_campaign_targets.pluck("id", "first_name", "last_name", "phone_number").each do |patron| %>
+  <% @campaign.patrons.pluck("id", "first_name", "last_name", "digit_only_phone_number").each do |patron| %>
     <% csv << patron %>
   <% end %>
 <% end %>

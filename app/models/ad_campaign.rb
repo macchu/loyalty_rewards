@@ -4,10 +4,8 @@ class AdCampaign < ApplicationRecord
   belongs_to :store
   belongs_to :platform
   has_many :ad_campaign_targets, inverse_of: :ad_campaign
+  has_many :patrons, through: :ad_campaign_targets
   accepts_nested_attributes_for :ad_campaign_targets
-
-  #scope :targets, -> { includes(:ad_campaign_targets).group('ad_campaign.id') }
-  scope :with_patrons, -> { includes(:patron).group('ad_campaign_target.id').group('ad_campaign_target.id') } 
 
   def display_description
     if description.nil?
@@ -19,6 +17,12 @@ class AdCampaign < ApplicationRecord
 
   def self.with_targets(ad_campaign_id:)
     AdCampaign.where(id: ad_campaign_id).includes(ad_campaign_targets: [:patron]).first
+  end
+
+  #MDR: Seems to be slower than campaign.patrons.each do |p| !
+  #   May need to try this with larger data set.  Only used 37 so far.
+  def self.with_patrons(ad_campaign_id:)
+     AdCampaign.where(id: ad_campaign_id).includes(:patrons).first
   end
 
 end
