@@ -1,8 +1,5 @@
 <div>
-Plus  500 more
-
-<!-- store_patrons_path(2, format: :csv) -->
-<% if @campaign.id != nil %>
-<%= link_to fa_icon("table"), store_ad_campaign_path(@store, @campaign, format: :csv), class: 'btn btn-success icon-button' %>
-<% end %>
+  <% if @campaign.id != nil %>
+  <%= link_to fa_icon("table"), store_ad_campaign_path(@store, @campaign, format: :csv), class: 'btn btn-success icon-button' %>
+  <% end %>
 </div>
