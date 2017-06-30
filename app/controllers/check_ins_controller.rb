@@ -1,6 +1,6 @@
 class CheckInsController < ApplicationController
-  #layout 'store_admin'
   layout 'customers'
+  before_action :set_current_tile
 
   def index
     if params[:store_id]
@@ -104,5 +104,12 @@ class CheckInsController < ApplicationController
     def ambiguous_store_params
       #params.require(:parameters).permit(:store)
     end
+
+  # Helps toggle the store admin title buttons
+  #  so they have a "clicked" appearance.
+  #  Refactor: This method is repeated in several controllers.
+  def set_current_tile
+    @clicked_tile = "check_ins"
+  end
 
 end

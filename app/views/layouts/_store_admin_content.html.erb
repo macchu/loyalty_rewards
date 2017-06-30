@@ -9,21 +9,27 @@
           locals: { title: 'Patrons', 
                   value: @store.patrons_count,
                   path: store_patrons_path(@store),
-                  color: 'mint-green'} %>
+                  color: 'mint-green',
+                  clicked: determine_if_tile_is_clicked("patrons", @clicked_tile) } %>
+
     <%= render partial: 'layouts/store_admin_tile', 
           locals: { title: 'Check Ins', 
                   value: @store.check_ins_count, 
                   path: store_check_ins_path(@store), 
-                  color: 'light-purple'} %>
+                  color: 'light-purple',
+                  clicked: determine_if_tile_is_clicked("check_ins", @clicked_tile) } %>
+
     <%= render partial: 'layouts/store_admin_tile', 
           locals: { title: 'Redemptions', 
                     value: @store.redemptions_count, 
                     path: store_redemptions_path(@store), 
-                    color: 'ruby-red'} %>
+                    color: 'ruby-red',
+                    clicked: determine_if_tile_is_clicked("redemptions", @clicked_tile) } %>
     
     <%= render partial: 'layouts/store_admin_tile', 
           locals: { title: 'Campaigns', 
                   value: @store.ad_campaigns_count, 
                   path: store_ad_campaigns_path(@store), 
-                  color: 'mustard-yellow'} %>
+                  color: 'mustard-yellow',
+                  clicked: determine_if_tile_is_clicked("ad_campaigns", @clicked_tile) } %>
 </div>

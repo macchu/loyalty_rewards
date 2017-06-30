@@ -1,6 +1,6 @@
 class RedemptionsController < ApplicationController
-  #layout 'customers'
   layout 'hero_page'
+  before_action :set_current_tile
   
   def index
     if params[:store_id]
@@ -64,5 +64,11 @@ class RedemptionsController < ApplicationController
   # Rails 4+ requires parameter whitelisting.
   def redemptions_parameters
     params.require(:redemption).permit(:loyalty_card_id)
+  end
+
+  # Helps toggle the store admin title buttons
+  #  so they have a "clicked" appearance.
+  def set_current_tile
+    @clicked_tile = "redemptions"
   end
 end

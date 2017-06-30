@@ -11,4 +11,12 @@ module ApplicationHelper
         "alert alert-danger"
     end
   end
+
+  def determine_if_tile_is_clicked(tile_title, current_tile)
+    if tile_title == current_tile
+      "clicked"
+    else
+      ""
+    end
+  end
 end

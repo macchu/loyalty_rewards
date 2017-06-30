@@ -1,5 +1,6 @@
 class AdCampaignsController < ApplicationController
   layout 'store_admin'
+  before_action :set_current_tile
   
   def index
     @store = Store.find(params[:store_id])
@@ -96,5 +97,11 @@ class AdCampaignsController < ApplicationController
         @store.patrons.map { |p| { patron_id: p.id } }
       end
     end
+
+  # Helps toggle the store admin title buttons
+  #  so they have a "clicked" appearance.
+  def set_current_tile
+    @clicked_tile = "ad_campaigns"
+  end
 
 end
