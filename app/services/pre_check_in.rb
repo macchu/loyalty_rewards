@@ -7,41 +7,45 @@ module PreCheckIn
   class SMSCheckIn
     def initialize(check_in_message, email_of_store)
       Benchmark.bm(5) do |x|
-        Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: email_of_store -> #{email_of_store}"
-        
-         x.report("store:")   { store = Store.find_by_email_for_check_ins(email_of_store) }
-        
-        message = ParseEmailMessage.new(check_in_message)
-        patron = Patron.find_by_digit_only_phone_number(message.sender_local_part)
-        case 
-        when patron.nil?
-          Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: enroll_patron #{message.sender} "
-          patron = EnrollPatron.start( patron_params(message) )
-          CheckIn.create( check_in_params(patron: patron, store: store, message: message) )
-          #TODO: Link Patrons & Stores here.
-          PatronStore.create(patron: patron, store: store)
-        when patron.pending
-          #Finish sms_enrollment(patron: patron, full_name: message.body)
-          Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: finalize enrollment for #{patron.digit_only_phone_number}"
-          EnrollPatron.finish(patron_to_finish: patron, enrollment_message: message)
+        x.report("total:") {
+          Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: email_of_store -> #{email_of_store}"
           
-          file_name_of_card = ApplyStampService.new(patron: patron, store: store, check_in: nil).file_name_of_card
-          LoyaltyCardMailer.stamped_card(patron.sms_address, file_name_of_card).deliver_now
-
-        else
-          Rails.logger.info " #{self.class.to_s}##{__method__.to_s} check in for existing patron."
-          Rails.logger.info "patron: #{patron.full_name}"
-          Rails.logger.info "store: #{store.name}"
-          Rails.logger.info "message: #{message}"
+          store = Store.find_by_email_for_check_ins(email_of_store)
           
-          check_in = CheckIn.create( check_in_params(patron: patron, store: store, message: message) )
-          stamp_service = ApplyStampService.new(patron: patron, store: store, check_in: check_in, is_demo: message.is_demo)
-          LoyaltyCardMailer.stamped_card(patron.sms_address, stamp_service.file_name_of_card).deliver_now
+          message = ParseEmailMessage.new(check_in_message)
+          patron = Patron.find_by_digit_only_phone_number(message.sender_local_part)
+          case 
+          when patron.nil?
+            x.report("new:") {
+              Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: enroll_patron #{message.sender} "
+              patron = EnrollPatron.start( patron_params(message) )
+              CheckIn.create( check_in_params(patron: patron, store: store, message: message) )
+              #TODO: Link Patrons & Stores here.
+              PatronStore.create(patron: patron, store: store)
+            }
+          when patron.pending
+            #Finish sms_enrollment(patron: patron, full_name: message.body)
+            Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: finalize enrollment for #{patron.digit_only_phone_number}"
+            EnrollPatron.finish(patron_to_finish: patron, enrollment_message: message)
+            
+            file_name_of_card = ApplyStampService.new(patron: patron, store: store, check_in: nil).file_name_of_card
+            LoyaltyCardMailer.stamped_card(patron.sms_address, file_name_of_card).deliver_now
 
-          #Send reward redemption code if card is full.
-          Rails.logger.info "stamp_service.full_card?: #{stamp_service.full_card}"
-          RedemptionMailer.send_link(patron.sms_address, stamp_service.redemption_url).deliver_now if stamp_service.full_card
-        end
+          else
+            Rails.logger.info " #{self.class.to_s}##{__method__.to_s} check in for existing patron."
+            Rails.logger.info "patron: #{patron.full_name}"
+            Rails.logger.info "store: #{store.name}"
+            Rails.logger.info "message: #{message}"
+            
+            check_in = CheckIn.create( check_in_params(patron: patron, store: store, message: message) )
+            stamp_service = ApplyStampService.new(patron: patron, store: store, check_in: check_in, is_demo: message.is_demo)
+            LoyaltyCardMailer.stamped_card(patron.sms_address, stamp_service.file_name_of_card).deliver_now
+
+            #Send reward redemption code if card is full.
+            Rails.logger.info "stamp_service.full_card?: #{stamp_service.full_card}"
+            RedemptionMailer.send_link(patron.sms_address, stamp_service.redemption_url).deliver_now if stamp_service.full_card
+          end
+        }
       end
     end
 
