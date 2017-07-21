@@ -80,4 +80,9 @@ Rails.application.configure do
     enable_starttls_auto: true  
   }
 
+  Twilio.configure do |config|
+    config.account_sid = 'AC50bf348fe4af16648f0221c88ed60c3c'
+    config.auth_token = '452e6dcca3b80448b45a9e26b890396f'
+  end
+
 end

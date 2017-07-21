@@ -28,5 +28,7 @@ Rails.application.routes.draw do
     resources :redemptions, only: [:index, :show]
   end
 
- end
+  post 'twilio/voice' => 'twilio#voice'
+
+end
   
