@@ -65,6 +65,17 @@ module PreCheckIn
     end
   end
 
+  class TwilioCheckIn
+    def initialize(check_in_message, store_phone_number)
+      Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: email_of_store -> #{email_of_store}"
+          
+      store = Store.find_by_phone_for_check_ins(store_phone_number)
+      
+      message = ParseEmailMessage.new(check_in_message)
+      patron = Patron.find_by_digit_only_phone_number(message.sender_local_part)
+    end
+  end
+
   class WebCheckIn
 
   end

@@ -27,8 +27,8 @@ Rails.application.routes.draw do
     resources :check_ins, only: [:index, :show]
     resources :redemptions, only: [:index, :show]
   end
-
-  post 'twilio/voice' => 'twilio#voice'
+  
+  post 'twilio/messaging' => 'twilio#messaging'
 
 end
   

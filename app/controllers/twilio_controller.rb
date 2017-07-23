@@ -1,21 +1,19 @@
 class TwilioController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
 
-  def voice
-    response = Twilio::TwiML::Response.new do |r|
-      r.Say "Yay! You're on Rails!", voice: "alice"
-      r.Sms "Well done building your first Twilio on Rails 5 app!"
-      r.Play "http://linode.rabasa.com/cantina.mp3"
-    end
-    render :xml => response.to_xml
-  end
+  def messaging
+    logger.info " #{self.class.to_s}##{__method__.to_s}: received message."
+    
+    PreCheckIn::SMSCheckIn.new(message,'france_44@stampstamp.com')
+    to = params["To"]
+    from = params["From"]
+    body = params["Body"]
 
-  def sms
-    response = Twilio::TwiML::Response.new do |r|
-      r.Say "Yay! You're on Rails!", voice: "alice"
-      r.Sms "Well done building your first Twilio on Rails 5 app!"
-      r.Play "http://linode.rabasa.com/cantina.mp3"
-    end
-    render :xml => response.to_xml
-  end
+    response = Twilio::TwiML::MessagingResponse.new do |r|
+      #r.message(to: '6125816321', from: '19526496372', body: "Got it!")
+      r.message(body: "Got it!")
+    end
+
+    render :xml => response.to_s
+  end
 end
