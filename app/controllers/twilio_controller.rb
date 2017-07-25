@@ -4,10 +4,10 @@ class TwilioController < ApplicationController
   def messaging
     logger.info " #{self.class.to_s}##{__method__.to_s}: received message."
     
-    PreCheckIn::SMSCheckIn.new(message,'france_44@stampstamp.com')
-    to = params["To"]
-    from = params["From"]
-    body = params["Body"]
+    # PreCheckIn::SMSCheckIn.new(message,'france_44@stampstamp.com')
+    # to = params["To"]
+    # from = params["From"]
+    # body = params["Body"]
 
     response = Twilio::TwiML::MessagingResponse.new do |r|
       #r.message(to: '6125816321', from: '19526496372', body: "Got it!")

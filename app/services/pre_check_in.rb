@@ -3,6 +3,11 @@
 # on to a different service to finish the enrollment, apply the stamp, etc.
 #
 #This module should reflect the responsibilities of a controller. 
+#
+# REFACTOR: 
+#   1) DRY up this code.
+#   2) Rename PreCheckIn to CheckInService or something similar.
+
 module PreCheckIn
   class SMSCheckIn
     def initialize(check_in_message, email_of_store)
@@ -66,13 +71,20 @@ module PreCheckIn
   end
 
   class TwilioCheckIn
-    def initialize(check_in_message, store_phone_number)
-      Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: email_of_store -> #{email_of_store}"
-          
-      store = Store.find_by_phone_for_check_ins(store_phone_number)
-      
-      message = ParseEmailMessage.new(check_in_message)
-      patron = Patron.find_by_digit_only_phone_number(message.sender_local_part)
+    def initialize(twilio_params)
+      Rails.logger.info " #{self.class.to_s}##{__method__.to_s}:"
+      store = Store.find_by_twilio_phone_number(twilio_params["To"].gsub(/\D/, ''))
+      patron = Patron.find_by_digit_only_phone_number( twilio_params["From"].gsub(/\D/, '') )
+      case 
+      when patron.nil?
+        Rails.logger.info "#{self.class.to_s}##{__method__.to_s} new patron branch: enroll_patron #{twilio_params["From"]} "
+        patron = Patron.create(phone_number: twilio_params["From"], pending: true )
+
+        Rails.logger.info "#{self.class.to_s}##{__method__.to_s} new patron branch: Create check in for: patron #{patron.id} @ store #{store.id}"
+        CheckIn.create( patron: patron, store: store, phone_number: patron.phone_number )
+        PatronStore.create(patron: patron, store: store)
+        Rails.logger.info "#{self.class.to_s}##{__method__.to_s} new patron branch: finished."
+      end
     end
   end
 

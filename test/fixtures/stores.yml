@@ -6,6 +6,7 @@ coop:
   lng: -93.328703
   email_for_check_ins: 'linden_hills_coop@stampstamp.com'
   redemption_code_type: qcode
+  twilio_phone_number: '19526496372'
 
 france_44:
   name: France 44
