@@ -84,6 +84,15 @@ module PreCheckIn
         CheckIn.create( patron: patron, store: store, phone_number: patron.phone_number )
         PatronStore.create(patron: patron, store: store)
         Rails.logger.info "#{self.class.to_s}##{__method__.to_s} new patron branch: finished."
+      
+      when patron.pending
+        Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: finalize enrollment for #{patron.digit_only_phone_number}"
+        EnrollPatron.finish(patron_to_finish: patron, enrollment_message: twilio_params["Body"])
+              
+        file_name_of_card = ApplyStampService.new(patron: patron, store: store, check_in: nil).file_name_of_card
+
+        #LoyaltyCardMailer.stamped_card(patron.sms_address, file_name_of_card).deliver_now
+
       end
     end
   end
