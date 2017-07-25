@@ -54,6 +54,7 @@ class TwilioCheckInTests
 
     end
   end
+
   class TwilioCheckInTestsForPendingPatrons < ActiveSupport::TestCase
     def setup
       #Twilio receives SMS messages, parses the envelope, and then sends the info to us vai HTTP Post parameters.
@@ -82,6 +83,7 @@ class TwilioCheckInTests
                                   "ApiVersion"=>"2010-04-01"}
 
       PreCheckIn::TwilioCheckIn.new( @pending_patron_request )
+      @pending_patron.reload
     end
 
     test "verify setup" do
@@ -89,12 +91,15 @@ class TwilioCheckInTests
     end
 
     test "the patron is no longer pending" do
-      @pending_patron.reload 
       refute @pending_patron.pending #Reload the patron.
     end
 
     test "the patron's name is received and stored in the database" do
-      assert_equal 
+      assert_equal "Jonas", @pending_patron.first_name
+      assert_equal "Vivian", @pending_patron.last_name
     end
+  end
+
+  class TwilioCheckInTestsForExistingPatrons < ActiveSupport::TestCase
   end
 end
