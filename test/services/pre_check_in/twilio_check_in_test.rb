@@ -101,5 +101,49 @@ class TwilioCheckInTests
   end
 
   class TwilioCheckInTestsForExistingPatrons < ActiveSupport::TestCase
+    def setup
+      #Twilio receives SMS messages, parses the envelope, and then sends the info to us vai HTTP Post parameters.
+      #   The following are parameters for different scenarios.
+      @to_phone = "+19526496372"
+      @existing_patron = patrons(:julieta)
+      @existing_patron_phone = @existing_patron.digit_only_phone_number
+      @existing_patron_message = "Code: 1234"
+      @existing_patron_request = { "ToCountry"=>"US", 
+                                  "ToState"=>"MN", 
+                                  "SmsMessageSid"=>"SM1c37d0428333837af4942e8f26e4fd85", 
+                                  "NumMedia"=>"0", "ToCity"=>"MINNEAPOLIS", 
+                                  "FromZip"=>"55439", 
+                                  "SmsSid"=>"SM1c37d0428333837af4942e8f26e4fd85", 
+                                  "FromState"=>"MN", 
+                                  "SmsStatus"=>"received", 
+                                  "FromCity"=>"MINNEAPOLIS", 
+                                  "Body"=>@existing_patron_message, 
+                                  "FromCountry"=>"US", 
+                                  "To"=> @to_phone, 
+                                  "ToZip"=>"55402", 
+                                  "NumSegments"=>"1", 
+                                  "MessageSid"=>"SM1c37d0428333837af4942e8f26e4fd85", 
+                                  "AccountSid"=>"AC50bf348fe4af16648f0221c88ed60c3c", 
+                                  "From"=>@existing_patron_phone, 
+                                  "ApiVersion"=>"2010-04-01"}
+
+      
+    end
+
+    test "verify setup" do
+      assert @existing_patron_phone, '7015551234'
+    end
+
+    test "a new punch is applied" do
+      assert_difference '@existing_patron.check_ins.size' do
+        PreCheckIn::TwilioCheckIn.new( @existing_patron_request )
+        @existing_patron.reload
+      end
+    end
+
+    test "the proof of purchase code is stored" do
+      PreCheckIn::TwilioCheckIn.new(@existing_patron_request)
+      assert_equal "Code: 1234", CheckIn.last.patronage_proof.code
+    end
   end
 end

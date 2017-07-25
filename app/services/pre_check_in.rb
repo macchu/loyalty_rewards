@@ -81,7 +81,10 @@ module PreCheckIn
         patron = Patron.create(phone_number: twilio_params["From"], pending: true )
 
         Rails.logger.info "#{self.class.to_s}##{__method__.to_s} new patron branch: Create check in for: patron #{patron.id} @ store #{store.id}"
-        CheckIn.create( patron: patron, store: store, phone_number: patron.phone_number )
+        check_in_params = { patron: patron, store: store, phone_number: twilio_params["From"] }
+        check_in_params[:patronage_proof_attributes] = { code: twilio_params["Body"]}
+
+        CheckIn.create( check_in_params )
         PatronStore.create(patron: patron, store: store)
         Rails.logger.info "#{self.class.to_s}##{__method__.to_s} new patron branch: finished."
       
@@ -99,7 +102,21 @@ module PreCheckIn
 
         end
         #LoyaltyCardMailer.stamped_card(patron.sms_address, file_name_of_card).deliver_now
+      else
+        Rails.logger.info " #{self.class.to_s}##{__method__.to_s} check in for existing patron."
+        Rails.logger.info "patron: #{patron.full_name}"
+        Rails.logger.info "store: #{store.name}"
+        Rails.logger.info "message: #{twilio_params["Body"]}"
 
+        check_in_params = { patron: patron, store: store, phone_number: twilio_params["From"] }
+        check_in_params[:patronage_proof_attributes] = { code: twilio_params["Body"]}
+        check_in = CheckIn.create( check_in_params )
+        stamp_service = ApplyStampService.new(patron: patron, store: store, check_in: check_in, is_demo: false)
+        # LoyaltyCardMailer.stamped_card(patron.sms_address, stamp_service.file_name_of_card).deliver_now
+
+        # #Send reward redemption code if card is full.
+        # Rails.logger.info "stamp_service.full_card?: #{stamp_service.full_card}"
+        # RedemptionMailer.send_link(patron.sms_address, stamp_service.redemption_url).deliver_now if stamp_service.full_card
       end
     end
   end
