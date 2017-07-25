@@ -86,11 +86,18 @@ module PreCheckIn
         Rails.logger.info "#{self.class.to_s}##{__method__.to_s} new patron branch: finished."
       
       when patron.pending
-        Rails.logger.info " #{self.class.to_s}##{__method__.to_s}: finalize enrollment for #{patron.digit_only_phone_number}"
-        EnrollPatron.finish(patron_to_finish: patron, enrollment_message: twilio_params["Body"])
+        Rails.logger.info "#{self.class.to_s}##{__method__.to_s}: finalize enrollment for #{patron.digit_only_phone_number}"
+        
+        parsed_name = Namae.parse(twilio_params["Body"])
+        if parsed_name.empty?
+          Rails.logger.error "#{self.class.to_s}##{__method__.to_s}: failed to parse name from body #{twilio_params["Body"]} for patron #{patron.phone_number}"
+        else
+          Rails.logger.info "#{self.class.to_s}##{__method__.to_s}: extracted name #{parsed_name.first}"
+          patron.finish_enrollment(parsed_name.first.given, parsed_name.first.family)
               
-        file_name_of_card = ApplyStampService.new(patron: patron, store: store, check_in: nil).file_name_of_card
+          file_name_of_card = ApplyStampService.new(patron: patron, store: store, check_in: nil).file_name_of_card
 
+        end
         #LoyaltyCardMailer.stamped_card(patron.sms_address, file_name_of_card).deliver_now
 
       end

@@ -89,7 +89,8 @@ class TwilioCheckInTests
     end
 
     test "the patron is no longer pending" do
-      refute @pending_patron.pending
+      @pending_patron.reload 
+      refute @pending_patron.pending #Reload the patron.
     end
 
     test "the patron's name is received and stored in the database" do
