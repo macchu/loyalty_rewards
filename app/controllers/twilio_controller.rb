@@ -22,13 +22,14 @@ class TwilioController < ApplicationController
     response = Twilio::TwiML::MessagingResponse.new
     response.message do |message|
       message.body(twilio_message_processor.response_content)
-      #image = ActionController::Base.helpers.asset_path(twilio_message_processor.file_name_of_card)
       
-      #Ignore loyalty cards for now.
-      #image_url = "#{ngrok_url}#{image}"
-      #message.media(image_url)
+      if !twilio_message_processor.new_patron
+        image = ActionController::Base.helpers.asset_path(twilio_message_processor.file_name_of_card)
+        #image_url = "#{ngrok_url}#{image}"  #For development environment.
+        image_url = "http://www.freebeefor.me#{image}"
+        message.media(image_url)
+      end
     end
-    
     # response = Twilio::TwiML::MessagingResponse.new
     # response.message do |message|
     #   message.body('Store Location: 123 Easy St.')
