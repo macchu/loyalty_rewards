@@ -23,10 +23,10 @@ class TwilioController < ApplicationController
     response.message do |message|
       message.body(twilio_message_processor.response_content)
       image = ActionController::Base.helpers.asset_path(twilio_message_processor.file_name_of_card)
-      ap image
-      image_url = "#{ngrok_url}#{image}"
-      ap image_url
-      message.media(image_url)
+      
+      #Ignore loyalty cards for now.
+      #image_url = "#{ngrok_url}#{image}"
+      #message.media(image_url)
     end
     
     # response = Twilio::TwiML::MessagingResponse.new
