@@ -71,6 +71,10 @@ module PreCheckIn
   end
 
   class TwilioCheckIn
+    attr_reader :response_content
+    attr_reader :file_name_of_card
+    attr_reader :redemption_message
+
     def initialize(twilio_params)
       Rails.logger.info " #{self.class.to_s}##{__method__.to_s}:"
       store = Store.find_by_twilio_phone_number(twilio_params["To"].gsub(/\D/, ''))
@@ -86,6 +90,9 @@ module PreCheckIn
 
         CheckIn.create( check_in_params )
         PatronStore.create(patron: patron, store: store)
+
+        @response_content = "Great.  To finish your enrollment I need your first and last name as well."
+
         Rails.logger.info "#{self.class.to_s}##{__method__.to_s} new patron branch: finished."
       
       when patron.pending
@@ -100,6 +107,7 @@ module PreCheckIn
               
           file_name_of_card = ApplyStampService.new(patron: patron, store: store, check_in: nil).file_name_of_card
 
+          @response_content = "Thanks!"
         end
         #LoyaltyCardMailer.stamped_card(patron.sms_address, file_name_of_card).deliver_now
       else
@@ -112,10 +120,19 @@ module PreCheckIn
         check_in_params[:patronage_proof_attributes] = { code: twilio_params["Body"]}
         check_in = CheckIn.create( check_in_params )
         stamp_service = ApplyStampService.new(patron: patron, store: store, check_in: check_in, is_demo: false)
+
+        @file_name_of_card = stamp_service.file_name_of_card
+        
+        if stamp_service.full_card
+          @response_content = "Here you go.  Click this link for your redemption: #{stamp_service.redemption_url}"
+        else
+          @response_content = 'Got it!'
+        end
         # LoyaltyCardMailer.stamped_card(patron.sms_address, stamp_service.file_name_of_card).deliver_now
 
         # #Send reward redemption code if card is full.
-        # Rails.logger.info "stamp_service.full_card?: #{stamp_service.full_card}"
+        Rails.logger.info "stamp_service.full_card?: #{stamp_service.full_card}"
+
         # RedemptionMailer.send_link(patron.sms_address, stamp_service.redemption_url).deliver_now if stamp_service.full_card
       end
     end

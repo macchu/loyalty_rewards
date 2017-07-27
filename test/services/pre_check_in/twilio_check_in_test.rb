@@ -27,7 +27,7 @@ class TwilioCheckInTests
                                   "AccountSid"=>"AC50bf348fe4af16648f0221c88ed60c3c", 
                                   "From"=>@new_patron_phone, 
                                   "ApiVersion"=>"2010-04-01"}
-      PreCheckIn::TwilioCheckIn.new( @new_patron_request )
+      @twilio_check_in_service = PreCheckIn::TwilioCheckIn.new( @new_patron_request )
     end
 
     test "verify setup" do
@@ -48,6 +48,11 @@ class TwilioCheckInTests
 
       assert_equal p, check_in.patron
       assert_equal s, check_in.store
+    end
+
+    test "the pending patron is asked for their name." do
+      assert_equal "Great.  To finish your enrollment I need your first and last name as well.",
+                     @twilio_check_in_service.response_content
     end
 
     test "when 'To' does not match a business, an error is raised." do
@@ -82,7 +87,7 @@ class TwilioCheckInTests
                                   "From"=>@pending_patron_phone, 
                                   "ApiVersion"=>"2010-04-01"}
 
-      PreCheckIn::TwilioCheckIn.new( @pending_patron_request )
+      @twilio_check_in_service = PreCheckIn::TwilioCheckIn.new( @pending_patron_request )
       @pending_patron.reload
     end
 
@@ -97,6 +102,10 @@ class TwilioCheckInTests
     test "the patron's name is received and stored in the database" do
       assert_equal "Jonas", @pending_patron.first_name
       assert_equal "Vivian", @pending_patron.last_name
+    end
+
+    test "tell the patron 'Thanks!'" do
+      assert_equal "Thanks!", @twilio_check_in_service.response_content
     end
   end
 
@@ -144,6 +153,11 @@ class TwilioCheckInTests
     test "the proof of purchase code is stored" do
       PreCheckIn::TwilioCheckIn.new(@existing_patron_request)
       assert_equal "Code: 1234", CheckIn.last.patronage_proof.code
+    end
+
+    test "response text says 'Got it!'" do
+      twilio_check_in_service = PreCheckIn::TwilioCheckIn.new(@existing_patron_request)
+      assert_equal "Got it!", twilio_check_in_service.response_content
     end
   end
 end
