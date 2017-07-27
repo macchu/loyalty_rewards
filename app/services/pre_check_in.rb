@@ -74,6 +74,7 @@ module PreCheckIn
     attr_reader :response_content
     attr_reader :file_name_of_card
     attr_reader :redemption_message
+    attr_reader :new_patron
 
     def initialize(twilio_params)
       Rails.logger.info " #{self.class.to_s}##{__method__.to_s}:"
@@ -92,7 +93,7 @@ module PreCheckIn
         PatronStore.create(patron: patron, store: store)
 
         @response_content = "Great.  To finish your enrollment I need your first and last name as well."
-
+        @new_patron = true
         Rails.logger.info "#{self.class.to_s}##{__method__.to_s} new patron branch: finished."
       
       when patron.pending
