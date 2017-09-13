@@ -92,7 +92,7 @@ module PreCheckIn
         CheckIn.create( check_in_params )
         PatronStore.create(patron: patron, store: store)
 
-        @response_content = "Hi.  To enroll you I need your first and last name."
+        @response_content = "Hi. To enroll you I need your first and last name."
         @new_patron = true
         Rails.logger.info "#{self.class.to_s}##{__method__.to_s} new patron branch: finished."
       
@@ -108,7 +108,7 @@ module PreCheckIn
               
           @file_name_of_card = ApplyStampService.new(patron: patron, store: store, check_in: nil).file_name_of_card
 
-          @response_content = "Thanks!  Here is your card."
+          @response_content = "Thanks! Here is your card."
         end
         #LoyaltyCardMailer.stamped_card(patron.sms_address, file_name_of_card).deliver_now
       else

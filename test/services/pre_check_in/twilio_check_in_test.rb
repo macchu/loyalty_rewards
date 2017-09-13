@@ -51,7 +51,7 @@ class TwilioCheckInTests
     end
 
     test "the pending patron is asked for their name." do
-      assert_equal "Great.  To finish your enrollment I need your first and last name as well.",
+      assert_equal "Hi. To enroll you I need your first and last name.",
                      @twilio_check_in_service.response_content
     end
 
@@ -105,7 +105,7 @@ class TwilioCheckInTests
     end
 
     test "tell the patron 'Thanks!'" do
-      assert_equal "Thanks!", @twilio_check_in_service.response_content
+      assert_equal "Thanks! Here is your card.", @twilio_check_in_service.response_content
     end
   end
 
