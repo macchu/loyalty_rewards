@@ -92,7 +92,7 @@ module PreCheckIn
         CheckIn.create( check_in_params )
         PatronStore.create(patron: patron, store: store)
 
-        @response_content = "Great.  To finish your enrollment I need your first and last name as well."
+        @response_content = "Hi.  To enroll you I need your first and last name."
         @new_patron = true
         Rails.logger.info "#{self.class.to_s}##{__method__.to_s} new patron branch: finished."
       
