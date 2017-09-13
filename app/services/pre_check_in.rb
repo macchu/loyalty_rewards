@@ -108,7 +108,7 @@ module PreCheckIn
               
           @file_name_of_card = ApplyStampService.new(patron: patron, store: store, check_in: nil).file_name_of_card
 
-          @response_content = "Thanks! Here is your card."
+          @response_content = "Thanks! Here is your card.  Send another 'check in'."
         end
         #LoyaltyCardMailer.stamped_card(patron.sms_address, file_name_of_card).deliver_now
       else

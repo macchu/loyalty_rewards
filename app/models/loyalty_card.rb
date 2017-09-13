@@ -21,6 +21,14 @@ class LoyaltyCard < ApplicationRecord
     self.stamp_count.nil? ? false : self.stamps_required <= self.stamp_count
   end
 
+  def stamps_until_full
+    if stamp_count.nil?
+      self.stamps_required
+    else
+      self.stamps_required - self.stamp_count
+    end
+  end
+
   def create_redemption_if_full(is_demo: false)
     logger.info " #{self.class.to_s}##{__method__.to_s}: full? #{self.full?} redemption.nil? #{self.redemption.nil?}"
     if self.full? and self.redemption.nil?

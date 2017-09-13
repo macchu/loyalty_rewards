@@ -73,4 +73,18 @@ class LoyaltyCardTest < ActiveSupport::TestCase
     assert Redemption.last.is_demo
   end
 
+  test ".stamps_until_full returns the difference between stamp_count and stamps_required." do
+    stamps = @loyalty_card_for_bill.stamp_count
+    stamps_required = @loyalty_card_for_bill.stamps_required
+
+    assert_equal (stamps_required - stamps), @loyalty_card_for_bill.stamps_until_full
+  end
+
+  test ".stamps_until_full returns stamps_required when stamp_count is nil." do
+    @loyalty_card_for_bill.patron.check_ins.destroy_all
+    @loyalty_card_for_bill.update_attribute(:stamp_count, nil)
+
+    assert_equal @loyalty_card_for_bill.stamps_required, @loyalty_card_for_bill.stamps_until_full
+  end
+
 end
