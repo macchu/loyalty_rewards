@@ -106,9 +106,9 @@ module PreCheckIn
           Rails.logger.info "#{self.class.to_s}##{__method__.to_s}: extracted name #{parsed_name.first}"
           patron.finish_enrollment(parsed_name.first.given, parsed_name.first.family)
               
-          file_name_of_card = ApplyStampService.new(patron: patron, store: store, check_in: nil).file_name_of_card
+          @file_name_of_card = ApplyStampService.new(patron: patron, store: store, check_in: nil).file_name_of_card
 
-          @response_content = "Thanks!"
+          @response_content = "Thanks!  Here is your card."
         end
         #LoyaltyCardMailer.stamped_card(patron.sms_address, file_name_of_card).deliver_now
       else
