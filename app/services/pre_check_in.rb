@@ -108,7 +108,7 @@ module PreCheckIn
               
           @file_name_of_card = ApplyStampService.new(patron: patron, store: store, check_in: nil).file_name_of_card
 
-          @response_content = "Thanks! For demonstration purposes #{patron.loyalty_cards.last.stamps_until_full} check_in(s) will fill the card so you can see redeem it for a 'reward'."
+          @response_content = "Thanks! For demonstration purposes #{patron.loyalty_cards.last.stamps_until_full} check_in(s) will fill the card so you can redeem it for a 'reward'."
         end
         #LoyaltyCardMailer.stamped_card(patron.sms_address, file_name_of_card).deliver_now
       else
@@ -127,7 +127,7 @@ module PreCheckIn
         if stamp_service.full_card
           @response_content = "Here you go.  Click this link for your redemption: #{stamp_service.redemption_url}"
         else
-          @response_content = "Got it!  For demonstration purposes #{patron.loyalty_cards.last.stamps_until_full} check_in(s) will fill the card so you can see redeem it for a 'reward'."
+          @response_content = "Got it!  For demonstration purposes #{patron.loyalty_cards.last.stamps_until_full} check_in(s) will fill the card so you can redeem it for a 'reward'."
         end
         # LoyaltyCardMailer.stamped_card(patron.sms_address, stamp_service.file_name_of_card).deliver_now
 
