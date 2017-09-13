@@ -105,7 +105,7 @@ class TwilioCheckInTests
     end
 
     test "tell the patron 'Thanks!'" do
-      assert_equal "Thanks! Here is your card.", @twilio_check_in_service.response_content
+      assert_match "Thanks!", @twilio_check_in_service.response_content
     end
   end
 
@@ -157,7 +157,7 @@ class TwilioCheckInTests
 
     test "response text says 'Got it!'" do
       twilio_check_in_service = PreCheckIn::TwilioCheckIn.new(@existing_patron_request)
-      assert_equal "Got it!", twilio_check_in_service.response_content
+      assert_match "Got it!", twilio_check_in_service.response_content
     end
   end
 end
