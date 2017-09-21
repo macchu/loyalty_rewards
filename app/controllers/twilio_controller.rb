@@ -26,7 +26,7 @@ class TwilioController < ApplicationController
       if !twilio_message_processor.file_name_of_card.nil?
         image = ActionController::Base.helpers.asset_path(twilio_message_processor.file_name_of_card)
         #image_url = "#{ngrok_url}#{image}"  #For development environment.
-        image_url = "http://www.freebeefor.me#{image}"
+        image_url = "https://s3.us-east-2.amazonaws.com/freebee-for-me/me.png" #"http://www.freebeefor.me#{image}"
         message.media(image_url)
       end
     end
