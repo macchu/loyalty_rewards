@@ -127,7 +127,7 @@ module PreCheckIn
         if stamp_service.full_card
           @response_content = "Here you go.  Click this link for your redemption: #{stamp_service.redemption_url}"
         else
-          @response_content = "Got it!  For demonstration purposes one more text message to fill the card so you can redeem it for a 'reward'."
+          @response_content = "Got it!  For demonstration purposes send one more text message to fill the card so you can redeem it for a 'reward'."
         end
         # LoyaltyCardMailer.stamped_card(patron.sms_address, stamp_service.file_name_of_card).deliver_now
 
