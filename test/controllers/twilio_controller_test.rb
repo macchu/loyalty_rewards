@@ -83,7 +83,7 @@ class TwilioControllerForNewDemoUserTest < ActionDispatch::IntegrationTest
     #Restart the demo.
     post twilio_messaging_url, @second_request
     assert_response :success
-    assert_select "Body", "Thanks! Send one more text to see an award code."
+    assert_select "Body", /Got it!  For demonstration purposes send one more text message to fill the card so you can redeem it for a 'reward'/
     assert_select "Media", /http:\/\/www\.freebeefor\.me\/assets.*jpg/
 
   end
