@@ -95,7 +95,7 @@ class TwilioCheckInTests
     end
 
     test "A card is sent" do
-      # Relevant mailer test is found in 'test/mailers/patron_enrollment_mailer_test.rb'
+      # Relevant SMS test is found in 'test/controllers/twilio_controller_test.rb'
     end
 
   end

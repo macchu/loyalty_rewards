@@ -108,7 +108,6 @@ module PreCheckIn
         end
       when patron.pending
         Rails.logger.info "#{self.class.to_s}##{__method__.to_s}: finalize enrollment for #{patron.digit_only_phone_number}"
-        
         parsed_name = Namae.parse(twilio_params["Body"])
         if parsed_name.empty?
           Rails.logger.error "#{self.class.to_s}##{__method__.to_s}: failed to parse name from body #{twilio_params["Body"]} for patron #{patron.phone_number}"
@@ -126,7 +125,6 @@ module PreCheckIn
         Rails.logger.info "patron: #{patron.full_name}"
         Rails.logger.info "store: #{store.name}"
         Rails.logger.info "message: #{twilio_params["Body"]}"
-
         check_in_params = { patron: patron, store: store, phone_number: twilio_params["From"] }
         check_in_params[:patronage_proof_attributes] = { code: twilio_params["Body"]}
         check_in = CheckIn.create( check_in_params )
