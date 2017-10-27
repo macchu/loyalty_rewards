@@ -60,15 +60,13 @@ class TwilioCheckInTests
     end
   end
 
-  class TwilioCheckInTestsForPendingPatrons < ActiveSupport::TestCase
+  class TwilioCheckInTestsForPendingDemoPatrons < ActiveSupport::TestCase
     def setup
       #Twilio receives SMS messages, parses the envelope, and then sends the info to us vai HTTP Post parameters.
       #   The following are parameters for different scenarios.
-      @to_phone = "+19526496372"
-      @pending_patron = patrons(:pending_patron)
-      @pending_patron_phone = @pending_patron.digit_only_phone_number
-      @pending_patron_message = "Jonas Vivian"
-      @pending_patron_request = { "ToCountry"=>"US", 
+      @to_phone = '+16125554444'
+      @new_patron_message = "Hello?"
+      @new_patron_request = { "ToCountry"=>"US", 
                                   "ToState"=>"MN", 
                                   "SmsMessageSid"=>"SM1c37d0428333837af4942e8f26e4fd85", 
                                   "NumMedia"=>"0", "ToCity"=>"MINNEAPOLIS", 
@@ -77,36 +75,25 @@ class TwilioCheckInTests
                                   "FromState"=>"MN", 
                                   "SmsStatus"=>"received", 
                                   "FromCity"=>"MINNEAPOLIS", 
-                                  "Body"=>@pending_patron_message, 
+                                  "Body"=>@new_patron_message, 
                                   "FromCountry"=>"US", 
                                   "To"=> @to_phone, 
                                   "ToZip"=>"55402", 
                                   "NumSegments"=>"1", 
                                   "MessageSid"=>"SM1c37d0428333837af4942e8f26e4fd85", 
                                   "AccountSid"=>"AC50bf348fe4af16648f0221c88ed60c3c", 
-                                  "From"=>@pending_patron_phone, 
+                                  "From"=>'6121239876@vzwpix.com', 
                                   "ApiVersion"=>"2010-04-01"}
 
-      @twilio_check_in_service = PreCheckIn::TwilioCheckIn.new( @pending_patron_request )
-      @pending_patron.reload
+      @twilio_check_in_service = PreCheckIn::TwilioCheckIn.new( @new_patron_request )
     end
 
-    test "verify setup" do
-      assert @pending_patron_phone, '7015551234'
+    test "Created a patron named 'Demo User' that is not pending" do
+      p = Patron.last
+      assert_match "Demo User", p.full_name
+      refute p.pending
     end
 
-    test "the patron is no longer pending" do
-      refute @pending_patron.pending #Reload the patron.
-    end
-
-    test "the patron's name is received and stored in the database" do
-      assert_equal "Jonas", @pending_patron.first_name
-      assert_equal "Vivian", @pending_patron.last_name
-    end
-
-    test "tell the patron 'Thanks!'" do
-      assert_match "Thanks!", @twilio_check_in_service.response_content
-    end
 
   end
 
