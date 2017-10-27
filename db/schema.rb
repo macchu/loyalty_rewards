@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170723023525) do
+ActiveRecord::Schema.define(version: 20171027002823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20170723023525) do
     t.string   "email_for_check_ins"
     t.integer  "redemption_code_type_id"
     t.string   "twilio_phone_number"
+    t.boolean  "demo"
     t.index ["email_for_check_ins"], name: "index_stores_on_email_for_check_ins", using: :btree
     t.index ["twilio_phone_number"], name: "index_stores_on_twilio_phone_number", using: :btree
   end

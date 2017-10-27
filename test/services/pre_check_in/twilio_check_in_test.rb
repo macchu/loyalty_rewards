@@ -107,6 +107,7 @@ class TwilioCheckInTests
     test "tell the patron 'Thanks!'" do
       assert_match "Thanks!", @twilio_check_in_service.response_content
     end
+
   end
 
   class TwilioCheckInTestsForExistingPatrons < ActiveSupport::TestCase
