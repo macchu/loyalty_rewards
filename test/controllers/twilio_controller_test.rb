@@ -76,19 +76,15 @@ class TwilioControllerForNewDemoUserTest < ActionDispatch::IntegrationTest
   test "First check in through redemption scenario." do
     post twilio_messaging_url, @new_patron_request
 
-    # #Second check in gets a card and 
-    # post twilio_messaging_url, @second_request
-    # assert_select "Body", "Got it!  For demonstration purposes send one more text message to fill the card so you can redeem it for a 'reward'."
-    # assert_select "Media", /http:\/\/www\.freebeefor\.me\/assets.*jpg/
-
-    # #Third check in gets a redemption code.
-    # post twilio_messaging_url, @third_request
-    # assert_select "Body", "Got it!  For demonstration purposes send one more text message to fill the card so you can redeem it for a 'reward'."
-    
-    #Third check in gets a redemption code.
-    post twilio_messaging_url, @third_request
+    #Second check in gets a redemption code.
+    post twilio_messaging_url, @second_request
     assert_select "Body", /Here you go.  Click this link for your redemption/
     
+    #Restart the demo.
+    post twilio_messaging_url, @second_request
+    assert_response :success
+    assert_select "Body", "Thanks! Send one more text to see an award code."
+    assert_select "Media", /http:\/\/www\.freebeefor\.me\/assets.*jpg/
 
   end
 end
