@@ -14,6 +14,8 @@ france_44:
   lng: -93.328756
   email_for_check_ins: 'france_44@stampstamp.com'
   redemption_code_type: random_alpha_numeric
+  twilio_phone_number: '16125554444'
+  demo: true
 
 settergrens:
   name: Settergrens

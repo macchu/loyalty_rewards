@@ -7,6 +7,7 @@
 # REFACTOR: 
 #   1) DRY up this code.
 #   2) Rename PreCheckIn to CheckInService or something similar.
+#   3) @response_content = "..." should be defined by the customer in an admin page.
 
 module PreCheckIn
   class SMSCheckIn
@@ -91,11 +92,20 @@ module PreCheckIn
 
         CheckIn.create( check_in_params )
         PatronStore.create(patron: patron, store: store)
-
-        @response_content = "Hi. To enroll you I need your first and last name."
-        @new_patron = true
-        Rails.logger.info "#{self.class.to_s}##{__method__.to_s} new patron branch: finished."
-      
+        
+        if store.demo
+          # Demo users receive a punch card immediately. Do not ask them their name!
+          Rails.logger.info "#{self.class.to_s}##{__method__.to_s} new patron branch DEMO branch: enroll_patron #{twilio_params["From"]} "
+          patron.finish_enrollment("Demo", "User")
+          @file_name_of_card = ApplyStampService.new(patron: patron, store: store, check_in: nil).file_name_of_card
+          @response_content = "Thanks! Send one more text to see an award code."
+          Rails.logger.info "#{self.class.to_s}##{__method__.to_s} new patron DEMO branch: finished."
+        else
+          # Ask new users for their first and last name. Possibly a bad idea. 
+          @response_content = "Hi. To enroll you I need your first and last name."
+          @new_patron = true
+          Rails.logger.info "#{self.class.to_s}##{__method__.to_s} new patron branch: finished."
+        end
       when patron.pending
         Rails.logger.info "#{self.class.to_s}##{__method__.to_s}: finalize enrollment for #{patron.digit_only_phone_number}"
         
