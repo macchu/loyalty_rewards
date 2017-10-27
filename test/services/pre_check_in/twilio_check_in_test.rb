@@ -60,7 +60,7 @@ class TwilioCheckInTests
     end
   end
 
-  class TwilioCheckInTestsForPendingDemoPatrons < ActiveSupport::TestCase
+  class TwilioCheckInTestsForNewDemoPatrons < ActiveSupport::TestCase
     def setup
       #Twilio receives SMS messages, parses the envelope, and then sends the info to us vai HTTP Post parameters.
       #   The following are parameters for different scenarios.
@@ -94,6 +94,9 @@ class TwilioCheckInTests
       refute p.pending
     end
 
+    test "A card is sent" do
+      # Relevant mailer test is found in 'test/mailers/patron_enrollment_mailer_test.rb'
+    end
 
   end
 
